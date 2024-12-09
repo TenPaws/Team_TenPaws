@@ -169,10 +169,10 @@ const Alarm = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="relative flex items-center px-10 py-6 bg-white shadow-md z-50">
+    <div className="flex flex-col min-h-screen">
+      <header className="relative z-50 flex items-center px-10 py-6 bg-white shadow-md">
         <img
-          src="/src/assets/before.svg"
+          src="/before.svg"
           alt="Back"
           className="w-8 h-8 cursor-pointer"
           onClick={() => navigate(-1)}
@@ -184,20 +184,20 @@ const Alarm = () => {
         </div>
       </header>
 
-      <main className="flex-grow flex flex-col items-center bg-gray-100 py-6 px-4">
+      <main className="flex flex-col items-center flex-grow px-4 py-6 bg-gray-100">
         {/* 읽지 않은 알림 */}
         <div className="w-[92%] sm:w-[90%] md:w-[87%] lg:w-[85%] xl:w-[85%] 2xl:w-[85%] flex justify-between items-center mb-4">
-          <span className="text-2xl font-bold pl-5">
+          <span className="pl-5 text-2xl font-bold">
             읽지 않은 알림: {error ? "정보 없음" : unreadCount}
           </span>
         </div>
 
         {loading && page === 0 ? (
-          <div className="flex-grow flex items-center justify-center">
+          <div className="flex items-center justify-center flex-grow">
             <h1 className="text-xl text-gray-500">알림을 불러오는 중 입니다.</h1>
           </div>
         ) : error ? (
-          <div className="flex-grow flex items-center justify-center">
+          <div className="flex items-center justify-center flex-grow">
             <h1 className="text-xl text-gray-500">{error}</h1>
           </div>
         ) : notifications.length > 0 ? (
@@ -210,12 +210,12 @@ const Alarm = () => {
                 }`}
                 onClick={() => markAsRead(notification.id)}
               >
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex items-center justify-between mb-2">
                   <span className="text-lg text-gray-500">{formatDateTime(notification.createdAt)}</span>
                   <img
-                    src="/src/assets/x2.svg"
+                    src="/x2.svg"
                     alt="Delete"
-                    className="w-7 h-7 cursor-pointer"
+                    className="cursor-pointer w-7 h-7"
                     onClick={(e) => {
                       e.stopPropagation();
                       deleteNotification(notification.id);
@@ -226,9 +226,9 @@ const Alarm = () => {
               </div>
             ))}
             {page < totalPages - 1 && (
-              <div className="w-full flex justify-end">
+              <div className="flex justify-end w-full">
                 <span
-                  className="text-gray-500 text-xl cursor-pointer hover:underline"
+                  className="text-xl text-gray-500 cursor-pointer hover:underline"
                   onClick={fetchNextPage} 
                 >
                   더보기
@@ -237,7 +237,7 @@ const Alarm = () => {
             )}
           </div>
         ) : (
-          <div className="flex-grow flex items-center justify-center">
+          <div className="flex items-center justify-center flex-grow">
             <h1 className="text-2xl text-gray-500">현재 알림이 없습니다.</h1>
           </div>
         )}

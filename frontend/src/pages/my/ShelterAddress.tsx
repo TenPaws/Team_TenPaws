@@ -61,22 +61,24 @@ const ShelterAddress: React.FC = () => {
 
   // ID, ROLE 불러오기
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const userIdResponse = await axiosInstance.get(`/api/v1/features/user-id`, { headers });
-        setUseId(userIdResponse.data);
-
-        const roleResponse = await axiosInstance.get(`/api/v1/features/role`, { headers });
-        setUseRole(roleResponse.data);
-      } catch (error) {
-        console.error("유저 데이터를 불러오는 중 오류 발생:", error);
-        handleError(error);
-      } finally {
-        setIsLoading(false); // 로딩 상태 종료
-      }
-    };
-
-    fetchUserData();
+    if(token) {
+      const fetchUserData = async () => {
+        try {
+          const userIdResponse = await axiosInstance.get(`/api/v1/features/user-id`, { headers });
+          setUseId(userIdResponse.data);
+  
+          const roleResponse = await axiosInstance.get(`/api/v1/features/role`, { headers });
+          setUseRole(roleResponse.data);
+        } catch (error) {
+          console.error("유저 데이터를 불러오는 중 오류 발생:", error);
+          handleError(error);
+        } finally {
+          setIsLoading(false); // 로딩 상태 종료
+        }
+      };
+  
+      fetchUserData();
+    }
   }, [token]);
 
   // 보호소 정보 가져오기 (동물 상세 정보 이용)

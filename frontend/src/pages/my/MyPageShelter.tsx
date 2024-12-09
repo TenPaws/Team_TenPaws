@@ -66,16 +66,18 @@ const MyPageShelter: React.FC = () => {
 
   // ID 불러오기
   useEffect(() => {
-    const shelterId = async () => {
-      try {
-        const response = await axiosInstance.get(`/api/v1/features/user-id`, {headers});
-        setUseId(response.data);
-      } catch(error) {
-        console.error("보호소 ID를 불러오는 중 오류 발생:", error);
-        // handleError(error);
-      }
-    };
-    shelterId();
+    if(token) {
+      const shelterId = async () => {
+        try {
+          const response = await axiosInstance.get(`/api/v1/features/user-id`, {headers});
+          setUseId(response.data);
+        } catch(error) {
+          console.error("보호소 ID를 불러오는 중 오류 발생:", error);
+          // handleError(error);
+        }
+      };
+      shelterId();
+    }
   }, [token])
 
   // 보호소 정보 가져오기 / 보호소 등록 동물 리스트
@@ -173,7 +175,7 @@ const MyPageShelter: React.FC = () => {
       await axiosInstance.delete(`/api/v1/shelters/${useId.Id}`, {headers});
       alert('회원탈퇴가 완료되었습니다.');
       setDeleteModalOpen(false);
-      // 필요시 리다이렉트 로직 추가
+      navigate("/");
     } catch (error) {
       console.error('회원탈퇴 중 오류 발생:', error);
       alert('회원탈퇴에 실패했습니다.');
