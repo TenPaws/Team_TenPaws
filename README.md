@@ -137,7 +137,7 @@ TENPAWS는 카카오 맵 API를 활용하여 사용자의 현재 위치에서 �
 <details>
   <summary>🔗 Usecase Diagram</summary>
 
-![image](https://github.com/user-attachments/assets/f78ae845-b917-4915-8e37-0aee06656ca2)
+![usercase drawio](https://github.com/user-attachments/assets/22505f12-4cfe-48dd-88f4-63c7453477b5)
 
 </details>
 
