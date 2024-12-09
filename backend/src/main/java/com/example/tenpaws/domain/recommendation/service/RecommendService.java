@@ -68,7 +68,7 @@ public class RecommendService {
                             "\nAvailable pets:\n%s\nPlease recommend only one pet with name that perfectly suits to the all of user's preferences, with reason" +
                             "If there is no pet that suits, just recommend closest one." +
                             "If pet's 'status' is (APPLIED), do not recommend." +
-                            "There must be an Id at the end." +
+                            "There must be id as (Id: ?) at the end." +
                             "Answer in Korean.",
                     size, personality, exerciseLevel, petDescriptions);
 
