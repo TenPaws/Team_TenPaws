@@ -83,7 +83,7 @@ TENPAWS는 카카오 맵 API를 활용하여 사용자의 현재 위치에서 �
 <details>
   <summary>🔗 ER Diagram</summary>
 
-![image](https://github.com/user-attachments/assets/fe2dad66-e0b4-48c7-a1a0-30446729560a)
+![erd drawio](https://github.com/user-attachments/assets/f5398062-4eab-4bf2-a775-26b87e560fa4)
 
 </details>
 
