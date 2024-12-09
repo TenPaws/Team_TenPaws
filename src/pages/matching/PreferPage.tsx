@@ -45,18 +45,21 @@ const PreferPage: React.FC = () => {
 
   // ID 불러오기
   useEffect(() => {
-    const userId = async () => {
-      try {
-        const response = await axiosInstance.get(`/api/v1/features/user-id`, {headers});
-        setUseId(response.data);
-      } catch(error) {
-        console.error("유저 ID를 불러오는 중 오류 발생:", error);
-        // handleError(error);
-      }
-    };
-    userId();
-  }, [])
+    if(token) {
+      const userId = async () => {
+        try {
+          const response = await axiosInstance.get(`/api/v1/features/user-id`, {headers});
+          setUseId(response.data);
+        } catch(error) {
+          console.error("유저 ID를 불러오는 중 오류 발생:", error);
+          // handleError(error);
+        }
+      };
+      userId();
+    }
+  }, [token])
 
+  console.log(useId.Id)
   // select 값 변경 핸들러
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { id, value } = e.target;
@@ -76,16 +79,15 @@ const PreferPage: React.FC = () => {
   // 정보 수정 제출
 
   const editSubmit = async (): Promise<void> => {
-    if (!userInfo) return;
-  
-  
-    try {
-      await axiosInstance.put(`/api/v1/users/${useId.Id}`, userInfo, {headers});
-      alert('정보가 수정되었습니다.');
-      cancel()
-    } catch (error) {
-      console.error('정보 수정 중 오류 발생:', error);
-      alert('정보 수정에 실패했습니다.');
+    if(useId.Id !== 0) {
+      try {
+        await axiosInstance.put(`/api/v1/users/${useId.Id}`, userInfo, {headers});
+        alert('정보가 수정되었습니다.');
+        cancel()
+      } catch (error) {
+        console.error('정보 수정 중 오류 발생:', error);
+        alert('정보 수정에 실패했습니다.');
+      }
     }
   };
   

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axiosInstance"; 
-import notificationIcon from "../assets/notification.svg";
+import notificationIcon from "/notification.svg";
 
 const Footer: React.FC = () => {
   const [announcements, setAnnouncements] = useState<
@@ -58,21 +58,21 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gray-300 text-black py-2 px-4 sm:px-6 md:px-7 lg:px-9 flex items-center w-full">
+    <footer className="flex items-center w-full px-4 py-2 text-black bg-gray-300 sm:px-6 md:px-7 lg:px-9">
       {/* 공지사항 아이콘 */}
       <img
         src={notificationIcon}
         alt="Notification Icon"
-        className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-11 lg:h-11 mr-2 sm:mr-3 md:mr-4 lg:mr-5"
+        className="w-8 h-8 mr-2 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-11 lg:h-11 sm:mr-3 md:mr-4 lg:mr-5"
       />
 
       {/* 공지사항 텍스트 및 목록 */}
       <div className="flex items-center">
-        <span className="text-lg sm:text-xl md:text-xl lg:text-2xl font-bold mr-2 sm:mr-4 md:mr-6">
+        <span className="mr-2 text-lg font-bold sm:text-xl md:text-xl lg:text-2xl sm:mr-4 md:mr-6">
           공지사항
         </span>
         <span
-          className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium hover:underline cursor-pointer"
+          className="text-base font-medium cursor-pointer sm:text-lg md:text-xl lg:text-2xl hover:underline"
           onClick={handleAnnouncementClick} 
         >
           {currentAnnouncement?.title || "공지사항이 없습니다."}

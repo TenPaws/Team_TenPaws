@@ -4,16 +4,23 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Chat from "../components/Chat";
 import FAQ from "../components/FAQ";
-import Main2 from "../assets/main3.png";
-import AImatching from "../assets/pet-house (2) 1.svg";
-import met from "../assets/pet-food 1.png";
-import care from "../assets/animal (1) 1.png";
+import Main2 from "/main3.png";
+import AImatching from "/pet-house (2) 1.svg";
+import met from "/pet-food 1.png";
+import care from "/animal (1) 1.png";
 
 // 상세 설명 데이터 타입 정의
 type IconType = "dog" | "approve" | "board" | "check";
 type Description = {
   title: string;
   content: string[];
+};
+
+const iconToImageMap: Record<IconType, string> = {
+  dog: "page.png",
+  approve: "page2.png",
+  board: "page3.png",
+  check: "page4.png"
 };
 
 const descriptions: Record<IconType, Description> = {
@@ -51,12 +58,12 @@ const Main: React.FC = () => {
       {/* About TenPaws */}
       <section className="relative ">
         <div>
-          <div className="absolute pt-12 sm:pt-16 md:pt-20 lg:pt-24 pl-8 sm:pl-16 md:pl-24 lg:pl-32">
-            <div className="font-semibold text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl ">
+          <div className="absolute pt-12 pl-8 sm:pt-16 md:pt-20 lg:pt-24 sm:pl-16 md:pl-24 lg:pl-32">
+            <div className="text-2xl font-semibold sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl ">
               <div className="sm:pb-5 md:pb-8 lg:pb-8 xl:pb-15">기다림의 끝에서</div>
               <div className="pb-1 sm:pb-7 md:pb-9 lg:pb-12 xl:pb-15">서로를 만나는 순간</div>
             </div>
-            <div className="text-sm sm:text-3xl md:text-4xl lg:text-5xl pb-5 sm:pb-7 md:pb-9 lg:pb-12 xl:pb-15">
+            <div className="pb-5 text-sm sm:text-3xl md:text-4xl lg:text-5xl sm:pb-7 md:pb-9 lg:pb-12 xl:pb-15">
               AI가 맺어주는 하나뿐인 인연
             </div>
             <div
@@ -69,26 +76,26 @@ const Main: React.FC = () => {
         </div>
       </section>
       {/* <section className="flex flex-col items-center justify-center bg-[#f1a34a] py-5 px-4">
-        <h2 className="text-3xl sm:text-3xl md:text-4xl font-bold mb-3">About TenPaws</h2>
-        <p className="text-xl sm:text-xl md:text-2xl lg:text-2xl max-w-full text-center leading-relaxed mb-1">
+        <h2 className="mb-3 text-3xl font-bold sm:text-3xl md:text-4xl">About TenPaws</h2>
+        <p className="max-w-full mb-1 text-xl leading-relaxed text-center sm:text-xl md:text-2xl lg:text-2xl">
         TenPaws는 나이 드신 분들이 반려동물을 통해 새로운 인연을 맺을 수 있도록 돕는 서비스입니다. <br />
         </p>
-        <p className="text-xl sm:text-xl md:text-2xl lg:text-2xl max-w-full text-center leading-relaxed mb-1">
+        <p className="max-w-full mb-1 text-xl leading-relaxed text-center sm:text-xl md:text-2xl lg:text-2xl">
         나의 정보에 선호하시는 동물의 종, 크기, 운동량 등을  입력하시면, AI가 당신에게 꼭 맞는 반려동물을 추천해드립니다.  
         </p>
-        <p className="text-xl sm:text-xl md:text-2xl lg:text-2xl max-w-full text-center leading-relaxed mb-1">
+        <p className="max-w-full mb-1 text-xl leading-relaxed text-center sm:text-xl md:text-2xl lg:text-2xl">
         AI 매칭을 통해 생활 방식에 어울리는 반려동물을 쉽게 찾을 수 있습니다.
         </p>
-        <p className="text-xl sm:text-xl md:text-2xl lg:text-2xl max-w-full text-center leading-relaxed">
+        <p className="max-w-full text-xl leading-relaxed text-center sm:text-xl md:text-2xl lg:text-2xl">
         이외에도 TenPaws가 제공하는 산책 코스 추천, 시설 검색 등 다양한 서비스를 확인해보세요.
         </p>
       </section> */}
 
       {/* 설명 섹션 */}
       <section className="flex flex-col items-center justify-center bg-[#f1a34a] py-10 px-4">
-        <h2 className="text-3xl sm:text-3xl md:text-4xl font-bold mb-10">About TenPaws</h2>
+        <h2 className="mb-10 text-3xl font-bold sm:text-3xl md:text-4xl">About TenPaws</h2>
 
-        <div className="flex flex-col md:flex-row justify-center items-center gap-8 max-w-6xl mx-auto">
+        <div className="flex flex-col items-center justify-center max-w-6xl gap-8 mx-auto md:flex-row">
           {/* AI 매칭 */}
           <div
             className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.5)] bg-white w-full md:w-1/3 cursor-pointer
@@ -96,7 +103,7 @@ const Main: React.FC = () => {
             <div className="bg-[#f1a34a] mb-4 p-2 pb-3 rounded-full">
               <img src={AImatching} alt="AI 매칭" className="w-10 h-10 " />
             </div>
-            <h3 className="text-xl font-bold mb-2">AI 매칭</h3>
+            <h3 className="mb-2 text-xl font-bold">AI 매칭</h3>
             <p className="text-center">
               AI가 당신의 생활패턴과 선호도를 분석하여 가장 잘 맞는 반려동물을 추천해드립니다
             </p>
@@ -109,7 +116,7 @@ const Main: React.FC = () => {
             <div className="bg-[#f1a34a] mb-4 p-2 pb-3 rounded-full">
               <img src={met} alt="신중한 입양" className="w-10 h-10 " />
             </div>
-            <h3 className="text-xl font-bold mb-2">신중한 입양</h3>
+            <h3 className="mb-2 text-xl font-bold">신중한 입양</h3>
             <p className="text-center ">
               보호소와 협력하여
               <br /> 책임감 있는 입양 절차를 도와드립니다
@@ -123,7 +130,7 @@ const Main: React.FC = () => {
             <div className="bg-[#f1a34a] mb-[21px] p-2 rounded-full">
               <img src={care} alt="편의 케어" className="w-10 h-10 " />
             </div>
-            <h3 className="text-xl font-bold mb-2">편의 케어</h3>
+            <h3 className="mb-2 text-xl font-bold">편의 케어</h3>
             <p className="text-center ">
               주변 시설 정보 부터 산책로 까지
               <br /> 반려동물 케어에 필요한정보를 제공합니다
@@ -137,7 +144,7 @@ const Main: React.FC = () => {
         {/* 내용 */}
         <div className="relative flex flex-col items-center justify-center w-[95] sm:w-[85%] md:w-[80%] lg:w-[85%] xl:w-[80%] 2xl:w-[90%] max-w-7xl mt-7">
           {/* 아이콘 및 화살표 */}
-          <div className="w-full flex items-center justify-around mb-6 md:mb-10">
+          <div className="flex items-center justify-around w-full mb-6 md:mb-10">
             {(["dog", "approve", "board", "check"] as IconType[]).map((icon, idx, arr) => (
               <React.Fragment key={icon}>
                 <div
@@ -146,19 +153,19 @@ const Main: React.FC = () => {
                   }`}
                   onClick={() => setActiveIcon(icon)}>
                   <img
-                    src={`/src/assets/${icon}.png`}
+                    src={`/${icon}.png`}
                     alt={icon}
-                    className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-20 xl:h-20 object-contain mb-3"
+                    className="object-contain w-10 h-10 mb-3 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-20 xl:h-20"
                   />
-                  <span className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl font-bold text-white">
+                  <span className="text-lg font-bold text-white sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl">
                     {descriptions[icon].title}
                   </span>
                 </div>
                 {idx < arr.length - 1 && (
                   <img
-                    src="/src/assets/arrow.png"
+                    src="/arrow.png"
                     alt="Arrow"
-                    className="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-11 xl:h-11 2xl:w-12 2xl:h-12 object-contain"
+                    className="object-contain w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-11 xl:h-11 2xl:w-12 2xl:h-12"
                   />
                 )}
               </React.Fragment>
@@ -176,20 +183,20 @@ const Main: React.FC = () => {
         {/* 내용 */}
         <div className="relative flex flex-col items-center justify-start w-[85%] sm:w-[85%] md:w-[80%] lg:w-[85%] xl:w-[80%] 2xl:w-[90%] max-w-7xl mt-0">
           <div className="w-[460px] sm:w-[630px] md:w-[730px] lg:w-[980px] xl:w-[1200px] 2xl:w-[1400px] bg-white rounded-md shadow-md p-6 sm:p-6 md:p-8">
-            <div className="text-left mb-6">
-              <h2 className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-4">
+            <div className="mb-6 text-left">
+              <h2 className="mb-4 text-3xl font-semibold text-gray-800 sm:text-3xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-5xl">
                 {descriptions[activeIcon].title}
               </h2>
               {descriptions[activeIcon].content.map((line: string, index: number) => (
                 <p
                   key={index}
-                  className="text-xl sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl leading-relaxed mb-1 pl-4">
+                  className="pl-4 mb-1 text-xl leading-relaxed sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl">
                   {line}
                 </p>
               ))}
             </div>
             <img
-              src={`/src/assets/page${activeIcon === "dog" ? "" : activeIcon === "approve" ? "2" : activeIcon === "board" ? "3" : "4"}.png`}
+              src={`/${iconToImageMap[activeIcon]}`} // activeIcon 값에 따라 매핑된 이미지 파일 이름 참조
               alt="Matching Animal Example"
               className="w-full sm:w-[87%] md:w-[85%] lg:w-[75%] xl:w-[70%] 2xl:w-[60%] h-[290px] sm:h-[330px] md:h-[350px] lg:h-[450px] xl:h-[500px] 2xl:h-[520px] mx-auto rounded-md object-contain"
             />
@@ -199,6 +206,7 @@ const Main: React.FC = () => {
 
       {/* 푸터 */}
       <Footer />
+
     </div>
   );
 };

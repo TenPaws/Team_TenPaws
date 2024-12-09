@@ -82,15 +82,17 @@ const DetailPage = () => {
 
   // 사용자 ID 가져오기
   useEffect(() => {
-    const shelterId = async () => {
-      try {
-        const response = await axiosInstance.get(`/api/v1/features/user-id`, {headers});
-        setUseId(response.data);
-      } catch(error) {
-        console.error("보호소 ID를 불러오는 중 오류 발생:", error);
-      }
-    };
-    shelterId();
+    if(token) {
+      const shelterId = async () => {
+        try {
+          const response = await axiosInstance.get(`/api/v1/features/user-id`, {headers});
+          setUseId(response.data);
+        } catch(error) {
+          console.error("보호소 ID를 불러오는 중 오류 발생:", error);
+        }
+      };
+      shelterId();
+    }
   }, [token])
 
   //보호소 정보 불러오기

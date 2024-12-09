@@ -135,8 +135,8 @@ const FAQEdIt = ({ Close }: FAQEdit) => {
       {/* 수정버튼을 누를시 수정 & 삭제 창 나타남 (edit)*/}
       {edit ? (
         <div className="overflow-y-auto max-h-[500px] scrollbar-hide">
-            <div className="font-bold px-4 my-4 w-full text-3xl">질문 수정 & 삭제</div>
-          <div className="font-bold px-4 mt-3 w-full">질문을 선택하세요</div>
+            <div className="w-full px-4 my-4 text-3xl font-bold">질문 수정 & 삭제</div>
+          <div className="w-full px-4 mt-3 font-bold">질문을 선택하세요</div>
             
             {/* 최상위 질문 가져오기 */}
           <select
@@ -156,7 +156,7 @@ const FAQEdIt = ({ Close }: FAQEdit) => {
           </select>
 
           <div className="">
-            <div className="font-bold px-4 mt-1">질문을 수정하세요</div>
+            <div className="px-4 mt-1 font-bold">질문을 수정하세요</div>
             <div className="flex justify-center">
               <input
                 type="text"
@@ -172,7 +172,7 @@ const FAQEdIt = ({ Close }: FAQEdit) => {
                 수정
               </div>
               <div
-                className="bg-red-400 font-semibold w-12 text-center cursor-pointer px-2 py-1 rounded-md mr-1"
+                className="w-12 px-2 py-1 mr-1 font-semibold text-center bg-red-400 rounded-md cursor-pointer"
                 onClick={handleTopDelete}>
                 삭제
               </div>
@@ -184,7 +184,7 @@ const FAQEdIt = ({ Close }: FAQEdit) => {
       (
         <div className="overflow-y-auto max-h-[500px] scrollbar-hide">
           <div>
-            <div className="font-bold px-4 mt-3 ">최상위 질문을 작성하세요</div>
+            <div className="px-4 mt-3 font-bold ">최상위 질문을 작성하세요</div>
             <div className="flex justify-center">
               <input
                 type="text"
@@ -201,14 +201,14 @@ const FAQEdIt = ({ Close }: FAQEdit) => {
             </div>
           </div>
 
-          <hr className="border-black mt-3 mx-3" />
+          <hr className="mx-3 mt-3 border-black" />
 
-          <div className="font-bold px-4 mt-3 w-full">참조할 상위 질문을 선택하세요</div>
+          <div className="w-full px-4 mt-3 font-bold">참조할 상위 질문을 선택하세요</div>
 
           {/* 질문 가져오기 */}
           <select
             className="m-4 p-2 border-2 border-black w-[350px]"
-             onChange={(e) => {
+            onChange={(e) => {
               const value = Number(e.target.value);
               console.log(value)
               setSelectedTopId(value);
@@ -223,7 +223,7 @@ const FAQEdIt = ({ Close }: FAQEdit) => {
           </select>
 
           <div className="">
-            <div className="font-bold px-4 mt-1">질문을 작성하세요</div>
+            <div className="px-4 mt-1 font-bold">질문을 작성하세요</div>
             <div className="flex justify-center">
               <input
                 type="text"

@@ -223,7 +223,6 @@ const Header = () => {
                       선호 동물 입력 및 수정
                     </Link>
                   )}
-                 
                   {/* <Link
                     to="/my-walking-course"
                     className="mb-3 text-sm font-normal text-black transition-transform duration-200 sm:text-lg md:text-xl lg:text-2xl xl:text-2xl hover:scale-105"
@@ -239,7 +238,7 @@ const Header = () => {
                         로그아웃
                       </span>
                       <img
-                        src="/src/assets/logout.svg"
+                        src="/logout.svg"
                         alt="Logout Icon"
                         className="w-6 h-6 ml-2"
                       />
@@ -262,7 +261,7 @@ const Header = () => {
             <div className="flex items-center">
               <Link to="/alarm">
                 <img
-                  src="/src/assets/alarm.svg"
+                  src="/alarm.svg"
                   alt="Alarm Icon"
                   className="cursor-pointer w-9 h-9"
                 />
@@ -315,7 +314,7 @@ const Header = () => {
                     className="flex items-center justify-center ml-5 transition-transform hover:scale-105"
                   >
                     <img
-                      src="/src/assets/x.svg"
+                      src="/x.svg"
                       alt="Close sidebar"
                       className="w-10 h-10"
                     />

@@ -75,16 +75,18 @@ const AdoptionList: React.FC = () => {
 
   // ID 불러오기
   useEffect(() => {
-    const shelterId = async () => {
-      try {
-        const response = await axiosInstance.get(`/api/v1/features/user-id`, {headers});
-        setUseId(response.data);
-      } catch(error) {
-        console.error("유저 ID를 불러오는 중 오류 발생:", error);
-        // handleError(error);
-      }
-    };
-    shelterId();
+    if(token) {
+      const shelterId = async () => {
+        try {
+          const response = await axiosInstance.get(`/api/v1/features/user-id`, {headers});
+          setUseId(response.data);
+        } catch(error) {
+          console.error("유저 ID를 불러오는 중 오류 발생:", error);
+          // handleError(error);
+        }
+      };
+      shelterId();
+    }
   }, [token])
 
 
@@ -126,43 +128,47 @@ const AdoptionList: React.FC = () => {
 
   // 입양 거부
   const rejected = async (applyId: number) => {
-    try {
-      await axiosInstance.put(`/api/v1/applypet/${useId.Id}/status`, null, {
-        headers: {
-          'Authorization': token,
-          'Content-Type': 'application/json'
-        },
-        params: {
-          applyId: applyId,
-          status: "REJECTED"
-        }
-      });
-      alert('입양 신청이 거절되었습니다.');
-      setPets(prevPets => prevPets.filter(pet => pet.id !== applyId));
-    } catch (error) {
-      console.error('입양 거절 처리 중 오류 발생:', error);
-      alert('입양 거절 처리에 실패했습니다.');
+    if(useId.Id) {
+      try {
+        await axiosInstance.put(`/api/v1/applypet/${useId.Id}/status`, null, {
+          headers: {
+            'Authorization': token,
+            'Content-Type': 'application/json'
+          },
+          params: {
+            applyId: applyId,
+            status: "REJECTED"
+          }
+        });
+        alert('입양 신청이 거절되었습니다.');
+        setPets(prevPets => prevPets.filter(pet => pet.id !== applyId));
+      } catch (error) {
+        console.error('입양 거절 처리 중 오류 발생:', error);
+        alert('입양 거절 처리에 실패했습니다.');
+      }
     }
   };
 
   // 입양 승인
   const completed = async (applyId: number) => {
-    try {
-      await axiosInstance.put(`/api/v1/applypet/${useId.Id}/status`, null, {
-        headers: {
-          'Authorization': token,
-          'Content-Type': 'application/json'
-        },
-        params: {
-          applyId: applyId,
-          status: "COMPLETED"
-        }
-      });
-      alert('입양 신청이 승인되었습니다.');
-      setPets(prevPets => prevPets.filter(pet => pet.id !== applyId));
-    } catch (error) {
-      console.error('입양 승인 처리 중 오류 발생:', error);
-      alert('입양 승인 처리에 실패했습니다.');
+    if(useId.Id) {
+      try {
+        await axiosInstance.put(`/api/v1/applypet/${useId.Id}/status`, null, {
+          headers: {
+            'Authorization': token,
+            'Content-Type': 'application/json'
+          },
+          params: {
+            applyId: applyId,
+            status: "COMPLETED"
+          }
+        });
+        alert('입양 신청이 승인되었습니다.');
+        setPets(prevPets => prevPets.filter(pet => pet.id !== applyId));
+      } catch (error) {
+        console.error('입양 승인 처리 중 오류 발생:', error);
+        alert('입양 승인 처리에 실패했습니다.');
+      }
     }
   };
 
