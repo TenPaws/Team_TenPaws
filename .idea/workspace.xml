@@ -5,358 +5,188 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22ff5ad5-e4e9-4d39-9e00-69d9e85d6df3" name="Changes" comment="docs : CI/CD 추가, 프로젝트 구조도 임시제거">
-      <change afterPath="$PROJECT_DIR$/backend/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/.github/ISSUE_TEMPLATE/default-issue-templeate.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/.github/ISSUE_TEMPLATE/default-pullrequest.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/.github/workflows/deploy.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/PULL_REQUEST_TEMPLATE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/appspec.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/docker-compose.template.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/scripts/start-server.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/TenPawsApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/controller/AdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/dto/AdminRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/dto/AdminResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/entity/Admin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/repository/AdminRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/service/AdminService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/controller/ApplyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/dto/ApplyDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/entity/Apply.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/repository/ApplyRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/service/ApplyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/controller/AdminCommentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/controller/AnnouncementController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/controller/CommentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/controller/InquiryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/request/AnnouncementRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/request/CommentRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/request/InquiryRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/AnnouncementListViewResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/AnnouncementResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/CommentResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryDetailResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryListViewResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/entity/Announcement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/entity/AnnouncementCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/entity/Comment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/entity/Inquiry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/repository/AnnouncementRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/repository/CommentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/repository/InquiryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/AnnouncementService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/AnnouncementServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/CommentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/CommentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/InquiryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/InquiryServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/controller/ChatController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/controller/ChatMessageRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/dto/ChatMessageRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/dto/ChatMessageResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/entity/ChatMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/repository/ChatMessageRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/controller/ChatRoomController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ChatRoomRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ChatRoomResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ClosedChatRoomResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/entity/ChatRoom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/repository/ChatRoomRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/controller/UnReadChatMessagesController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/dto/UnReadChatMessagesRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/dto/UnReadChatMessagesResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/entity/UnReadChatMessages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/repository/UnReadChatMessagesRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/controller/FaqController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/dto/FaqRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/dto/FaqResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/entity/Faq.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/repository/FaqRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/service/FaqService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/service/FaqServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/Repository/NotificationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/controller/NotificationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/dto/request/NotificationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/dto/response/NotificationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/entity/Notification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/entity/NotificationType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/factory/NotificationFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/service/NotificationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/service/NotificationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/sse/SseEmitters.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/sse/UserIdentifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/template/NotificationTemplate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/controller/FileUploadExceptionAdvice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/controller/PetController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/dto/PetRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/dto/PetResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/entity/Pet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/repository/PetRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/service/PetService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/species/Species.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/recommendation/component/ChatApi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/recommendation/service/ApiService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/recommendation/service/RecommendService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/controller/ShelterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/dto/ShelterRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/dto/ShelterResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/entity/Shelter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/repository/ShelterRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/service/ShelterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/controller/ReissueController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/controller/UserFeatureController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/OAuth2UserDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UpdateSocialUsernameRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserJoinDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserResponseForChatDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserUpdateRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserUpdateResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/entity/OAuth2UserEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/repositoty/OAuth2UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/repositoty/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/service/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/advice/OAuth2SuccessHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/CorsMvcConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/JacksonConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/SwaggerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/WebSocketConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/entity/UserRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/exception/BaseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/exception/ErrorCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/exception/ErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/initializer/AdminInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/AdminUserDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/NormalUserDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/OAuth2UserDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/ShelterUserDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/SuperAdminDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/entity/CustomOAuth2User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/entity/RefreshEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/jwt/CustomLogoutFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/jwt/JwtFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/jwt/JwtUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/jwt/LoginFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/repository/RefreshRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/service/CustomUserDetailsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/service/JwtBlacklistService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/service/OAuth2UserServiceImplement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/service/RefreshTokenService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/verifier/OwnershipVerifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/websocket/HttpHandShakeInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/websocket/JwtChannelInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/TenPawsApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/board/service/AnnouncementServiceIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/board/service/CommentServiceIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/board/service/InquiryServiceIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/chatmessage/repository/ChatMessageRepositoryTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageServiceTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/chatroom/repository/ChatRoomRepositoryTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomServiceTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/unread/repository/UnReadChatMessagesRepositoryTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesServiceTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/faq/repository/FaqRepositoryTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/faq/service/FaqServiceTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/notification/service/NotificationServiceIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/user/service/UserServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/default-issue-templeate.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/default-pullrequest.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appspec.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.template.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/start-server.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/TenPawsApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/controller/AdminController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/dto/AdminRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/dto/AdminResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/entity/Admin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/repository/AdminRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/service/AdminService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/controller/ApplyController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/dto/ApplyDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/entity/Apply.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/repository/ApplyRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/service/ApplyService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/controller/AdminCommentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/controller/AnnouncementController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/controller/CommentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/controller/InquiryController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/request/AnnouncementRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/request/CommentRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/request/InquiryRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/AnnouncementListViewResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/AnnouncementResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/CommentResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryDetailResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryListViewResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/entity/Announcement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/entity/AnnouncementCategory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/entity/Comment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/entity/Inquiry.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/repository/AnnouncementRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/repository/CommentRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/repository/InquiryRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/AnnouncementService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/AnnouncementServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/CommentService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/CommentServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/InquiryService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/InquiryServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/controller/ChatController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/controller/ChatMessageRestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/dto/ChatMessageRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/dto/ChatMessageResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/entity/ChatMessage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/repository/ChatMessageRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/controller/ChatRoomController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ChatRoomRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ChatRoomResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ClosedChatRoomResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/entity/ChatRoom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/repository/ChatRoomRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/controller/UnReadChatMessagesController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/dto/UnReadChatMessagesRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/dto/UnReadChatMessagesResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/entity/UnReadChatMessages.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/repository/UnReadChatMessagesRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/controller/FaqController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/dto/FaqRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/dto/FaqResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/entity/Faq.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/repository/FaqRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/service/FaqService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/service/FaqServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/Repository/NotificationRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/controller/NotificationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/dto/request/NotificationRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/dto/response/NotificationResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/entity/Notification.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/entity/NotificationType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/factory/NotificationFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/service/NotificationService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/service/NotificationServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/sse/SseEmitters.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/sse/UserIdentifier.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/template/NotificationTemplate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/controller/FileUploadExceptionAdvice.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/controller/PetController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/dto/PetRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/dto/PetResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/entity/Pet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/repository/PetRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/service/PetService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/species/Species.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/recommendation/component/ChatApi.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/recommendation/service/ApiService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/recommendation/service/RecommendService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/controller/ShelterController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/dto/ShelterRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/dto/ShelterResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/entity/Shelter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/repository/ShelterRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/service/ShelterService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/controller/ReissueController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/controller/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/controller/UserFeatureController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/OAuth2UserDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UpdateSocialUsernameRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserJoinDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserResponseForChatDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserUpdateRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserUpdateResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/entity/OAuth2UserEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/entity/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/repositoty/OAuth2UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/repositoty/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/service/UserServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/advice/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/advice/OAuth2SuccessHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/CorsMvcConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/JacksonConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/SwaggerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/WebSocketConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/entity/UserRole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/exception/BaseException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/exception/ErrorCode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/exception/ErrorResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/initializer/AdminInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/AdminUserDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/NormalUserDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/OAuth2UserDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/ShelterUserDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/SuperAdminDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/entity/CustomOAuth2User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/entity/RefreshEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/jwt/CustomLogoutFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/jwt/JwtFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/jwt/JwtUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/jwt/LoginFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/repository/RefreshRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/service/CustomUserDetailsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/service/JwtBlacklistService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/service/OAuth2UserServiceImplement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/service/RefreshTokenService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/verifier/OwnershipVerifier.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/websocket/HttpHandShakeInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/websocket/JwtChannelInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/TenPawsApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/board/service/AnnouncementServiceIntegrationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/board/service/CommentServiceIntegrationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/board/service/InquiryServiceIntegrationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/chatmessage/repository/ChatMessageRepositoryTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageServiceTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/chatroom/repository/ChatRoomRepositoryTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomServiceTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/unread/repository/UnReadChatMessagesRepositoryTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesServiceTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/faq/repository/FaqRepositoryTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/faq/service/FaqServiceTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/notification/service/NotificationServiceIntegrationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/user/service/UserServiceImplTest.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/1733418057154_defaultavatar1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/1733418230154_defaultavatar1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/1733418235327_defaultavatar1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/1733418238248_defaultavatar1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/default-issue-templeate.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.github/ISSUE_TEMPLATE/default-issue-templeate.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/default-pullrequest.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.github/ISSUE_TEMPLATE/default-pullrequest.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.github/workflows/deploy.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PULL_REQUEST_TEMPLATE.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/PULL_REQUEST_TEMPLATE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appspec.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/appspec.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.template.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker-compose.template.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/backend/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/backend/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/start-server.sh" beforeDir="false" afterPath="$PROJECT_DIR$/backend/scripts/start-server.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/backend/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/TenPawsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/TenPawsApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/dto/AdminRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/dto/AdminRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/dto/AdminResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/dto/AdminResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/entity/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/entity/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/repository/AdminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/repository/AdminRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/controller/ApplyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/controller/ApplyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/dto/ApplyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/dto/ApplyDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/entity/Apply.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/entity/Apply.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/repository/ApplyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/repository/ApplyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/service/ApplyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/service/ApplyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/controller/AdminCommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/controller/AdminCommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/controller/AnnouncementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/controller/AnnouncementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/controller/InquiryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/controller/InquiryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/request/AnnouncementRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/request/AnnouncementRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/request/CommentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/request/CommentRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/request/InquiryRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/request/InquiryRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/AnnouncementListViewResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/AnnouncementListViewResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/AnnouncementResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/AnnouncementResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/CommentResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/CommentResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryDetailResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryDetailResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryListViewResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryListViewResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/entity/Announcement.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/entity/Announcement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/entity/AnnouncementCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/entity/AnnouncementCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/entity/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/entity/Inquiry.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/entity/Inquiry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/repository/AnnouncementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/repository/AnnouncementRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/repository/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/repository/InquiryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/repository/InquiryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/AnnouncementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/AnnouncementService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/AnnouncementServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/AnnouncementServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/CommentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/InquiryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/InquiryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/InquiryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/InquiryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/controller/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/controller/ChatMessageRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/controller/ChatMessageRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/dto/ChatMessageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/dto/ChatMessageRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/dto/ChatMessageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/dto/ChatMessageResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/entity/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/entity/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/repository/ChatMessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/repository/ChatMessageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/controller/ChatRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/controller/ChatRoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ChatRoomRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ChatRoomRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ChatRoomResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ChatRoomResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ClosedChatRoomResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ClosedChatRoomResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/entity/ChatRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/entity/ChatRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/repository/ChatRoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/repository/ChatRoomRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/controller/UnReadChatMessagesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/controller/UnReadChatMessagesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/dto/UnReadChatMessagesRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/dto/UnReadChatMessagesRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/dto/UnReadChatMessagesResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/dto/UnReadChatMessagesResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/entity/UnReadChatMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/entity/UnReadChatMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/repository/UnReadChatMessagesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/repository/UnReadChatMessagesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/controller/FaqController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/controller/FaqController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/dto/FaqRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/dto/FaqRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/dto/FaqResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/dto/FaqResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/entity/Faq.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/entity/Faq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/repository/FaqRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/repository/FaqRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/service/FaqService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/service/FaqService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/service/FaqServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/service/FaqServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/Repository/NotificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/Repository/NotificationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/controller/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/dto/request/NotificationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/dto/request/NotificationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/dto/response/NotificationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/dto/response/NotificationResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/entity/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/entity/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/entity/NotificationType.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/entity/NotificationType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/factory/NotificationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/factory/NotificationFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/service/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/service/NotificationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/service/NotificationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/sse/SseEmitters.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/sse/SseEmitters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/sse/UserIdentifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/sse/UserIdentifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/template/NotificationTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/template/NotificationTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/controller/FileUploadExceptionAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/controller/FileUploadExceptionAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/controller/PetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/controller/PetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/dto/PetRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/dto/PetRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/dto/PetResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/dto/PetResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/entity/Pet.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/entity/Pet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/repository/PetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/repository/PetRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/service/PetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/service/PetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/species/Species.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/species/Species.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/recommendation/component/ChatApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/recommendation/component/ChatApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/recommendation/service/ApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/recommendation/service/ApiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/recommendation/service/RecommendService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/recommendation/service/RecommendService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/controller/ShelterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/controller/ShelterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/dto/ShelterRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/dto/ShelterRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/dto/ShelterResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/dto/ShelterResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/entity/Shelter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/entity/Shelter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/repository/ShelterRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/repository/ShelterRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/service/ShelterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/service/ShelterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/controller/ReissueController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/controller/ReissueController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/controller/UserFeatureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/controller/UserFeatureController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/OAuth2UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/OAuth2UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UpdateSocialUsernameRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UpdateSocialUsernameRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserJoinDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserJoinDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserResponseForChatDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserResponseForChatDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserUpdateRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserUpdateRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserUpdateResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserUpdateResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/entity/OAuth2UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/entity/OAuth2UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/repositoty/OAuth2UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/repositoty/OAuth2UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/repositoty/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/repositoty/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/advice/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/advice/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/advice/OAuth2SuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/advice/OAuth2SuccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/CorsMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/CorsMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/JacksonConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/JacksonConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/WebSocketConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/entity/UserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/entity/UserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/exception/BaseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/exception/BaseException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/exception/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/exception/ErrorResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/initializer/AdminInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/initializer/AdminInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/AdminUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/AdminUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/NormalUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/NormalUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/OAuth2UserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/OAuth2UserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/ShelterUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/ShelterUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/SuperAdminDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/SuperAdminDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/entity/CustomOAuth2User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/entity/CustomOAuth2User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/entity/RefreshEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/entity/RefreshEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/jwt/CustomLogoutFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/jwt/CustomLogoutFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/jwt/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/jwt/JwtFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/jwt/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/jwt/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/jwt/LoginFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/jwt/LoginFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/repository/RefreshRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/repository/RefreshRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/service/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/service/JwtBlacklistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/service/JwtBlacklistService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/service/OAuth2UserServiceImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/service/OAuth2UserServiceImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/service/RefreshTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/service/RefreshTokenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/verifier/OwnershipVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/verifier/OwnershipVerifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/websocket/HttpHandShakeInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/websocket/HttpHandShakeInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/websocket/JwtChannelInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/websocket/JwtChannelInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/TenPawsApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/TenPawsApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/board/service/AnnouncementServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/board/service/AnnouncementServiceIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/board/service/CommentServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/board/service/CommentServiceIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/board/service/InquiryServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/board/service/InquiryServiceIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/chatmessage/repository/ChatMessageRepositoryTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/chatmessage/repository/ChatMessageRepositoryTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/chatroom/repository/ChatRoomRepositoryTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/chatroom/repository/ChatRoomRepositoryTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/unread/repository/UnReadChatMessagesRepositoryTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/unread/repository/UnReadChatMessagesRepositoryTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/faq/repository/FaqRepositoryTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/faq/repository/FaqRepositoryTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/faq/service/FaqServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/faq/service/FaqServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/notification/service/NotificationServiceIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/notification/service/NotificationServiceIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/user/service/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/user/service/UserServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -365,6 +195,9 @@
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/backend">
       <ProjectState />
     </projectState>
   </component>
@@ -376,12 +209,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="TenPaws" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -439,7 +267,7 @@
     "Spring Boot.TenPawsApplication.executor": "Run",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "integration1.0",
+    "git-widget-placeholder": "Merging kimdongjoon-web-integration1.0",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/spring/devcourse/finalproject/WEB1_2_TenPaws_BE/uploads",
     "node.js.detected.package.eslint": "true",
