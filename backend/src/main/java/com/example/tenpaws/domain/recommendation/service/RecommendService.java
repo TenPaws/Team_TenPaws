@@ -59,13 +59,16 @@ public class RecommendService {
             // Step 4: 필터링된 Pet 데이터를 AI에 전달
             String petDescriptions = filteredPets.stream()
                     .map(pet -> String.format(
-                            "Id: %s, Size: %s, Personality: %s, Exercise Level: %s",
-                            pet.getId(), pet.getSize(), pet.getPersonality(), pet.getExerciseLevel()))
+                            "Name: %s, Id: %s, Size: %s, Personality: %s, Exercise Level: %s",
+                            pet.getPetName(), pet.getId(), pet.getSize(), pet.getPersonality(), pet.getExerciseLevel(), pet.getStatus()))
                     .collect(Collectors.joining("\n"));
 
             String prompt = String.format(
                     "User prefers: Size: %s, Personality: %s, Exercise Level: %s." +
-                            "\nAvailable pets:\n%s\nPlease recommend only one pet that perfectly suits to the all of user's preferences. If there is no pet that suits, just recommend closest one. Size should be equal. id should be said as ID: ?. Answer in Korean.",
+                            "\nAvailable pets:\n%s\nPlease recommend only one pet with name that perfectly suits to the all of user's preferences, with reason" +
+                            "If there is no pet that suits, just recommend closest one." +
+                            "If pet's 'status' is (APPLIED), do not recommend." +
+                            "Answer in Korean.",
                     size, personality, exerciseLevel, petDescriptions);
 
             // Step 5: OpenAI 호출
@@ -103,7 +106,7 @@ public class RecommendService {
     }
 
     private String extractRecommendedId(String response) {
-        Pattern pattern = Pattern.compile("ID:\\s*(\\d+)");
+        Pattern pattern = Pattern.compile("Id:\\s*(\\d+)");
         Matcher matcher = pattern.matcher(response);
 
         if (matcher.find()) {
