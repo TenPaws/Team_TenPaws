@@ -104,7 +104,7 @@ TENPAWS는 카카오 맵 API를 활용하여 사용자의 현재 위치에서 �
 <details>
   <summary>소셜 로그인</summary>
 
-  ![image](https://github.com/user-attachments/assets/242600a0-7714-4572-86e0-a0b11e686217)
+![social drawio](https://github.com/user-attachments/assets/11029dad-da5a-407b-9926-a6af6ada6e6c)
 
 </details>
 
