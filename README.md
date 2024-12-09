@@ -41,6 +41,8 @@ TENPAWS는 카카오 맵 API를 활용하여 사용자의 현재 위치에서 �
 
 ## 🛠️ 개발 환경
 
+![기술스택](https://github.com/user-attachments/assets/3e75e1f7-d6cb-429b-8a8a-6a7445bbc7d9)
+
 ### Backend
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)![Spring](https://img.shields.io/badge/spring%20boot-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)![SpringSecurity](https://img.shields.io/badge/spring%20security-%230DB33F.svg?style=for-the-badge&logo=springsecurity&logoColor=white)![SpringDataJpa](https://img.shields.io/badge/spring%20data%20jpa-%231DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)![Swagger](https://img.shields.io/badge/Swagger-0?style=for-the-badge&logo=Swagger&logoColor=white&color=%2385EA2D)![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)![OAuth2](https://img.shields.io/badge/OAuth2-0?style=for-the-badge&logo=auth0&logoColor=white&color=%23000000)![Apache Tomcat](https://img.shields.io/badge/apache%20tomcat-%23F8DC75.svg?style=for-the-badge&logo=apache-tomcat&logoColor=black)
 
@@ -87,7 +89,9 @@ TENPAWS는 카카오 맵 API를 활용하여 사용자의 현재 위치에서 �
 <details>
   <summary>🔗 System Architecture</summary>
 
-![CICD구조도4 drawio](https://github.com/user-attachments/assets/5bb83df5-3bb0-47cb-905d-9365824f4bff)
+### CI / CD
+
+![CICD구조도5 drawio](https://github.com/user-attachments/assets/c3b68513-20be-4d1d-91da-75f717c40a9e)
 
 </details>
 
