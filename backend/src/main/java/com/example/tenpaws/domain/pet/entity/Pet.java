@@ -96,7 +96,7 @@ public class Pet {
         this.exerciseLevel = exerciseLevel;
         this.shelter = shelter;
         this.imageUrls = imageUrls;
-        this.status = status;
+        this.status = status != null ? status : PetStatus.AVAILABLE;
     }
 
     // 필드 업데이트 메서드
