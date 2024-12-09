@@ -1,0 +1,1105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="22ff5ad5-e4e9-4d39-9e00-69d9e85d6df3" name="Changes" comment="docs : CI/CD 추가, 프로젝트 구조도 임시제거">
+      <change afterPath="$PROJECT_DIR$/backend/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.github/ISSUE_TEMPLATE/default-issue-templeate.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.github/ISSUE_TEMPLATE/default-pullrequest.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.github/workflows/deploy.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/PULL_REQUEST_TEMPLATE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/appspec.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/docker-compose.template.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/scripts/start-server.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/TenPawsApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/controller/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/dto/AdminRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/dto/AdminResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/entity/Admin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/repository/AdminRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/admin/service/AdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/controller/ApplyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/dto/ApplyDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/entity/Apply.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/repository/ApplyRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/apply/service/ApplyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/controller/AdminCommentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/controller/AnnouncementController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/controller/CommentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/controller/InquiryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/request/AnnouncementRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/request/CommentRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/request/InquiryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/AnnouncementListViewResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/AnnouncementResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/CommentResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryDetailResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryListViewResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/entity/Announcement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/entity/AnnouncementCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/entity/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/entity/Inquiry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/repository/AnnouncementRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/repository/CommentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/repository/InquiryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/AnnouncementService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/AnnouncementServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/CommentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/CommentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/InquiryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/board/service/InquiryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/controller/ChatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/controller/ChatMessageRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/dto/ChatMessageRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/dto/ChatMessageResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/entity/ChatMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/repository/ChatMessageRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/controller/ChatRoomController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ChatRoomRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ChatRoomResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ClosedChatRoomResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/entity/ChatRoom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/repository/ChatRoomRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/controller/UnReadChatMessagesController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/dto/UnReadChatMessagesRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/dto/UnReadChatMessagesResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/entity/UnReadChatMessages.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/repository/UnReadChatMessagesRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/controller/FaqController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/dto/FaqRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/dto/FaqResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/entity/Faq.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/repository/FaqRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/service/FaqService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/faq/service/FaqServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/Repository/NotificationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/controller/NotificationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/dto/request/NotificationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/dto/response/NotificationResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/entity/Notification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/entity/NotificationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/factory/NotificationFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/service/NotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/service/NotificationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/sse/SseEmitters.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/sse/UserIdentifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/notification/template/NotificationTemplate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/controller/FileUploadExceptionAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/controller/PetController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/dto/PetRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/dto/PetResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/entity/Pet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/repository/PetRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/service/PetService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/pet/species/Species.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/recommendation/component/ChatApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/recommendation/service/ApiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/recommendation/service/RecommendService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/controller/ShelterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/dto/ShelterRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/dto/ShelterResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/entity/Shelter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/repository/ShelterRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/shelter/service/ShelterService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/controller/ReissueController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/controller/UserFeatureController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/OAuth2UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UpdateSocialUsernameRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserJoinDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserResponseForChatDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserUpdateRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/dto/UserUpdateResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/entity/OAuth2UserEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/repositoty/OAuth2UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/repositoty/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/domain/user/service/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/advice/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/advice/OAuth2SuccessHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/CorsMvcConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/JacksonConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/SwaggerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/config/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/entity/UserRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/exception/BaseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/exception/ErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/exception/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/initializer/AdminInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/AdminUserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/NormalUserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/OAuth2UserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/ShelterUserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/dto/SuperAdminDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/entity/CustomOAuth2User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/entity/RefreshEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/jwt/CustomLogoutFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/jwt/JwtFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/jwt/JwtUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/jwt/LoginFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/repository/RefreshRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/service/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/service/JwtBlacklistService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/service/OAuth2UserServiceImplement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/service/RefreshTokenService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/security/verifier/OwnershipVerifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/websocket/HttpHandShakeInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/tenpaws/global/websocket/JwtChannelInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/TenPawsApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/board/service/AnnouncementServiceIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/board/service/CommentServiceIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/board/service/InquiryServiceIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/chatmessage/repository/ChatMessageRepositoryTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/chatroom/repository/ChatRoomRepositoryTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/unread/repository/UnReadChatMessagesRepositoryTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/faq/repository/FaqRepositoryTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/faq/service/FaqServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/notification/service/NotificationServiceIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/tenpaws/domain/user/service/UserServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/default-issue-templeate.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/default-pullrequest.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/appspec.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.template.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/start-server.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/TenPawsApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/controller/AdminController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/dto/AdminRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/dto/AdminResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/entity/Admin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/repository/AdminRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/admin/service/AdminService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/controller/ApplyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/dto/ApplyDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/entity/Apply.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/repository/ApplyRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/apply/service/ApplyService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/controller/AdminCommentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/controller/AnnouncementController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/controller/CommentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/controller/InquiryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/request/AnnouncementRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/request/CommentRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/request/InquiryRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/AnnouncementListViewResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/AnnouncementResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/CommentResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryDetailResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryListViewResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/dto/response/InquiryResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/entity/Announcement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/entity/AnnouncementCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/entity/Comment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/entity/Inquiry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/repository/AnnouncementRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/repository/CommentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/repository/InquiryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/AnnouncementService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/AnnouncementServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/CommentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/CommentServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/InquiryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/board/service/InquiryServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/controller/ChatController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/controller/ChatMessageRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/dto/ChatMessageRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/dto/ChatMessageResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/entity/ChatMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/repository/ChatMessageRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/controller/ChatRoomController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ChatRoomRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ChatRoomResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/dto/ClosedChatRoomResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/entity/ChatRoom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/repository/ChatRoomRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/controller/UnReadChatMessagesController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/dto/UnReadChatMessagesRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/dto/UnReadChatMessagesResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/entity/UnReadChatMessages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/repository/UnReadChatMessagesRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/controller/FaqController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/dto/FaqRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/dto/FaqResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/entity/Faq.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/repository/FaqRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/service/FaqService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/faq/service/FaqServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/Repository/NotificationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/controller/NotificationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/dto/request/NotificationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/dto/response/NotificationResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/entity/Notification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/entity/NotificationType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/factory/NotificationFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/service/NotificationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/service/NotificationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/sse/SseEmitters.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/sse/UserIdentifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/notification/template/NotificationTemplate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/controller/FileUploadExceptionAdvice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/controller/PetController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/dto/PetRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/dto/PetResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/entity/Pet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/repository/PetRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/service/PetService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/pet/species/Species.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/recommendation/component/ChatApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/recommendation/service/ApiService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/recommendation/service/RecommendService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/controller/ShelterController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/dto/ShelterRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/dto/ShelterResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/entity/Shelter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/repository/ShelterRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/shelter/service/ShelterService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/controller/ReissueController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/controller/UserFeatureController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/OAuth2UserDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UpdateSocialUsernameRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserJoinDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserResponseForChatDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserUpdateRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/dto/UserUpdateResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/entity/OAuth2UserEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/repositoty/OAuth2UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/repositoty/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/domain/user/service/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/advice/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/advice/OAuth2SuccessHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/CorsMvcConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/JacksonConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/config/WebSocketConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/entity/UserRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/exception/BaseException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/exception/ErrorCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/exception/ErrorResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/initializer/AdminInitializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/AdminUserDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/NormalUserDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/OAuth2UserDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/ShelterUserDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/dto/SuperAdminDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/entity/CustomOAuth2User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/entity/RefreshEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/jwt/CustomLogoutFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/jwt/JwtFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/jwt/JwtUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/jwt/LoginFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/repository/RefreshRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/service/CustomUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/service/JwtBlacklistService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/service/OAuth2UserServiceImplement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/service/RefreshTokenService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/security/verifier/OwnershipVerifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/websocket/HttpHandShakeInterceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/tenpaws/global/websocket/JwtChannelInterceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/TenPawsApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/board/service/AnnouncementServiceIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/board/service/CommentServiceIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/board/service/InquiryServiceIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/chatmessage/repository/ChatMessageRepositoryTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/chatmessage/service/ChatMessageServiceTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/chatroom/repository/ChatRoomRepositoryTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/chatroom/service/ChatRoomServiceTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/unread/repository/UnReadChatMessagesRepositoryTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/chat/unread/service/UnReadChatMessagesServiceTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/faq/repository/FaqRepositoryTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/faq/service/FaqServiceTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/notification/service/NotificationServiceIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/tenpaws/domain/user/service/UserServiceImplTest.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="TenPaws" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2p4IU3EdNyAIASGMB2uAFt38Rf2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Gradle.AnnouncementServiceTest.executor": "Run",
+    "Gradle.Build WEB1_2_TenPaws_BE.executor": "Run",
+    "Gradle.CommentServiceIntegrationTest.executor": "Run",
+    "Gradle.CommentServiceIntegrationTest.답변_생성.executor": "Run",
+    "Gradle.InquiryServiceIntegrationTest.일반_사용자_문의_생성.executor": "Run",
+    "Gradle.NotificationServiceIntegrationTest.executor": "Run",
+    "Gradle.NotificationServiceIntegrationTest.읽지_않은_알림_개수_조회_테스트.executor": "Run",
+    "Gradle.NotificationServiceIntegrationTest.존재하지_않는_수신자에게_알림_생성_예외_테스트.executor": "Run",
+    "Gradle.TenPawsApplicationTests.executor": "Run",
+    "Gradle.Tests in 'TenPaws.test'.executor": "Run",
+    "Gradle.Tests in 'com.example.tenpaws.domain.board.service'.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.TenPawsApplication.executor": "Run",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "integration1.0",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/spring/devcourse/finalproject/WEB1_2_TenPaws_BE/uploads",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\spring\devcourse\finalproject\WEB1_2_TenPaws_BE\uploads" />
+      <recent name="C:\spring\devcourse\finalproject\WEB1_2_TenPaws_BE\scripts" />
+      <recent name="C:\spring\devcourse\finalproject\WEB1_2_TenPaws_BE\src\main\java\com\example\tenpaws\domain\board\dto\response" />
+      <recent name="C:\spring\devcourse\finalproject\WEB1_2_TenPaws_BE\src\main\java\com\example\tenpaws\domain\board\dto\request" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.tenpaws.domain.board.service" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.tenpaws.global.config" />
+      <recent name="com.example.tenpaws.domain.board.controller" />
+      <recent name="com.example.tenpaws.domain.board.service" />
+      <recent name="com.example.tenpaws.domain.board.repository" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.Tests in 'TenPaws.test'">
+    <configuration name="NotificationServiceIntegrationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.example.tenpaws.domain.notification.service.NotificationServiceIntegrationTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="NotificationServiceIntegrationTest.읽지_않은_알림_개수_조회_테스트" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.example.tenpaws.domain.notification.service.NotificationServiceIntegrationTest.읽지_않은_알림_개수_조회_테스트&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="NotificationServiceIntegrationTest.존재하지_않는_수신자에게_알림_생성_예외_테스트" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.example.tenpaws.domain.notification.service.NotificationServiceIntegrationTest.존재하지_않는_수신자에게_알림_생성_예외_테스트&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="TenPawsApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.example.tenpaws.TenPawsApplicationTests&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests in 'TenPaws.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="TenPawsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="TenPaws.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.tenpaws.TenPawsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Tests in 'TenPaws.test'" />
+        <item itemvalue="Gradle.TenPawsApplicationTests" />
+        <item itemvalue="Gradle.NotificationServiceIntegrationTest" />
+        <item itemvalue="Gradle.NotificationServiceIntegrationTest.읽지_않은_알림_개수_조회_테스트" />
+        <item itemvalue="Gradle.NotificationServiceIntegrationTest.존재하지_않는_수신자에게_알림_생성_예외_테스트" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="22ff5ad5-e4e9-4d39-9e00-69d9e85d6df3" name="Changes" comment="" />
+      <created>1732018933692</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732018933692</updated>
+      <workItem from="1732018935355" duration="4686000" />
+      <workItem from="1732062597464" duration="15746000" />
+      <workItem from="1732086314910" duration="6572000" />
+      <workItem from="1732097121876" duration="6017000" />
+      <workItem from="1732147117371" duration="20861000" />
+      <workItem from="1732175037796" duration="18359000" />
+      <workItem from="1732232127164" duration="11636000" />
+      <workItem from="1732288889457" duration="3863000" />
+      <workItem from="1732323943957" duration="4106000" />
+      <workItem from="1732375225926" duration="3286000" />
+      <workItem from="1732421461778" duration="6000" />
+      <workItem from="1732424875009" duration="1478000" />
+      <workItem from="1732452475064" duration="386000" />
+      <workItem from="1732495199958" duration="1132000" />
+      <workItem from="1732512468120" duration="415000" />
+      <workItem from="1732519274294" duration="6146000" />
+      <workItem from="1732540395634" duration="1929000" />
+      <workItem from="1732543750951" duration="5776000" />
+      <workItem from="1732580464993" duration="37215000" />
+      <workItem from="1732665764785" duration="44054000" />
+      <workItem from="1732717903861" duration="5829000" />
+      <workItem from="1732752177836" duration="32796000" />
+      <workItem from="1732839763901" duration="9404000" />
+      <workItem from="1732855602773" duration="22284000" />
+      <workItem from="1732934752451" duration="7101000" />
+      <workItem from="1732943620246" duration="30441000" />
+      <workItem from="1732979059298" duration="2055000" />
+      <workItem from="1733016640467" duration="17562000" />
+      <workItem from="1733099007801" duration="27383000" />
+      <workItem from="1733136870983" duration="6482000" />
+      <workItem from="1733143448924" duration="6130000" />
+      <workItem from="1733184433244" duration="45347000" />
+      <workItem from="1733270701267" duration="39260000" />
+      <workItem from="1733325017315" duration="3262000" />
+      <workItem from="1733357913165" duration="34697000" />
+      <workItem from="1733447586193" duration="27686000" />
+      <workItem from="1733545574252" duration="1404000" />
+      <workItem from="1733548478724" duration="9618000" />
+      <workItem from="1733562428582" duration="15322000" />
+      <workItem from="1733627363392" duration="1632000" />
+      <workItem from="1733632199116" duration="774000" />
+      <workItem from="1733635011913" duration="2855000" />
+      <workItem from="1733704946812" duration="2418000" />
+    </task>
+    <task id="LOCAL-00318" summary="feat : 본인이 작성한 문의사항 조회 기능 추가">
+      <option name="closed" value="true" />
+      <created>1733384446832</created>
+      <option name="number" value="00318" />
+      <option name="presentableId" value="LOCAL-00318" />
+      <option name="project" value="LOCAL" />
+      <updated>1733384446832</updated>
+    </task>
+    <task id="LOCAL-00319" summary="mod : 알림 고유id값 반환 추가">
+      <option name="closed" value="true" />
+      <created>1733384463664</created>
+      <option name="number" value="00319" />
+      <option name="presentableId" value="LOCAL-00319" />
+      <option name="project" value="LOCAL" />
+      <updated>1733384463664</updated>
+    </task>
+    <task id="LOCAL-00320" summary="feat: 알림 본인 여부 검증 추가">
+      <option name="closed" value="true" />
+      <created>1733384509277</created>
+      <option name="number" value="00320" />
+      <option name="presentableId" value="LOCAL-00320" />
+      <option name="project" value="LOCAL" />
+      <updated>1733384509277</updated>
+    </task>
+    <task id="LOCAL-00321" summary="feat: 본인이 작성한 답변 조회 기능 추가">
+      <option name="closed" value="true" />
+      <created>1733384527807</created>
+      <option name="number" value="00321" />
+      <option name="presentableId" value="LOCAL-00321" />
+      <option name="project" value="LOCAL" />
+      <updated>1733384527807</updated>
+    </task>
+    <task id="LOCAL-00322" summary="chore: 수정 전 임시 커밋">
+      <option name="closed" value="true" />
+      <created>1733384548994</created>
+      <option name="number" value="00322" />
+      <option name="presentableId" value="LOCAL-00322" />
+      <option name="project" value="LOCAL" />
+      <updated>1733384548994</updated>
+    </task>
+    <task id="LOCAL-00323" summary="mod: 작성자이름, 작성자이메일 필드 추가">
+      <option name="closed" value="true" />
+      <created>1733386472273</created>
+      <option name="number" value="00323" />
+      <option name="presentableId" value="LOCAL-00323" />
+      <option name="project" value="LOCAL" />
+      <updated>1733386472273</updated>
+    </task>
+    <task id="LOCAL-00324" summary="mod: 작성자이름, 작성자이메일 필드 추가">
+      <option name="closed" value="true" />
+      <created>1733386479528</created>
+      <option name="number" value="00324" />
+      <option name="presentableId" value="LOCAL-00324" />
+      <option name="project" value="LOCAL" />
+      <updated>1733386479528</updated>
+    </task>
+    <task id="LOCAL-00325" summary="mod: 작성자이름, 작성자이메일 필드 추가">
+      <option name="closed" value="true" />
+      <created>1733386483726</created>
+      <option name="number" value="00325" />
+      <option name="presentableId" value="LOCAL-00325" />
+      <option name="project" value="LOCAL" />
+      <updated>1733386483726</updated>
+    </task>
+    <task id="LOCAL-00326" summary="mod: 작성자이름, 작성자이메일 필드 추가로 인한 변경">
+      <option name="closed" value="true" />
+      <created>1733386495699</created>
+      <option name="number" value="00326" />
+      <option name="presentableId" value="LOCAL-00326" />
+      <option name="project" value="LOCAL" />
+      <updated>1733386495699</updated>
+    </task>
+    <task id="LOCAL-00327" summary="mod: 작성자이름, 작성자이메일 필드 추가">
+      <option name="closed" value="true" />
+      <created>1733386501630</created>
+      <option name="number" value="00327" />
+      <option name="presentableId" value="LOCAL-00327" />
+      <option name="project" value="LOCAL" />
+      <updated>1733386501630</updated>
+    </task>
+    <task id="LOCAL-00328" summary="chore: 배포용 임시 커밋">
+      <option name="closed" value="true" />
+      <created>1733388145304</created>
+      <option name="number" value="00328" />
+      <option name="presentableId" value="LOCAL-00328" />
+      <option name="project" value="LOCAL" />
+      <updated>1733388145304</updated>
+    </task>
+    <task id="LOCAL-00329" summary="feat : 입양 신청 알림, 입양 결과 알림 기능 추가">
+      <option name="closed" value="true" />
+      <created>1733419516620</created>
+      <option name="number" value="00329" />
+      <option name="presentableId" value="LOCAL-00329" />
+      <option name="project" value="LOCAL" />
+      <updated>1733419516620</updated>
+    </task>
+    <task id="LOCAL-00330" summary="feat : 입양 신청 알림, 입양 결과 알림 기능 추가">
+      <option name="closed" value="true" />
+      <created>1733419526642</created>
+      <option name="number" value="00330" />
+      <option name="presentableId" value="LOCAL-00330" />
+      <option name="project" value="LOCAL" />
+      <updated>1733419526642</updated>
+    </task>
+    <task id="LOCAL-00331" summary="feat : 입양 신청 알림, 입양 결과 알림 기능 추가">
+      <option name="closed" value="true" />
+      <created>1733419540896</created>
+      <option name="number" value="00331" />
+      <option name="presentableId" value="LOCAL-00331" />
+      <option name="project" value="LOCAL" />
+      <updated>1733419540896</updated>
+    </task>
+    <task id="LOCAL-00332" summary="mod : 연관관계 제거">
+      <option name="closed" value="true" />
+      <created>1733421791042</created>
+      <option name="number" value="00332" />
+      <option name="presentableId" value="LOCAL-00332" />
+      <option name="project" value="LOCAL" />
+      <updated>1733421791042</updated>
+    </task>
+    <task id="LOCAL-00333" summary="mod : 연관관계 제거로 인한 toEntity 필드 변경">
+      <option name="closed" value="true" />
+      <created>1733421835479</created>
+      <option name="number" value="00333" />
+      <option name="presentableId" value="LOCAL-00333" />
+      <option name="project" value="LOCAL" />
+      <updated>1733421835479</updated>
+    </task>
+    <task id="LOCAL-00334" summary="feat : 소셜로그인회원 문의기능 추가">
+      <option name="closed" value="true" />
+      <created>1733421882421</created>
+      <option name="number" value="00334" />
+      <option name="presentableId" value="LOCAL-00334" />
+      <option name="project" value="LOCAL" />
+      <updated>1733421882421</updated>
+    </task>
+    <task id="LOCAL-00335" summary="mod : email로 문의 작성자 검증">
+      <option name="closed" value="true" />
+      <created>1733421940575</created>
+      <option name="number" value="00335" />
+      <option name="presentableId" value="LOCAL-00335" />
+      <option name="project" value="LOCAL" />
+      <updated>1733421940575</updated>
+    </task>
+    <task id="LOCAL-00336" summary="setting : 업로드, 볼륨 관련 스크립트 추가">
+      <option name="closed" value="true" />
+      <created>1733458182067</created>
+      <option name="number" value="00336" />
+      <option name="presentableId" value="LOCAL-00336" />
+      <option name="project" value="LOCAL" />
+      <updated>1733458182067</updated>
+    </task>
+    <task id="LOCAL-00337" summary="mod : 디렉토리 경로 추가 및 수정">
+      <option name="closed" value="true" />
+      <created>1733458233648</created>
+      <option name="number" value="00337" />
+      <option name="presentableId" value="LOCAL-00337" />
+      <option name="project" value="LOCAL" />
+      <updated>1733458233648</updated>
+    </task>
+    <task id="LOCAL-00338" summary="feat : 파일 업로드를 위한 볼륨 추가">
+      <option name="closed" value="true" />
+      <created>1733458263532</created>
+      <option name="number" value="00338" />
+      <option name="presentableId" value="LOCAL-00338" />
+      <option name="project" value="LOCAL" />
+      <updated>1733458263532</updated>
+    </task>
+    <task id="LOCAL-00339" summary="mod : 알림 읽음 여부 반환값 추가">
+      <option name="closed" value="true" />
+      <created>1733458295806</created>
+      <option name="number" value="00339" />
+      <option name="presentableId" value="LOCAL-00339" />
+      <option name="project" value="LOCAL" />
+      <updated>1733458295806</updated>
+    </task>
+    <task id="LOCAL-00340" summary="mod : 연관관계 제거에 따른 테스트 수정">
+      <option name="closed" value="true" />
+      <created>1733462475080</created>
+      <option name="number" value="00340" />
+      <option name="presentableId" value="LOCAL-00340" />
+      <option name="project" value="LOCAL" />
+      <updated>1733462475080</updated>
+    </task>
+    <task id="LOCAL-00341" summary="mod : 연관관계 제거에 따른 수정">
+      <option name="closed" value="true" />
+      <created>1733462483524</created>
+      <option name="number" value="00341" />
+      <option name="presentableId" value="LOCAL-00341" />
+      <option name="project" value="LOCAL" />
+      <updated>1733462483524</updated>
+    </task>
+    <task id="LOCAL-00342" summary="mod : 연관관계 제거에 따른 수정">
+      <option name="closed" value="true" />
+      <created>1733462494580</created>
+      <option name="number" value="00342" />
+      <option name="presentableId" value="LOCAL-00342" />
+      <option name="project" value="LOCAL" />
+      <updated>1733462494580</updated>
+    </task>
+    <task id="LOCAL-00343" summary="mod : 연관관계 제거에 따른 테스트 수정">
+      <option name="closed" value="true" />
+      <created>1733462516570</created>
+      <option name="number" value="00343" />
+      <option name="presentableId" value="LOCAL-00343" />
+      <option name="project" value="LOCAL" />
+      <updated>1733462516570</updated>
+    </task>
+    <task id="LOCAL-00344" summary="fix : 한글 데이터 조회시 깨짐 현상 수정">
+      <option name="closed" value="true" />
+      <created>1733463163603</created>
+      <option name="number" value="00344" />
+      <option name="presentableId" value="LOCAL-00344" />
+      <option name="project" value="LOCAL" />
+      <updated>1733463163603</updated>
+    </task>
+    <task id="LOCAL-00345" summary="fix : my.cnf MySQL 문자 설정 파일 추가">
+      <option name="closed" value="true" />
+      <created>1733463208442</created>
+      <option name="number" value="00345" />
+      <option name="presentableId" value="LOCAL-00345" />
+      <option name="project" value="LOCAL" />
+      <updated>1733463208442</updated>
+    </task>
+    <task id="LOCAL-00346" summary="chore : import 제거">
+      <option name="closed" value="true" />
+      <created>1733463410450</created>
+      <option name="number" value="00346" />
+      <option name="presentableId" value="LOCAL-00346" />
+      <option name="project" value="LOCAL" />
+      <updated>1733463410450</updated>
+    </task>
+    <task id="LOCAL-00347" summary="chore : 배포 테스트용 임시 커밋">
+      <option name="closed" value="true" />
+      <created>1733464507588</created>
+      <option name="number" value="00347" />
+      <option name="presentableId" value="LOCAL-00347" />
+      <option name="project" value="LOCAL" />
+      <updated>1733464507588</updated>
+    </task>
+    <task id="LOCAL-00348" summary="chore : 배포 테스트용 임시 커밋">
+      <option name="closed" value="true" />
+      <created>1733464610890</created>
+      <option name="number" value="00348" />
+      <option name="presentableId" value="LOCAL-00348" />
+      <option name="project" value="LOCAL" />
+      <updated>1733464610891</updated>
+    </task>
+    <task id="LOCAL-00349" summary="feat : my.cnf 파일 추가">
+      <option name="closed" value="true" />
+      <created>1733469720154</created>
+      <option name="number" value="00349" />
+      <option name="presentableId" value="LOCAL-00349" />
+      <option name="project" value="LOCAL" />
+      <updated>1733469720154</updated>
+    </task>
+    <task id="LOCAL-00350" summary="mod : 설정 추가">
+      <option name="closed" value="true" />
+      <created>1733474659566</created>
+      <option name="number" value="00350" />
+      <option name="presentableId" value="LOCAL-00350" />
+      <option name="project" value="LOCAL" />
+      <updated>1733474659566</updated>
+    </task>
+    <task id="LOCAL-00351" summary="mod : 루트 디렉토리에 my.cnf 파일이 이미 있을 경우 제거">
+      <option name="closed" value="true" />
+      <created>1733474678662</created>
+      <option name="number" value="00351" />
+      <option name="presentableId" value="LOCAL-00351" />
+      <option name="project" value="LOCAL" />
+      <updated>1733474678662</updated>
+    </task>
+    <task id="LOCAL-00352" summary="mod : my.cnf 파일이 존재할 경우에만 삭제 시도">
+      <option name="closed" value="true" />
+      <created>1733476128744</created>
+      <option name="number" value="00352" />
+      <option name="presentableId" value="LOCAL-00352" />
+      <option name="project" value="LOCAL" />
+      <updated>1733476128744</updated>
+    </task>
+    <task id="LOCAL-00353" summary="mod : scripts 디렉토리의 모든 파일에 실행 권한 부여">
+      <option name="closed" value="true" />
+      <created>1733476149526</created>
+      <option name="number" value="00353" />
+      <option name="presentableId" value="LOCAL-00353" />
+      <option name="project" value="LOCAL" />
+      <updated>1733476149526</updated>
+    </task>
+    <task id="LOCAL-00354" summary="del : 파일 삭제">
+      <option name="closed" value="true" />
+      <created>1733479084665</created>
+      <option name="number" value="00354" />
+      <option name="presentableId" value="LOCAL-00354" />
+      <option name="project" value="LOCAL" />
+      <updated>1733479084665</updated>
+    </task>
+    <task id="LOCAL-00355" summary="mod : 파일 덮어쓰기 옵션 추가">
+      <option name="closed" value="true" />
+      <created>1733479100646</created>
+      <option name="number" value="00355" />
+      <option name="presentableId" value="LOCAL-00355" />
+      <option name="project" value="LOCAL" />
+      <updated>1733479100646</updated>
+    </task>
+    <task id="LOCAL-00356" summary="mod : 경로 수정">
+      <option name="closed" value="true" />
+      <created>1733480927776</created>
+      <option name="number" value="00356" />
+      <option name="presentableId" value="LOCAL-00356" />
+      <option name="project" value="LOCAL" />
+      <updated>1733480927776</updated>
+    </task>
+    <task id="LOCAL-00357" summary="mod : my.cnf 제거">
+      <option name="closed" value="true" />
+      <created>1733482780715</created>
+      <option name="number" value="00357" />
+      <option name="presentableId" value="LOCAL-00357" />
+      <option name="project" value="LOCAL" />
+      <updated>1733482780715</updated>
+    </task>
+    <task id="LOCAL-00358" summary="mod : 한글 설정 제거">
+      <option name="closed" value="true" />
+      <created>1733482792035</created>
+      <option name="number" value="00358" />
+      <option name="presentableId" value="LOCAL-00358" />
+      <option name="project" value="LOCAL" />
+      <updated>1733482792035</updated>
+    </task>
+    <task id="LOCAL-00359" summary="del : my.cnf 파일 제거">
+      <option name="closed" value="true" />
+      <created>1733482801571</created>
+      <option name="number" value="00359" />
+      <option name="presentableId" value="LOCAL-00359" />
+      <option name="project" value="LOCAL" />
+      <updated>1733482801571</updated>
+    </task>
+    <task id="LOCAL-00360" summary="mod : 불필요 코드 제거">
+      <option name="closed" value="true" />
+      <created>1733562065371</created>
+      <option name="number" value="00360" />
+      <option name="presentableId" value="LOCAL-00360" />
+      <option name="project" value="LOCAL" />
+      <updated>1733562065372</updated>
+    </task>
+    <task id="LOCAL-00361" summary="docs : CI / CD">
+      <option name="closed" value="true" />
+      <created>1733564068622</created>
+      <option name="number" value="00361" />
+      <option name="presentableId" value="LOCAL-00361" />
+      <option name="project" value="LOCAL" />
+      <updated>1733564068622</updated>
+    </task>
+    <task id="LOCAL-00362" summary="chore : 임시 제거">
+      <option name="closed" value="true" />
+      <created>1733564443726</created>
+      <option name="number" value="00362" />
+      <option name="presentableId" value="LOCAL-00362" />
+      <option name="project" value="LOCAL" />
+      <updated>1733564443726</updated>
+    </task>
+    <task id="LOCAL-00363" summary="mod : 불필요 코드 제거">
+      <option name="closed" value="true" />
+      <created>1733565558190</created>
+      <option name="number" value="00363" />
+      <option name="presentableId" value="LOCAL-00363" />
+      <option name="project" value="LOCAL" />
+      <updated>1733565558190</updated>
+    </task>
+    <task id="LOCAL-00364" summary="docs : CI/CD 추가, 프로젝트 구조도 임시 제거">
+      <option name="closed" value="true" />
+      <created>1733565593776</created>
+      <option name="number" value="00364" />
+      <option name="presentableId" value="LOCAL-00364" />
+      <option name="project" value="LOCAL" />
+      <updated>1733565593776</updated>
+    </task>
+    <task id="LOCAL-00365" summary="docs : CI/CD 추가, 프로젝트 구조도 임시 제거">
+      <option name="closed" value="true" />
+      <created>1733568417719</created>
+      <option name="number" value="00365" />
+      <option name="presentableId" value="LOCAL-00365" />
+      <option name="project" value="LOCAL" />
+      <updated>1733568417719</updated>
+    </task>
+    <task id="LOCAL-00366" summary="docs : CI/CD 추가, 프로젝트 구조도 임시제거">
+      <option name="closed" value="true" />
+      <created>1733568444545</created>
+      <option name="number" value="00366" />
+      <option name="presentableId" value="LOCAL-00366" />
+      <option name="project" value="LOCAL" />
+      <updated>1733568444545</updated>
+    </task>
+    <option name="localTasksCounter" value="367" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="mod : 디렉토리 경로 추가 및 수정" />
+    <MESSAGE value="feat : 파일 업로드를 위한 볼륨 추가" />
+    <MESSAGE value="mod : 알림 읽음 여부 반환값 추가" />
+    <MESSAGE value="mod : 연관관계 제거에 따른 수정" />
+    <MESSAGE value="mod : 연관관계 제거에 따른 테스트 수정" />
+    <MESSAGE value="fix : 한글 데이터 조회시 깨짐 현상 수정" />
+    <MESSAGE value="fix : my.cnf MySQL 문자 설정 파일 추가" />
+    <MESSAGE value="chore : import 제거" />
+    <MESSAGE value="chore : 배포 테스트용 임시 커밋" />
+    <MESSAGE value="feat : my.cnf 파일 추가" />
+    <MESSAGE value="mod : 설정 추가" />
+    <MESSAGE value="mod : 루트 디렉토리에 my.cnf 파일이 이미 있을 경우 제거" />
+    <MESSAGE value="mod : my.cnf 파일이 존재할 경우에만 삭제 시도" />
+    <MESSAGE value="mod : scripts 디렉토리의 모든 파일에 실행 권한 부여" />
+    <MESSAGE value="del : 파일 삭제" />
+    <MESSAGE value="mod : 파일 덮어쓰기 옵션 추가" />
+    <MESSAGE value="mod : 경로 수정" />
+    <MESSAGE value="mod : my.cnf 제거" />
+    <MESSAGE value="mod : 한글 설정 제거" />
+    <MESSAGE value="del : my.cnf 파일 제거" />
+    <MESSAGE value="docs : CI / CD" />
+    <MESSAGE value="chore : 임시 제거" />
+    <MESSAGE value="mod : 불필요 코드 제거" />
+    <MESSAGE value="docs : CI/CD 추가, 프로젝트 구조도 임시 제거" />
+    <MESSAGE value="docs : CI/CD 추가, 프로젝트 구조도 임시제거" />
+    <option name="LAST_COMMIT_MESSAGE" value="docs : CI/CD 추가, 프로젝트 구조도 임시제거" />
+  </component>
+</project>
