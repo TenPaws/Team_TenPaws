@@ -79,7 +79,7 @@ const Login = () => {
           {/* 왼쪽 섹션 */}
           <div className="hidden md:flex flex-1 bg-[#EDEDED] px-8 py-14 flex-col justify-between">
             <div>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl text-gray-800 mb-2">
+              <h1 className="mb-2 text-3xl text-gray-800 md:text-5xl lg:text-6xl xl:text-7xl">
                 안녕하세요!
               </h1>
             </div>
@@ -90,17 +90,17 @@ const Login = () => {
                 Ten.
               </span>
               <img
-                src="/src/assets/logo.png"
+                src="/logo.png"
                 alt="로고"
                 className="w-[120px] h-[120px] md:w-[180px] md:h-[180px] lg:w-[220px] lg:h-[220px] xl:w-[250px] xl:h-[250px] rounded-full bg-[#7F5546]"
               />
             </div>
 
             {/* 회원가입하기 */}
-            <div className="text-sm md:text-2xl lg:text-2xl xl:text-3xl text-gray-600 flex items-center gap-1">
+            <div className="flex items-center gap-1 text-sm text-gray-600 md:text-2xl lg:text-2xl xl:text-3xl">
               <p>회원이 아니신가요?</p>
               <p
-                className="font-bold cursor-pointer transition-transform transform hover:scale-105 pl-3"
+                className="pl-3 font-bold transition-transform transform cursor-pointer hover:scale-105"
                 onClick={() => navigate("/signup")}
               >
                 회원가입하기
@@ -110,11 +110,11 @@ const Login = () => {
 
           {/* 오른쪽 섹션 */}
           <div className="flex-1 bg-[#FFFFFF] px-8 py-14 flex flex-col justify-between">
-            <h1 className="text-5xl font-bold text-gray-800 mb-6">로그인하기</h1>
+            <h1 className="mb-6 text-5xl font-bold text-gray-800">로그인하기</h1>
             {/* 입력 필드 */}
             <div className="space-y-5">
               <div>
-                <label className="block text-xl font-medium text-gray-700 mb-1">
+                <label className="block mb-1 text-xl font-medium text-gray-700">
                   이메일
                 </label>
                 <input
@@ -126,7 +126,7 @@ const Login = () => {
                 />
               </div>
               <div className="relative">
-                <label className="block text-xl font-medium text-gray-700 mb-1">
+                <label className="block mb-1 text-xl font-medium text-gray-700">
                   비밀번호
                 </label>
                 <input
@@ -139,11 +139,11 @@ const Login = () => {
                 <img
                   src={
                     showPassword
-                      ? "/src/assets/eyeon.svg"
-                      : "/src/assets/eyeoff.svg"
+                      ? "/eyeon.svg"
+                      : "/eyeoff.svg"
                   }
                   alt={showPassword ? "비밀번호 숨기기" : "비밀번호 보기"}
-                  className="absolute right-4 top-12 w-6 h-6 cursor-pointer"
+                  className="absolute w-6 h-6 cursor-pointer right-4 top-12"
                   onClick={togglePasswordVisibility}
                 />
               </div>
@@ -153,14 +153,14 @@ const Login = () => {
                 className="flex items-center justify-center gap-2 w-1/2 py-3 bg-[#f1df79] rounded-2xl text-lg font-medium"
                 onClick={handleKakaoLogin}
               >
-                <img src="/src/assets/kakao.svg" alt="카카오 로그인" className="w-8 h-8" />
+                <img src="/kakao.svg" alt="카카오 로그인" className="w-8 h-8" />
                 카카오 로그인
               </button>
               <button
                 className="flex items-center justify-center gap-2 w-1/2 py-3 bg-[#72b471] rounded-2xl text-lg font-medium text-white"
                 onClick={handleNaverLogin}
               >
-                <img src="/src/assets/naver.svg" alt="네이버 로그인" className="w-8 h-8" />
+                <img src="/naver.svg" alt="네이버 로그인" className="w-8 h-8" />
                 네이버 로그인
               </button>
             </div>

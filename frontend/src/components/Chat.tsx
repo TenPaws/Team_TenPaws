@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import logo from "../assets/logo.png";
+import logo from "/logo.png";
 import axios from "axios";
 import useStore from "../store/store";
 
@@ -422,9 +422,9 @@ const location = window.location.pathname;
             {userChatRoom
               .filter((item) => item.chatRoomId === chatRoomId)
               .map((item) => (
-                <div className="bg-white p-3 rounded-t-lg flex justify-between" key={item.chatRoomId}>
+                <div className="flex justify-between p-3 bg-white rounded-t-lg" key={item.chatRoomId}>
                   <div className="font-bold">{item.oppositeName}</div>
-                  <div className="cursor-pointer flex gap-3">
+                  <div className="flex gap-3 cursor-pointer">
                     <div onClick={handleChatDelete}>🗑️</div>
                     <div onClick={handleCloseChatRoom}>✖️</div>
                   </div>
@@ -435,22 +435,22 @@ const location = window.location.pathname;
               {chatMessage.map((message, index) =>
                 message.senderEmail === userEmail ? (
                   // 자신의 메시지
-                  <div className="flex p-4 justify-end" key={message.chatDate + index}>
+                  <div className="flex justify-end p-4" key={message.chatDate + index}>
                     <div className="flex flex-col items-end">
                       <div className="text-sm pb-1.5 pr-1">{message.senderName}</div>
                       <div className="flex items-end gap-1">
                         <div className="p-2 rounded-xl bg-[#f1a34a] break-words">{message.message}</div>
                       </div>
                     </div>
-                    <div className="rounded-full w-10 h-10 min-w-10 min-h-10 ml-2">
-                      <img src={logo} alt="logo" className="w-full h-full object-cover" />
+                    <div className="w-10 h-10 ml-2 rounded-full min-w-10 min-h-10">
+                      <img src={logo} alt="logo" className="object-cover w-full h-full" />
                     </div>
                   </div>
                 ) : (
                   // 상대방의 메시지
                   <div className="flex p-4" key={message.chatDate + index}>
-                    <div className="rounded-full w-10 h-10 min-w-10 min-h-10">
-                      <img src={logo} alt="logo" className="w-full h-full object-cover" />
+                    <div className="w-10 h-10 rounded-full min-w-10 min-h-10">
+                      <img src={logo} alt="logo" className="object-cover w-full h-full" />
                     </div>
                     <div>
                       <div className="ml-2 pb-1.5 text-sm">{message.senderName}</div>
@@ -464,18 +464,18 @@ const location = window.location.pathname;
               <div ref={messageEndRef} />
             </div>
 
-            <div className="bg-white mx-3 w-76 h-10 rounded-b-lg border-t-2 border-black flex justify-between">
+            <div className="flex justify-between h-10 mx-3 bg-white border-t-2 border-black rounded-b-lg w-76">
               <input
                 type="text"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && sendMessage()}
-                className="w-80 focus:outline-none p-2 text-sm"
+                className="p-2 text-sm w-80 focus:outline-none"
                 placeholder="메시지를 입력하세요"
               />
               <div
                 onClick={sendMessage}
-                className="text-3xl px-1 cursor-pointer hover:scale-105 transition-transform duration-300">
+                className="px-1 text-3xl transition-transform duration-300 cursor-pointer hover:scale-105">
                 ➤
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import logo from "../assets/logo.png";
+import logo from "/logo.png";
 import FAQEdIt from "./FAQEdIt";
 import axios from "axios";
 import useUserStore from "../store/store";
@@ -98,16 +98,16 @@ const FAQ = () => {
             </div>
             <div className="overflow-y-auto max-h-[500px] scrollbar-hide">
               <div className="flex px-5 py-5">
-                <div className="rounded-full w-12 h-12">
+                <div className="w-12 h-12 rounded-full">
                   <img src={logo} alt="logo" />
                 </div>
-                <div className="ml-5 p-2 rounded-xl content-center bg-gray-200">어떤 도움이 필요하신가요?</div>
+                <div className="content-center p-2 ml-5 bg-gray-200 rounded-xl">어떤 도움이 필요하신가요?</div>
               </div>
               {!selectFAQ ? (
                 // 최상위 질문들 표시
                 <>
                   {topContent.map((faq) => (
-                    <div className="flex px-5 py-1 justify-end" key={faq.faqId}>
+                    <div className="flex justify-end px-5 py-1" key={faq.faqId}>
                       <div
                         className="mr-2 p-2 rounded-xl content-center border-2  border-[#3c2a13] text-[#3c2a13] cursor-pointer hover:bg-[#3c2a13] hover:text-white"
                         onClick={() => handleSelectFAQ(faq.content.toString(), faq.faqId)}>
@@ -126,17 +126,17 @@ const FAQ = () => {
                       return (
                         <>
                           {/* 선택된 질문 표시 */}
-                          <div className="flex px-5 py-1 justify-end">
+                          <div className="flex justify-end px-5 py-1">
                             <div className="mr-2 p-2 rounded-xl content-center border-2 border-[#3c2a13] text-[#3c2a13]">
                               {selectFAQ}
                             </div>
                           </div>
 
                           <div className="flex px-5 py-3">
-                            <div className="rounded-full w-12 h-12 min-w-12">
+                            <div className="w-12 h-12 rounded-full min-w-12">
                               <img src={logo} alt="logo" />
                             </div>
-                            <div className="ml-5 p-2 rounded-xl content-center bg-gray-200">
+                            <div className="content-center p-2 ml-5 bg-gray-200 rounded-xl">
                               {filteredContent[0].content}
                             </div>
                           </div>
@@ -153,7 +153,7 @@ const FAQ = () => {
                       // 하위 질문이 여러 개 일때
                       return [
                         ...filteredContent.map((item) => (
-                          <div className="flex px-5 py-1 justify-end" key={item.faqId}>
+                          <div className="flex justify-end px-5 py-1" key={item.faqId}>
                             <div
                               className="mr-2 p-2 rounded-xl content-center border-2 border-[#3c2a13] text-[#3c2a13] cursor-pointer hover:bg-[#3c2a13] hover:text-white"
                               onClick={() => handleSelectFAQ(item.content.toString(), item.faqId)}>

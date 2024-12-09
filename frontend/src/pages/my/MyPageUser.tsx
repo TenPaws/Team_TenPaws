@@ -43,6 +43,13 @@ interface UseId {
   Id: number;
 }
 
+interface SocialInfo {
+  userId : string;
+  email: string;
+  type: string;
+  role: string;
+}
+
 
 const MyPageUser: React.FC = () => {
   const [isEditModalOpen, setEditModalOpen] = useState<boolean>(false);
@@ -50,9 +57,15 @@ const MyPageUser: React.FC = () => {
   const [isApplyModalOpen, setApplyModalOpen] = useState<boolean>(false);
   const [selectedPetId, setSelectedPetId] = useState<number | null>(null); // 선택된 pet.id 상태 추가
   const [token, setToken] = useState<string | null>(null);
+  const [social, setSocial] = useState<SocialInfo | null>({
+    userId: "",
+    email: "",
+    type: "",
+    role: ""
+  })
   const [error, setError] = useState<{ status: number; message: string } | null>(null);
   const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useState<UserInfo>({
+  const [userInfo, setUserInfo] = useState<UserInfo | null>({
     id: "",
     password: "",
     email: "",
@@ -66,7 +79,7 @@ const MyPageUser: React.FC = () => {
     userRole: ""
   });
 
-  const [petInfo, setPetInfo] = useState<PetInfo[]>([]);
+  const [petInfo, setPetInfo] = useState<PetInfo[] | null>([]);
 
   const [passwordError, setPasswordError] = useState<string | null>(null); // 비밀번호 오류 메시지 상태
   const [useId, setUseId] = useState<UseId>({
@@ -87,20 +100,24 @@ const MyPageUser: React.FC = () => {
     'Authorization': `${token}`,
   };
 
+  console.log(token)
+
 
 
   // ID 불러오기
   useEffect(() => {
-    const userId = async () => {
-      try {
-        const response = await axiosInstance.get(`/api/v1/features/user-id`, {headers});
-        setUseId(response.data);
-      } catch(error: any) {
-        console.error("유저 ID를 불러오는 중 오류 발생:", error);
-        // handleError(error);
-      }
-    };
-    userId();
+    if(token) {
+      const userId = async () => {
+        try {
+          const response = await axiosInstance.get(`/api/v1/features/user-id`, {headers});
+          setUseId(response.data);
+        } catch(error: any) {
+          console.error("유저 ID를 불러오는 중 오류 발생:", error);
+          // handleError(error);
+        }
+      };
+      userId();
+    }
   }, [token])
 
   // 유저, 펫 정보 가져오기
@@ -117,12 +134,18 @@ const MyPageUser: React.FC = () => {
       };
 
       const petInfos = async () => {
-        try {
-          const response = await axiosInstance.get<PetInfo[]>(`/api/v1/applypet/${useId.Id}/list`, {headers});
-          setPetInfo(response.data);
-        }catch(error: any) {
-          console.error('입양신청 정보를 불러오는 중 오류 발생:', error);
-          // handleError(error);
+        if(petInfo) {
+          try {
+            const response = await axiosInstance.get<PetInfo[]>(`/api/v1/applypet/${useId.Id}/list`, {headers});
+            if (response.data && response.data.length > 0) {
+              setPetInfo(response.data);
+            }else {
+              setPetInfo(null);
+            }
+          }catch(error: any) {
+            console.error('입양신청 정보를 불러오는 중 오류 발생:', error);
+            // handleError(error);
+          }
         }
       };
 
@@ -130,6 +153,27 @@ const MyPageUser: React.FC = () => {
       petInfos();
     }
   }, [useId.Id]);
+
+  //소셜 불러오기
+  useEffect(() => {
+    if(social) {
+      const socials = async () => {
+        try {
+          const response = await axiosInstance.get<SocialInfo>(`/api/v1/users/my-info`, {headers});
+          if (response.data) {
+            setSocial(response.data);
+            console.log(response.data)
+          }else{
+            setSocial(null);
+          }
+        }catch(error) {
+          console.error('소셜 정보를 불러오는 중 오류 발생:', error);
+        }
+      }
+      socials()
+    }
+  }, [token])
+
 
 
   const deleteApply = async (): Promise<void> => {
@@ -216,11 +260,27 @@ const MyPageUser: React.FC = () => {
       await axiosInstance.delete(`/api/v1/users/${useId.Id}`, {headers});
       alert('회원탈퇴가 완료되었습니다.');
       setDeleteModalOpen(false);
+      navigate("/");
     } catch (error) {
       console.error('회원탈퇴 중 오류 발생:', error);
       alert('회원탈퇴에 실패했습니다.');
     }
   };
+
+  // 소셜 탈퇴 처리
+  const deleteSocial = async () => {
+    if(social) {
+      try {
+        await axiosInstance.delete<SocialInfo>(`/api/v1/users/social/${social.userId}`, {headers});
+        alert('회원탈퇴가 완료되었습니다.');
+        setDeleteModalOpen(false);
+        navigate("/");
+      }catch(error) {
+        console.error('회원탈퇴 중 오류 발생:', error);
+        alert('회원탈퇴에 실패했습니다.');
+      }
+    }
+  }
 
   // 에러 핸들링 함수
   const handleError = (error: any) => {
@@ -245,34 +305,43 @@ if (error) return null; // 이미 에러 페이지로 이동한 경우 렌더링
           <div className="flex justify-center">
             <h3 className='text-2xl font-bold text-mainColor'>마이페이지</h3>
           </div>
-          <div className="flex flex-wrap justify-center gap-8 p-5 bg-bgColor rounded-2xl">
-            <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-              <p className="text-xl font-bold ">이름</p>
-              <p className='text-lg'>{userInfo.username}</p>
+          {social?.type == "naver" || social?.type == "kakao" ? (
+            <div className='flex flex-wrap justify-center gap-8 p-5 bg-bgColor rounded-2xl'>
+              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
+                <p className="text-xl font-bold ">메일</p>
+                <p className='text-lg'>{social.email}</p>
+              </div>
             </div>
-            <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-              <p className="text-xl font-bold">주소</p>
-              <p className='text-lg'>{userInfo.address}</p>
+          ) : (
+            <div className="flex flex-wrap justify-center gap-8 p-5 bg-bgColor rounded-2xl">
+              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
+                <p className="text-xl font-bold ">이름</p>
+                <p className='text-lg'>{userInfo.username}</p>
+              </div>
+              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
+                <p className="text-xl font-bold">주소</p>
+                <p className='text-lg'>{userInfo.address}</p>
+              </div>
+              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
+                <p className="text-xl font-bold">메일(아이디)</p>
+                <p className='text-lg'>{userInfo.email}</p>
+              </div>
+              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
+                <p className="text-xl font-bold">생년월일</p>
+                <p className='text-lg'>{userInfo.birthDate}</p>
+              </div>
+              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
+                <p className="text-xl font-bold">전화번호</p>
+                <p className='text-lg'>{userInfo.phoneNumber}</p>
+              </div>
+              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
+                <p className="text-xl font-bold">선호동물</p>
+                <span className='text-lg'>{userInfo.preferredSize}</span>/
+                <span className='text-lg'>{userInfo.preferredPersonality}</span>/
+                <span className='text-lg'>{userInfo.preferredExerciseLevel}</span>
+              </div>
             </div>
-            <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-              <p className="text-xl font-bold">메일(아이디)</p>
-              <p className='text-lg'>{userInfo.email}</p>
-            </div>
-            <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-              <p className="text-xl font-bold">생년월일</p>
-              <p className='text-lg'>{userInfo.birthDate}</p>
-            </div>
-            <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-              <p className="text-xl font-bold">전화번호</p>
-              <p className='text-lg'>{userInfo.phoneNumber}</p>
-            </div>
-            <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-              <p className="text-xl font-bold">선호동물</p>
-              <span className='text-lg'>{userInfo.preferredSize}</span>/
-              <span className='text-lg'>{userInfo.preferredPersonality}</span>/
-              <span className='text-lg'>{userInfo.preferredExerciseLevel}</span>
-            </div>
-          </div>
+          )}
           <div className="flex gap-32 mt-10">
             <button
               className="text-lg text-mainColor hover:text-orange-500"
@@ -413,9 +482,15 @@ if (error) return null; // 이미 에러 페이지로 이동한 경우 렌더링
         <MyPageModal isOpen={isDeleteModalOpen} onClose={() => setDeleteModalOpen(false)}>
           <h3 className="mb-4 text-lg font-bold">정말로 탈퇴하시겠습니까?</h3>
           <div className="flex justify-end gap-4 mt-6">
-            <button className="text-mainColor" onClick={DeleteAccount}>
+            {social?.type == "naver" || social?.type == "kakao" ? (
+            <button className="text-mainColor" onClick={deleteSocial}>
+            네
+          </button>)
+          :
+          (<button className="text-mainColor" onClick={DeleteAccount}>
               네
             </button>
+          )}
             <button className="text-cancelColor" onClick={() => setDeleteModalOpen(false)}>
               아니오
             </button>
