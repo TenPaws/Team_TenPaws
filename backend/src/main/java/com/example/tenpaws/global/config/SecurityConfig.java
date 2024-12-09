@@ -103,6 +103,7 @@ public class SecurityConfig {
         // 모든 기능 완성되면 그 때 엔드포인트 보고 접근 권한 수정!
         httpSecurity
                 .authorizeHttpRequests((auth) -> auth
+                        .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         // 웹소켓 관련 설정
                         .requestMatchers("/ws/**").permitAll()
                         // 사진 접근 허용
