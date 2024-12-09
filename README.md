@@ -83,6 +83,8 @@ TENPAWS는 카카오 맵 API를 활용하여 사용자의 현재 위치에서 �
 <details>
   <summary>🔗 ER Diagram</summary>
 
+![image](https://github.com/user-attachments/assets/eece94d4-e78d-4111-b74d-723581407f16)
+
 
 </details>
 
@@ -102,6 +104,8 @@ TENPAWS는 카카오 맵 API를 활용하여 사용자의 현재 위치에서 �
 
 <details>
   <summary>소셜 로그인</summary>
+
+  ![image](https://github.com/user-attachments/assets/242600a0-7714-4572-86e0-a0b11e686217)
 
 </details>
 
@@ -125,6 +129,7 @@ TENPAWS는 카카오 맵 API를 활용하여 사용자의 현재 위치에서 �
 <details>
   <summary>카카오 맵 API</summary>
 
+![image](https://github.com/user-attachments/assets/aa1df4ce-b40e-490e-a9bd-342d684d002d)
 
 </details>
 
