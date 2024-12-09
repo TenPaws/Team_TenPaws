@@ -12,16 +12,12 @@ import com.example.tenpaws.global.exception.BaseException;
 import com.example.tenpaws.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Struct;
-import java.util.IllegalFormatCodePointException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -125,6 +121,15 @@ public class UserServiceImpl implements UserService {
             throw new BaseException(ErrorCode.MEMBER_NOT_FOUND);
         }
         userRepository.deleteById(id);
+    }
+
+    // 소셜 유저 탈퇴
+    @Override
+    public void deleteSocialUser(String id) {
+        if (!oAuth2UserRepository.existsById(id)) {
+            throw new BaseException(ErrorCode.MEMBER_NOT_FOUND);
+        }
+        oAuth2UserRepository.deleteById(id);
     }
 
     // 일반 유저 목록 불러오기 : 관리자 전용 기능

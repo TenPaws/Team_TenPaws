@@ -153,6 +153,15 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    // 소셜 유저 탈퇴
+    @Operation(summary = "소셜 유저 탈퇴", description = "소셜 유저 탈퇴를 위한 API")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @DeleteMapping("/social/{id}")
+    public ResponseEntity<Void> deleteSocialUser(@PathVariable String id) {
+        userService.deleteSocialUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
     // 모든 일반 유저 불러오기
     @Operation(summary = "모든 유저 정보 조회", description = "모든 유저 정보 조회을 위한 API, 관리자만 가능")
     @PreAuthorize("hasRole('ROLE_SUPER_ADMIN') or hasRole('ROLE_ADMIN')")
