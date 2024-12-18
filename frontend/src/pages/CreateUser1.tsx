@@ -231,14 +231,14 @@ const CreateUser1 = () => {
     }
   };
 
- 
+
 
   return (
     <div className="flex flex-col min-h-screen bg-[#CDC3BF]">
       <Header />
-      <main className="flex-grow flex items-center justify-center px-4 sm:px-8 md:px-16 lg:px-24 py-8">
-        <div className="w-full max-w-7xl bg-white shadow-lg rounded-lg p-10 sm:p-12 md:p-16 lg:p-20">
-          <h1 className="text-4xl sm:text-5xl md:text-5xl font-bold text-gray-800 mb-10 text-center">
+      <main className="flex items-center justify-center flex-grow px-4 py-8 sm:px-8 md:px-16 lg:px-24">
+        <div className="w-full p-10 bg-white rounded-lg shadow-lg max-w-7xl sm:p-12 md:p-16 lg:p-20">
+          <h1 className="mb-10 text-4xl font-bold text-center text-gray-800 sm:text-5xl md:text-5xl">
             개인 회원가입
           </h1>
           <form className="space-y-10" onSubmit={handleSubmit}>
@@ -246,7 +246,7 @@ const CreateUser1 = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 이메일
               </label>
@@ -271,7 +271,7 @@ const CreateUser1 = () => {
                   type="button"
                   onClick={handleEmailCheck}
                   disabled={isEmailChecking}
-                  className="px-3 py-5 sm:px-4 sm:py-6 bg-gray-500 text-white rounded-lg sm:text-lg hover:bg-gray-600 transition text-center"
+                  className="px-3 py-5 text-center text-white transition bg-gray-500 rounded-lg sm:px-4 sm:py-6 sm:text-lg hover:bg-gray-600"
                   style={{ whiteSpace: "pre" }}
                 >
                   중복 확인
@@ -294,7 +294,7 @@ const CreateUser1 = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 비밀번호
               </label>
@@ -312,14 +312,14 @@ const CreateUser1 = () => {
                     : "border-gray-300 bg-white"
                 } overflow-hidden truncate`}
               />
-              {passwordError && <p className="text-red-600 mt-2">{passwordError}</p>}
+              {passwordError && <p className="mt-2 text-red-600">{passwordError}</p>}
             </div>
             
             {/* 비밀번호 확인 */}
             <div>
               <label
                 htmlFor="passwordConfirm"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 비밀번호 확인
               </label>
@@ -339,7 +339,7 @@ const CreateUser1 = () => {
                 } overflow-hidden truncate`}
               />
               {passwordConfirmError && (
-                <p className="text-red-600 mt-2">{passwordConfirmError}</p>
+                <p className="mt-2 text-red-600">{passwordConfirmError}</p>
               )}
             </div>
             
@@ -347,7 +347,7 @@ const CreateUser1 = () => {
             <div>
               <label
                 htmlFor="username"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 사용자 이름
               </label>
@@ -365,14 +365,14 @@ const CreateUser1 = () => {
                     : "border-gray-300 bg-white"
                 } overflow-hidden truncate`}
               />
-              {userError && <p className="text-red-600 mt-2">{userError}</p>}
+              {userError && <p className="mt-2 text-red-600">{userError}</p>}
             </div>
 
             {/* 생년월일 */}
             <div>
               <label
                 htmlFor="birthDate"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 생년월일
               </label>
@@ -390,14 +390,14 @@ const CreateUser1 = () => {
                     : "border-gray-300 bg-white"
                 } overflow-hidden truncate`}
               />
-              {birthError && <p className="text-red-600 mt-2">{birthError}</p>}
+              {birthError && <p className="mt-2 text-red-600">{birthError}</p>}
             </div>
 
             {/* 전화번호 */}
             <div>
               <label
                 htmlFor="phoneNumber"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 전화번호
               </label>
@@ -415,14 +415,14 @@ const CreateUser1 = () => {
                     : "border-gray-300 bg-white"
                 } overflow-hidden truncate`}
               />
-              {phoneNumberError && <p className="text-red-600 mt-2">{phoneNumberError}</p>}
+              {phoneNumberError && <p className="mt-2 text-red-600">{phoneNumberError}</p>}
             </div>
 
             {/* 주소 */}
             <div>
               <label
                 htmlFor="address"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 주소
               </label>
@@ -440,16 +440,16 @@ const CreateUser1 = () => {
                     : "border-gray-300 bg-white"
                 } overflow-hidden truncate`}
               />
-              {addressError && <p className="text-red-600 mt-2">{addressError}</p>}
+              {addressError && <p className="mt-2 text-red-600">{addressError}</p>}
             </div>
 
             <div>
               <label
                 htmlFor="species"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 <span className="text-black">선호 동물 종</span>
-                <span className="text-gray-400 text-xl sm:text-xl md:text-2xl">(선택사항)</span>
+                <span className="text-xl text-gray-400 sm:text-xl md:text-2xl">(선택사항)</span>
               </label>
               <input
                 id="species"
@@ -464,78 +464,6 @@ const CreateUser1 = () => {
                 } overflow-hidden truncate`}
               />
             </div>
-
-            {/* 선호 동물 크기 */}
-            <div>
-              <label
-                htmlFor="preferredSize"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
-              >
-                <span className="text-black">선호 동물 크기</span><span className="text-gray-400 text-xl sm:text-xl md:text-2xl" >(선택사항)</span>
-              </label>
-              <input
-                id="preferredSize"
-                type="text"
-                placeholder="선호하는 동물 크기를 입력해주세요. (예: 중간)"
-                value={inputValues.preferredSize}
-                onChange={handleInputChange}
-                className={`w-full px-5 py-4 sm:py-5 md:py-6 border rounded-lg text-2xl sm:text-2xl md:text-2xl ${
-                  inputValues.preferredSize
-                    ? "border-gray-500 bg-gray-100"
-                    : "border-gray-300 focus:ring-2 focus:ring-gray-400"
-                } overflow-hidden truncate`}
-              />
-            </div>
-
-            {/* 선호 동물 성격 */}
-            <div>
-              <label
-                htmlFor="preferredPersonality"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
-              >
-                <span className="text-black">선호 동물 성격</span><span className="text-gray-400 text-xl sm:text-xl md:text-2xl">(선택사항)</span>
-              </label>
-              <input
-                id="preferredPersonality"
-                type="text"
-                placeholder="선호하는 동물 성격을 입력해주세요. (예: 온순함)"
-                value={inputValues.preferredPersonality}
-                onChange={handleInputChange}
-                className={`w-full px-5 py-4 sm:py-5 md:py-6 border rounded-lg text-2xl sm:text-2xl md:text-2xl ${
-                  inputValues.preferredPersonality
-                    ? "border-gray-500 bg-gray-100"
-                    : "border-gray-300 focus:ring-2 focus:ring-gray-400"
-                } overflow-hidden truncate`}
-              />
-            </div>
-
-            {/* 선호 동물 운동량 */}
-            <div>
-              <label
-                htmlFor="preferredExerciseLevel"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
-              >
-                <span className="text-black">선호 동물 운동량</span><span className="text-gray-400 text-xl sm:text-xl md:text-2xl">(선택사항)</span>
-              </label>
-              <input
-                id="preferredExerciseLevel"
-                type="number"
-                placeholder="1부터 5까지 숫자를 입력해주세요."
-                value={inputValues.preferredExerciseLevel || ""}
-                onChange={handleInputChange}
-                min={1}
-                max={5}
-                className={`w-full px-5 py-4 sm:py-5 md:py-6 border rounded-lg text-2xl sm:text-2xl md:text-2xl ${
-                  exerciseLevelError
-                  ? "border-red-500 bg-red-100"
-                  : inputValues.preferredExerciseLevel
-                  ? "border-gray-300 bg-gray-100"
-                  : "border-gray-300 bg-white"
-              } overflow-hidden truncate`}
-              />
-            {exerciseLevelError && <p className="text-red-600 mt-2">{exerciseLevelError}</p>}
-            </div>
-
             {/* 회원가입 버튼 */}
             <div className="flex justify-center mt-10">
               <button

@@ -17,7 +17,7 @@ const Signup = () => {
           {/* 네모 박스 왼쪽(로고) */}
           <div className="hidden md:flex flex-1 bg-[#EDEDED] px-8 py-14 md:px-8 md:py-14 lg:px-8 lg:py-14 flex-col justify-between">
             <div>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl text-gray-800 mb-2 md:mb-3 lg:mb-4">
+              <h1 className="mb-2 text-3xl text-gray-800 md:text-5xl lg:text-6xl xl:text-7xl md:mb-3 lg:mb-4">
                 환영합니다!
               </h1>
             </div>
@@ -30,14 +30,14 @@ const Signup = () => {
                 Ten.
               </span>
               <img
-                src="/src/assets/logo.png"
+                src="/logo.png"
                 alt="로고"
                 className="w-[120px] h-[120px] md:w-[180px] md:h-[180px] lg:w-[220px] lg:h-[220px] xl:w-[250px] xl:h-[250px] 2xl:w-[300px] 2xl:h-[300px] rounded-full bg-[#7F5546]"
               />
             </div>
 
             {/* 로그인하기 */}
-            <div className="text-sm md:text-2xl lg:text-2xl xl:text-3xl text-gray-600 flex items-center gap-1 md:gap-2 lg:gap-3">
+            <div className="flex items-center gap-1 text-sm text-gray-600 md:text-2xl lg:text-2xl xl:text-3xl md:gap-2 lg:gap-3">
               <p>이미 계정이 있으신가요?</p>
               <button
                 className="font-bold transition-transform transform hover:scale-105"
@@ -51,7 +51,7 @@ const Signup = () => {
           {/* 네모 박스 오른쪽(회원가입 폼) */}
           <div className="flex-1 bg-[#FFFFFF] px-8 py-14 md:px-8 md:py-14 lg:px-8 lg:py-14 flex flex-col justify-between w-full md:w-auto">
             {/* 제목 */}
-            <h1 className="text-5xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-3 md:mb-4 lg:mb-6">
+            <h1 className="mb-3 text-5xl font-bold text-gray-800 md:text-4xl lg:text-5xl xl:text-6xl md:mb-4 lg:mb-6">
               회원가입하기
             </h1>
 

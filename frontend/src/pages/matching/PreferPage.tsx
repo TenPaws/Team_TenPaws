@@ -109,23 +109,23 @@ const PreferPage: React.FC = () => {
     <>
       <Header />
       <form className="flex flex-col items-center" onSubmit={handleSubmit}>
-        <section className="flex flex-col w-full max-w-lg gap-20 mt-8">
+        <section className="flex flex-col w-full max-w-lg gap-10 mt-8">
           <div className="flex justify-center">
             <h3 className="text-2xl font-bold text-mainColor">선호동물</h3>
           </div>
-          <div className="flex flex-wrap justify-center gap-8 p-5 bg-bgColor rounded-2xl">
-            <div className="flex justify-between w-3/4 p-3 bg-mainColor rounded-xl">
-                <p className="text-xl font-bold">종류</p>
-                <select id="species" className="text-lg border rounded-lg bg-gray-50 border-mainColor" value={userInfo.species}
+          <div className="flex flex-wrap justify-center m-5">
+            <div className="p-3 rounded-xl">
+                <p className="mb-2 text-xl font-bold ">종류</p>
+                <select id="species" className="p-2 text-lg border rounded-lg pr-[320px] max-[440px]:pr-[270px] bg-gray-50 border-mainColor" value={userInfo.species}
                 onChange={handleSelectChange}>
                   <option value="">종류</option>
                   <option value="강아지">강아지</option>
                   <option value="고양이">고양이</option>
                 </select>
             </div>
-            <div className="flex justify-between w-3/4 p-3 bg-mainColor rounded-xl">
-              <p className="text-xl font-bold">나이</p>
-              <select id="preferredSize" className="text-lg border rounded-lg bg-gray-50 border-mainColor" value={userInfo.preferredSize}
+            <div className="p-3 rounded-xl">
+              <p className="mb-2 text-xl font-bold">나이</p>
+              <select id="preferredSize" className="p-2 text-lg border rounded-lg pr-[330px] max-[440px]:pr-[280px] bg-gray-50 border-mainColor" value={userInfo.preferredSize}
                 onChange={handleSelectChange}>
                 <option value="">크기</option>
                 <option value="소형">소형</option>
@@ -133,31 +133,32 @@ const PreferPage: React.FC = () => {
                 <option value="대형">대형</option>
               </select>
             </div>
-            <div className="flex justify-between w-3/4 p-3 bg-mainColor rounded-xl">
-              <p className="text-xl font-bold">성격</p>
-              <select id="preferredPersonality" className="text-lg border rounded-lg bg-gray-50 border-mainColor" value={userInfo.preferredPersonality}
+            <div className="p-3 rounded-xl">
+              <p className="mb-2 text-xl font-bold">성격</p>
+              <select id="preferredPersonality" className="p-2 text-lg border rounded-lg pr-[300px] max-[440px]:pr-[250px] bg-gray-50 border-mainColor" value={userInfo.preferredPersonality}
                 onChange={handleSelectChange}>
                 <option value="">성격</option>
-                <option value="얌전함">얌전함</option>
-                <option value="활발함">활발함</option>
+                <option value="사교적">사교적</option>
+                <option value="독립적">독립적</option>
+                <option value="겁이많음">겁이많음</option>
                 <option value="사나움">사나움</option>
               </select>
             </div>
-            <div className="flex justify-between w-3/4 p-3 bg-mainColor rounded-xl">
-              <p className="text-xl font-bold">활동량</p>
-              <select id="preferredExerciseLevel" className="text-lg border rounded-lg bg-gray-50 border-mainColor" value={userInfo.preferredExerciseLevel}
+            <div className="p-3 rounded-xl">
+              <p className="mb-2 text-xl font-bold">활동량</p>
+              <select id="preferredExerciseLevel" className="p-2 pr-[300px] max-[440px]:pr-[250px] text-lg border rounded-lg bg-gray-50 border-mainColor" value={userInfo.preferredExerciseLevel}
                 onChange={handleSelectChange}>
-                <option value="">적음 1 ~ 많음 5</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="">활동량</option>
+                <option value="매우적음">매우 적음</option>
+                <option value="적음">적음</option>
+                <option value="보통">보통</option>
+                <option value="많음">많음</option>
+                <option value="매우많음">매우 많음</option>
               </select>
             </div>
           </div>
         </section>
-        <section className="flex gap-24 mt-8">
+        <section className="flex gap-24">
           <button type="submit" className="px-4 py-2 text-lg text-mainColor" onClick={editSubmit}>등록</button>
           <button type="button" className="px-4 py-2 text-lg text-cancelColor" onClick={cancel}>취소</button>
         </section>

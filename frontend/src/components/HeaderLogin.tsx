@@ -4,7 +4,6 @@ import axiosInstance from "../utils/axiosInstance";
 import useUserStore from "../store/store";
 
 const Header = () => {
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
@@ -15,8 +14,6 @@ const Header = () => {
   
   const navigate = useNavigate();
 
-  const showDropdown = () => setIsDropdownVisible(true);
-  const hideDropdown = () => setIsDropdownVisible(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   const handleLogout = async () => {
@@ -98,11 +95,10 @@ const Header = () => {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
+
+  const shelter = userRole == "ROLE_SHELTER"
   
 
-  const getUserInfoLink = () => {
-    return userRole === "ROLE_SHELTER" ? "/mypage-shelter" : "/mypage-user";
-  };
 
   return (
     <>
@@ -115,135 +111,40 @@ const Header = () => {
           <Link to="/">TenPaws</Link>
         </div>
 
-        {/* 매칭, 안내, 내정보와 드롭다운 바 */}
+        {/* 동물 찾기, AI매칭, 주변 반려시설, 공지사항, 마이페이지 */}
         <div className="relative justify-center flex-1 hidden md:flex">
-          <div className="flex items-center justify-between w-full max-w-3xl px-0 py-3 text-3xl font-medium rounded-lg md:text-3xl lg:text-3xl xl:text-3xl 2xl:text-3xl">
-            {/* 매칭 */}
+          <div className="flex items-center justify-between w-full max-w-3xl px-0 py-3 font-medium rounded-lg text-md ">
+            {/* 동물 찾기 */}
             <div
               className="relative flex-1 text-center transition-transform duration-200 hover:scale-105"
-              onMouseEnter={showDropdown}
-              onMouseLeave={hideDropdown}
             >
-              <span>매칭</span>
-              <div className="absolute left-0 w-full h-4 top-full"></div>
+              <Link to="/matching">동물 찾기</Link>
             </div>
-            {/* 안내 */}
+            {/* AI매칭 */}
             <div
               className="relative flex-1 text-center transition-transform duration-200 hover:scale-105"
-              onMouseEnter={showDropdown}
-              onMouseLeave={hideDropdown}
             >
-              <span>안내</span>
-              <div className="absolute left-0 w-full h-4 top-full"></div>
+              <Link to={isLoggedIn ? "/ai-matching" : "/login"}>AI 매칭</Link>
             </div>
-            {/* 내정보 */}
+            {/* 주변 반려시설 */}
             <div
               className="relative flex-1 text-center transition-transform duration-200 hover:scale-105"
-              onMouseEnter={showDropdown}
-              onMouseLeave={hideDropdown}
             >
-              <span>내정보</span>
-              <div className="absolute left-0 w-full h-4 top-full"></div>
+              <Link to="/guide/facilities">주변 반려시설</Link>
+            </div>
+            {/* 공지사항 */}
+            <div
+              className="relative flex-1 text-center transition-transform duration-200 hover:scale-105"
+            >
+              <Link to="/guide/announcement">공지사항</Link>
+            </div>
+            {/* 마이페이지 */}
+            <div
+              className="relative flex-1 text-center transition-transform duration-200 hover:scale-105"
+            >
+              {shelter ? <Link to="/mypage-shelter">마이페이지</Link> : <Link to="/mypage-user">마이페이지</Link>}
             </div>
           </div>
-
-          {/* 드롭다운 바 */}
-          {isDropdownVisible && (
-            <div
-              className="absolute left-1/2 transform -translate-x-1/2 bg-[#ffffff]/80 shadow-none z-[1000] w-[100%] lg:w-[95%] xl:w-[90%]"
-              style={{
-                top: "calc(100%)",
-                backdropFilter: "blur(4px)",
-                borderBottomLeftRadius: "8px",
-                borderBottomRightRadius: "8px",
-              }}
-              onMouseEnter={showDropdown}
-              onMouseLeave={hideDropdown}
-            >
-              <div className="flex divide-x divide-gray-300 py-7">
-                {/* 매칭 세부사항 */}
-                <div className="flex flex-col items-center flex-1 px-4">
-                  <Link
-                    to="/matching"
-                    className="mb-2 text-sm font-normal text-black transition-transform duration-200 sm:text-lg md:text-xl lg:text-2xl xl:text-2xl hover:scale-105"
-                  >
-                    반려동물 조회
-                  </Link>
-                  {userRole === "ROLE_SHELTER" && (
-                    <Link
-                      to="/detailadd"
-                      className="mb-2 text-sm font-normal text-black transition-transform duration-200 sm:text-lg md:text-xl lg:text-2xl xl:text-2xl hover:scale-105"
-                    >
-                      반려동물 등록
-                    </Link>
-                  )}
-                  <Link
-                    to="/ai-matching"
-                    className="mb-2 text-sm font-normal text-black transition-transform duration-200 sm:text-lg md:text-xl lg:text-2xl xl:text-2xl hover:scale-105"
-                  >
-                    AI 매칭 시스템
-                  </Link>
-                </div>
-                {/* 안내 세부사항 */}
-                <div className="flex flex-col items-center flex-1 px-4">
-                  <Link
-                    to="/guide/announcement"
-                    className="mb-2 text-sm font-normal text-black transition-transform duration-200 sm:text-lg md:text-xl lg:text-2xl xl:text-2xl hover:scale-105"
-                  >
-                    공지사항
-                  </Link>
-                  <Link
-                    to="/guide/facilities"
-                    className="mb-2 text-sm font-normal text-black transition-transform duration-200 sm:text-lg md:text-xl lg:text-2xl xl:text-2xl hover:scale-105"
-                  >
-                    관련 시설
-                  </Link>
-                  <Link
-                    to="/guide/walking-course"
-                    className="mb-2 text-sm font-normal text-black transition-transform duration-200 sm:text-lg md:text-xl lg:text-2xl xl:text-2xl hover:scale-105"
-                  >
-                    산책 코스
-                  </Link>
-                </div>
-                {/* 내정보 세부사항 */}
-                <div className="flex flex-col items-center flex-1 px-4">
-                  <Link
-                    to={getUserInfoLink()}
-                    className="mb-2 text-sm font-normal text-black transition-transform duration-200 sm:text-lg md:text-xl lg:text-2xl xl:text-2xl hover:scale-105"
-                  >
-                    나의 정보
-                  </Link>
-                  <Link
-                    to="/prefer"
-                    className="mb-2 text-sm font-normal text-black transition-transform duration-200 sm:text-lg md:text-xl lg:text-2xl xl:text-2xl hover:scale-105"
-                  >
-                    선호 동물 입력 및 수정
-                  </Link>
-                  {/* <Link
-                    to="/my-walking-course"
-                    className="mb-3 text-sm font-normal text-black transition-transform duration-200 sm:text-lg md:text-xl lg:text-2xl xl:text-2xl hover:scale-105"
-                  >
-                    나의 산책 코스
-                  </Link> */}
-                  {isLoggedIn && (
-                    <div
-                      className="flex items-center justify-end w-full mt-8 cursor-pointer hover:scale-105"
-                      onClick={handleLogout}
-                    >
-                      <span className="text-sm font-medium text-black sm:text-base md:text-base lg:text-lg xl:text-xl">
-                        로그아웃
-                      </span>
-                      <img
-                        src="/logout.svg"
-                        alt="Logout Icon"
-                        className="w-6 h-6 ml-2"
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
         </div>
 
         {/* 일반 헤더: 회원가입/알림 아이콘 */}
