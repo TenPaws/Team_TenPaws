@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GoChevronRight } from "react-icons/go";
+import { GoArrowRight } from "react-icons/go";
 import { Link, useNavigate } from 'react-router-dom';
 import MyPageModal from '../../components/MyPageModal';
 import Header from '../../components/Header';
@@ -17,7 +17,7 @@ interface ShelterInfo {
 }
 
 interface Pet {
-  petId: string;
+  petId: number;
   species: string;
   size: string;
   age: string;
@@ -34,8 +34,8 @@ const MyPageShelter: React.FC = () => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [token, setToken] = useState<string | null>(null);
-  const [error, setError] = useState<{ status: number; message: string } | null>(null);
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState<'mypage' | 'adoption'>('mypage');
   const [passwordError, setPasswordError] = useState<string | null>(null); // 비밀번호 오류 메시지 상태
   const [useId, setUseId] = useState<UseId>({
     Id: 0
@@ -196,14 +196,92 @@ const MyPageShelter: React.FC = () => {
     return `/detail/${petId}`; // 상세 페이지 URL 생성
   };
 
-  // 에러 핸들링 함수
-  const handleError = (error: any) => {
-    const status = error.response?.status || 500;
-    const message = error.response?.data?.message || "알 수 없는 오류가 발생했습니다.";
-    navigate("/errorpage", { state: { status, message } }); // state로 에러 정보 전달
+
+
+  const renderContent = () => {
+    if (activeTab === 'mypage') {
+      return (
+        <div className="flex flex-col items-center max-[590px]:mx-10">
+          {/* 마이페이지 내용 */}
+          {<section className="flex flex-col w-full max-w-lg gap-2 mb-10 ">
+            <div>
+              <h3 className='text-3xl font-bold text-mainColor'>마이페이지</h3>
+            </div>
+            <div className="flex flex-wrap p-5">
+              <p className="mb-2 text-xl font-bold">단체이름</p>
+              <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
+                <p className='text-lg'>{shelterInfo.shelterName}</p>
+              </div>
+              <p className="mb-2 text-xl font-bold">주소</p>
+              <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
+                <button className='flex items-center justify-center text-lg'>{shelterInfo.address}</button>
+              </div>
+              <p className="mb-2 text-xl font-bold">단체 메일</p>
+              <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
+                <p className='text-lg'>{shelterInfo.email}</p>
+              </div>
+              <p className="mb-2 text-xl font-bold">전화번호</p>
+              <div className="flex justify-between w-full p-3 border-b border-mainColor">
+                <p className='text-lg'>{shelterInfo.phoneNumber}</p>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <button
+                className="text-lg text-mainColor hover:text-orange-500"
+                onClick={() => setEditModalOpen(true)}
+              >
+                정보수정
+              </button>
+            </div>
+
+          </section>}
+        </div>
+      );
+    } else if (activeTab === 'adoption') {
+      return (
+        <div className="flex flex-col items-center mt-10">
+          <h3 className='text-3xl font-bold text-mainColor'>입양 등록 동물</h3>
+          <div className='mt-5'>
+              <Link to={applyListLink(useId.Id)}>
+                <button className="flex items-center justify-center text-lg font-bold hover:text-mainColor">입양 신청 리스트 <GoArrowRight />
+                </button>
+              </Link>
+            </div>
+          {/* 입양 신청 리스트 내용 */}
+          {
+            <section className='flex items-center justify-center m-10'>
+              <div className='flex flex-wrap justify-center gap-10'>
+                {Array.isArray(petLists) && petLists.length > 0 ? (
+                  petLists.map((pet) => (
+                    <Link to={detailLink(pet.petId)}>
+                      <div key={pet.petId} className='overflow-hidden border border-solid rounded-lg min-w-40 max-w-48 min-h-72 max-h-72'>
+                        <img
+                          src={pet.imageUrls && pet.imageUrls.length > 0 ? `http://15.164.103.160:8080${pet.imageUrls[0]}` : mainImage} 
+                          alt="동물 사진"
+                          onError={(e) => {
+                            e.currentTarget.src = mainImage;
+                            e.currentTarget.onerror = null;
+                          }}
+                        />
+                        <div className='m-3'>
+                          <p>{pet.species} / {pet.size} / {pet.age} / <br />
+                            {pet.personality} / 활동량({pet.exerciseLevel})
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
+                  ))
+                ) : (
+                  <p>등록된 동물이 없습니다.</p>
+                )}
+              </div>
+            </section>
+          }
+        </div>
+      );
+    }
   };
-    
-  if (error) return null; // 이미 에러 페이지로 이동한 경우 렌더링 방지
+
   
 
   return (
@@ -211,133 +289,80 @@ const MyPageShelter: React.FC = () => {
       <div>
         {/* 헤더 */}
         <Header />
-        <div className="flex flex-col items-center">
-          <section className="flex flex-col items-center w-full max-w-lg gap-4 m-8">
-            <div className="flex justify-center">
-              <h3 className='text-2xl font-bold'>마이페이지</h3>
-            </div>
-            <div className="flex flex-wrap justify-center gap-10 p-5 bg-bgColor rounded-2xl">
-              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-                <p className="text-xl font-bold">단체이름</p>
-                <p className='text-lg'>{shelterInfo.shelterName}</p>
-              </div>
-              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-                <p className="text-xl font-bold">주소</p>
-                <button className='flex items-center justify-center text-lg'>{shelterInfo.address}</button>
-              </div>
-              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-                <p className="text-xl font-bold">단체 메일</p>
-                <p className='text-lg'>{shelterInfo.email}</p>
-              </div>
-              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-                <p className="text-xl font-bold">전화번호</p>
-                <p className='text-lg'>{shelterInfo.phoneNumber}</p>
-              </div>
-            </div>
-            <div className="flex gap-32 mt-6">
-              <button
-                className="text-lg text-mainColor hover:text-orange-500"
-                onClick={() => setEditModalOpen(true)}
-              >
-                정보수정
-              </button>
-              <button
-                className="text-lg text-cancelColor hover:text-red-700"
-                onClick={() => setDeleteModalOpen(true)}
-              >
-                회원탈퇴
-              </button>
-            </div>
-            <div className='mt-5'>
-              <Link to={applyListLink(useId.Id)}>
-                <button className="flex items-center justify-center text-lg font-bold hover:text-mainColor">입양 신청 리스트 <GoChevronRight />
-                </button>
-              </Link>
-            </div>
-          </section>
-          <section className="flex flex-col items-center justify-center w-full max-w-lg gap-4 mt-8">
-            <div>
-              <h3 className="mb-10 text-xl font-bold">등록 입양 정보</h3>
-            </div>
-          </section>
-          <section className='flex items-center justify-center m-6'>
-            <div className='flex flex-wrap justify-center gap-10'>
-              {Array.isArray(petLists) && petLists.length > 0 ? (
-                petLists.map((pet) => (
-                  <Link to={detailLink(pet.petId)}>
-                    <div key={pet.petId} className='overflow-hidden border border-solid rounded-lg min-w-40 max-w-48 min-h-72 max-h-72'>
-                      <img
-                        src={pet.imageUrls && pet.imageUrls.length > 0 ? `http://15.164.103.160:8080${pet.imageUrls[0]}` : mainImage} 
-                        alt="동물 사진"
-                        onError={(e) => {
-                          e.currentTarget.src = mainImage;
-                          e.currentTarget.onerror = null;
-                        }}
-                      />
-                      <div className='m-3'>
-                        <p>{pet.species} / {pet.size} / {pet.age} / <br />
-                          {pet.personality} / 활동량({pet.exerciseLevel})
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                ))
-              ) : (
-                <p>등록된 동물이 없습니다.</p>
-              )}
-            </div>
-          </section>
+        <div className="flex justify-center gap-40 pb-2 my-10">
+          <button
+            className={`text-mainColor font-bold ${activeTab === 'mypage' ? 'border-b-2 border-mainColor' : ''}`}
+            onClick={() => setActiveTab('mypage')}
+          >
+            마이페이지
+          </button>
+          <button
+            className={`text-mainColor font-bold ${activeTab === 'adoption' ? 'border-b-2 border-mainColor' : ''}`}
+            onClick={() => setActiveTab('adoption')}
+          >
+            입양 등록 동물
+          </button>
         </div>
+
+        {renderContent()}
 
         {/* 정보수정 모달 */}
         <MyPageModal isOpen={isEditModalOpen} onClose={() => setEditModalOpen(false)}>
-          <h3 className="mb-4 text-lg font-bold">정보 수정</h3>
+          <h3 className="mb-4 text-lg font-bold text-mainColor">정보 수정</h3>
           <div className="flex flex-col gap-4">
             <label>
-              단체이름:
+              <p className='text-gray-500'>단체이름</p>
               <input
                 type="text"
                 name="shelterName"
                 value={shelterInfo.shelterName}
                 onChange={editChange}
-                className="block w-full p-2 border rounded"
+                className="block w-full p-2 border rounded border-mainColor"
               />
             </label>
             <label>
-              주소:
+              <p className='text-gray-500'>주소</p>
               <input
                 type="text"
                 name="address"
                 value={shelterInfo.address}
                 onChange={editChange}
-                className="block w-full p-2 border rounded"
+                className="block w-full p-2 border rounded border-mainColor"
               />
             </label>
             <label>
-              전화번호:
+              <p className='text-gray-500'>전화번호</p>
               <input
                 type="text"
                 name="phoneNumber"
                 value={shelterInfo.phoneNumber}
                 onChange={editChange}
-                className="block w-full p-2 border rounded"
+                className="block w-full p-2 border rounded border-mainColor"
               />
             </label>
             <label>
-              비밀번호:
+              <p className='text-gray-500'>비밀번호</p>
               <input
                 type="password"
                 name="password"
                 value={shelterInfo.password}
                 onChange={editChange}
-                className="block w-full p-2 border rounded"
+                className="block w-full p-2 border rounded border-mainColor"
               />
               {passwordError && (
                 <p className="text-sm text-red-500">{passwordError}</p>
               )}
             </label>
           </div>
-          <div className="flex justify-end gap-4 mt-6">
+          <div className='flex justify-end mt-2'>
+            <button
+                className="text-xs text-gray-600 underline hover:text-red-700"
+                onClick={() => setDeleteModalOpen(true)}
+              >
+                회원탈퇴 요청
+            </button>
+          </div>
+          <div className="flex gap-4 mt-6 justify-evenly">
             <button className="text-mainColor" onClick={editSubmit}>
               수정완료
             </button>

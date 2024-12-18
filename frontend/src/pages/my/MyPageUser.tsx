@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { GoChevronRight } from "react-icons/go";
 import MyPageModal from '../../components/MyPageModal';
 import Header from '../../components/Header';
-import mainImage from '../../assets/image/mainimage.webp'
 import axios from 'axios';
 
 
@@ -55,6 +54,7 @@ const MyPageUser: React.FC = () => {
   const [isEditModalOpen, setEditModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
   const [isApplyModalOpen, setApplyModalOpen] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<'mypage' | 'adoption'>('mypage');
   const [selectedPetId, setSelectedPetId] = useState<number | null>(null); // 선택된 pet.id 상태 추가
   const [token, setToken] = useState<string | null>(null);
   const [social, setSocial] = useState<SocialInfo | null>({
@@ -63,7 +63,6 @@ const MyPageUser: React.FC = () => {
     type: "",
     role: ""
   })
-  const [error, setError] = useState<{ status: number; message: string } | null>(null);
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState<UserInfo | null>({
     id: "",
@@ -282,14 +281,132 @@ const MyPageUser: React.FC = () => {
     }
   }
 
-  // 에러 핸들링 함수
-  const handleError = (error: any) => {
-    const status = error.response?.status || 500;
-    const message = error.response?.data?.message || "알 수 없는 오류가 발생했습니다.";
-    navigate("/errorpage", { state: { status, message } }); // state로 에러 정보 전달
+  const renderContent = () => {
+    if (activeTab === 'mypage') {
+      return (
+        <div className="flex flex-col items-center max-[590px]:mx-10">
+          {/* 마이페이지 내용 */}
+          {
+            <section className="flex flex-col w-full max-w-lg gap-2 mb-10 ">
+              <div>
+                <h3 className='text-3xl font-bold text-mainColor'>마이페이지</h3>
+              </div>
+              {social?.type == "naver" || social?.type == "kakao" ? (
+                <div className='flex flex-wrap justify-center gap-8 p-5 bg-bgColor rounded-2xl'>
+                  <div className="">
+                    <p className="mb-2 text-xl font-bold ">메일</p>
+                    <p className='text-lg'>{social.email}</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-wrap p-5">
+                  <p className="mb-2 text-xl font-bold">이름</p>
+                  <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
+                    <p className='text-lg'>{userInfo.username}</p>
+                  </div>
+                  <p className="mb-2 text-xl font-bold">주소</p>
+                  <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
+                    <p className='text-lg'>{userInfo.address}</p>
+                  </div>
+                  <p className="mb-2 text-xl font-bold">메일(아이디)</p>
+                  <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
+                    <p className='text-lg'>{userInfo.email}</p>
+                  </div>
+                  <p className="mb-2 text-xl font-bold">생년월일</p>
+                  <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
+                    <p className='text-lg'>{userInfo.birthDate}</p>
+                  </div>
+                  <p className="mb-2 text-xl font-bold">전화번호</p>
+                  <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
+                    <p className='text-lg'>{userInfo.phoneNumber}</p>
+                  </div>
+                  <p className="mb-2 text-xl font-bold">선호동물</p>
+                  <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
+                    <span className='text-lg'>{userInfo.preferredSize}</span>/
+                    <span className='text-lg'>{userInfo.preferredPersonality}</span>/
+                    <span className='text-lg'>{userInfo.preferredExerciseLevel}</span>
+                  </div>
+                </div>
+              )}
+              <div className="flex justify-center">
+                <button
+                  className="text-lg text-mainColor hover:text-orange-500"
+                  onClick={() => setEditModalOpen(true)}
+                >
+                  정보수정
+                </button>
+
+              </div>
+            </section>
+          }
+        </div>
+      );
+    } else if (activeTab === 'adoption') {
+      return (
+        <div className="flex flex-col items-center">
+          <h3 className="text-3xl font-bold text-mainColor">입양 신청 동물</h3>
+          {/* 입양 신청 리스트 내용 */}
+          {
+            <section className='mt-20'>
+              {Array.isArray(petInfo) && petInfo.filter(pet => pet.applyStatus === "PENDING" || pet.applyStatus === "COMPLETED").length > 0 ? (
+                petInfo
+                  .filter(pet => pet.applyStatus === "PENDING" || pet.applyStatus === "COMPLETED") // applyStatus가 "PENDING"인 것만 필터링
+                  .map((pet) => (
+                    <section
+                      key={pet.id} // 키를 각 pet의 id로 설정
+                      className="relative flex flex-col items-center w-full max-w-lg my-10 overflow-hidden border border-solid rounded-lg border-mainColor"
+                    >
+                      <div>
+                        <img
+                          src={`http://15.164.103.160:8080${pet.pet.imageUrls[0]}` || undefined}
+                          alt={`${pet.pet.species || "알 수 없는 동물"} 사진`}
+                        />
+                      </div>
+                      <div className="flex flex-col items-center gap-3 my-5">
+                        <p>
+                          {pet.pet.species} / {pet.pet.size} / {pet.pet.age} /
+                          {pet.pet.personality} / {pet.pet.exerciseLevel}
+                        </p>
+                      </div>
+                      <div className="flex flex-col items-center gap-3 my-5">
+                        {pet.applyStatus == "PENDING" ? 
+                          <button
+                            className="text-cancelColor"
+                            onClick={() => {
+                              setSelectedPetId(pet.id); 
+                              setApplyModalOpen(true); }} 
+                          >
+                            입양 신청 취소
+                          </button> :
+                          <p className='mb-2 text-xl font-bold'>입양 승인 완료</p>
+                        }
+                      </div>
+                      {/* 입양 취소 모달 */}
+                      <MyPageModal isOpen={isApplyModalOpen} onClose={() => setApplyModalOpen(false)}>
+                        <h3 className="mb-4 text-lg font-bold">입양 취소 하시겠습니까?</h3>
+                        <div className="flex justify-end gap-4 mt-6">
+                          <button className="text-mainColor" onClick={deleteApply}>
+                            네
+                          </button>
+                          <button className="text-cancelColor" onClick={() => setApplyModalOpen(false)}>
+                            아니오
+                          </button>
+                        </div>
+                      </MyPageModal>
+                    </section>
+                  ))
+                ) : (
+                  <p className="mb-20">입양신청 동물이 없습니다.</p>
+                )
+              }
+            </section>
+
+          }
+        </div>
+      );
+    }
   };
 
-if (error) return null; // 이미 에러 페이지로 이동한 경우 렌더링 방지
 
 
 
@@ -298,205 +415,117 @@ if (error) return null; // 이미 에러 페이지로 이동한 경우 렌더링
   }
 
   return (
-    <div className="relative">
+    <div>
       <Header />
-      <div className="flex flex-col items-center">
-        <section className="flex flex-col items-center w-full max-w-lg gap-4 mt-8">
-          <div className="flex justify-center">
-            <h3 className='text-2xl font-bold text-mainColor'>마이페이지</h3>
-          </div>
-          {social?.type == "naver" || social?.type == "kakao" ? (
-            <div className='flex flex-wrap justify-center gap-8 p-5 bg-bgColor rounded-2xl'>
-              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-                <p className="text-xl font-bold ">메일</p>
-                <p className='text-lg'>{social.email}</p>
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-wrap justify-center gap-8 p-5 bg-bgColor rounded-2xl">
-              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-                <p className="text-xl font-bold ">이름</p>
-                <p className='text-lg'>{userInfo.username}</p>
-              </div>
-              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-                <p className="text-xl font-bold">주소</p>
-                <p className='text-lg'>{userInfo.address}</p>
-              </div>
-              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-                <p className="text-xl font-bold">메일(아이디)</p>
-                <p className='text-lg'>{userInfo.email}</p>
-              </div>
-              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-                <p className="text-xl font-bold">생년월일</p>
-                <p className='text-lg'>{userInfo.birthDate}</p>
-              </div>
-              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-                <p className="text-xl font-bold">전화번호</p>
-                <p className='text-lg'>{userInfo.phoneNumber}</p>
-              </div>
-              <div className="flex justify-between w-full p-3 rounded-lg bg-mainColor">
-                <p className="text-xl font-bold">선호동물</p>
-                <span className='text-lg'>{userInfo.preferredSize}</span>/
-                <span className='text-lg'>{userInfo.preferredPersonality}</span>/
-                <span className='text-lg'>{userInfo.preferredExerciseLevel}</span>
-              </div>
-            </div>
-          )}
-          <div className="flex gap-32 mt-10">
-            <button
-              className="text-lg text-mainColor hover:text-orange-500"
-              onClick={() => setEditModalOpen(true)}
-            >
-              정보수정
-            </button>
-            <button
-              className="text-lg text-cancelColor hover:text-red-700"
-              onClick={() => setDeleteModalOpen(true)}
-            >
-              회원탈퇴
-            </button>
-          </div>
-        </section>
-        <section className="flex flex-col items-center justify-center w-full max-w-lg gap-4 mt-8">
-          <div>
-            <h3 className="mb-5 text-xl font-bold">신청하신 입양 정보</h3>
-          </div>
-        </section>
-        {Array.isArray(petInfo) && petInfo.filter(pet => pet.applyStatus === "PENDING" || pet.applyStatus === "COMPLETED").length > 0 ? (
-          petInfo
-            .filter(pet => pet.applyStatus === "PENDING" || pet.applyStatus === "COMPLETED") // applyStatus가 "PENDING"인 것만 필터링
-            .map((pet) => (
-              <section
-                key={pet.id} // 키를 각 pet의 id로 설정
-                className="relative flex flex-col items-center w-full max-w-lg my-10 overflow-hidden border border-solid rounded-lg border-mainColor"
-              >
-                <div>
-                  <img
-                    src={`http://15.164.103.160:8080${pet.pet.imageUrls[0]}` || undefined}
-                    alt={`${pet.pet.species || "알 수 없는 동물"} 사진`}
-                  />
-                </div>
-                <div className="flex flex-col items-center gap-3 my-5">
-                  <p>
-                    {pet.pet.species} / {pet.pet.size} / {pet.pet.age} /
-                    {pet.pet.personality} / {pet.pet.exerciseLevel}
-                  </p>
-                </div>
-                <div className="flex flex-col items-center gap-3 my-5">
-                  {pet.applyStatus == "PENDING" ? 
-                    <button
-                      className="text-cancelColor"
-                      onClick={() => {
-                        setSelectedPetId(pet.id); 
-                        setApplyModalOpen(true); }} 
-                    >
-                      입양 신청 취소
-                    </button> :
-                    <p className='text-xl font-bold'>입양 승인 완료</p>
-                  }
-                </div>
-                {/* 입양 취소 모달 */}
-                <MyPageModal isOpen={isApplyModalOpen} onClose={() => setApplyModalOpen(false)}>
-                  <h3 className="mb-4 text-lg font-bold">입양 취소 하시겠습니까?</h3>
-                  <div className="flex justify-end gap-4 mt-6">
-                    <button className="text-mainColor" onClick={deleteApply}>
-                      네
-                    </button>
-                    <button className="text-cancelColor" onClick={() => setApplyModalOpen(false)}>
-                      아니오
-                    </button>
-                  </div>
-                </MyPageModal>
-              </section>
-            ))
-        ) : (
-          <p className="mb-20">입양신청 동물이 없습니다.</p>
-        )}
-        {/* 수정 모달 */}
-        <MyPageModal isOpen={isEditModalOpen} onClose={() => setEditModalOpen(false)}>
-          <h3 className="mb-4 text-lg font-bold">정보 수정</h3>
-          <div className="flex flex-col gap-4">
-            <label>
-              이름:
-              <input
-                type="text"
-                name="username"
-                value={userInfo?.username || ''} // userInfo가 null이면 빈 문자열 사용
-                onChange={editChange}
-                className="block w-full p-2 border rounded"
-              />
-            </label>
-            <label>
-              비밀번호:
-              <input
-                type="password"
-                name="password"
-                value={userInfo.password}
-                onChange={editChange}
-                className="block w-full p-2 border rounded"
-              />
-              {passwordError && (
-                <p className="text-sm text-red-500">{passwordError}</p>
-              )}
-            </label>
-            <label>
-              전화번호:
-              <input
-                type="text"
-                name="phoneNumber"
-                value={userInfo.phoneNumber}
-                onChange={editChange}
-                className="block w-full p-2 border rounded"
-              />
-            </label>
-            <label>
-              주소:
-              <input
-                type="text"
-                name="address"
-                value={userInfo.address}
-                onChange={editChange}
-                className="block w-full p-2 border rounded"
-              />
-            </label>
-            <label>
-              선호동물:
-              <Link to='/prefer'>
-                <button className="flex items-center w-full p-2 border rounded">
-                  {userInfo.preferredSize} / {userInfo.preferredPersonality} / {userInfo.preferredExerciseLevel}
-                  <GoChevronRight />
-                </button>
-              </Link>
-            </label>
-          </div>
-          <div className="flex justify-end gap-4 mt-6">
-            <button className="text-mainColor" onClick={editSubmit}>
-              수정완료
-            </button>
-            <button className="text-cancelColor" onClick={() => setEditModalOpen(false)}>
-              취소
-            </button>
-          </div>
-        </MyPageModal>
-        {/* 회원탈퇴 모달 */}
-        <MyPageModal isOpen={isDeleteModalOpen} onClose={() => setDeleteModalOpen(false)}>
-          <h3 className="mb-4 text-lg font-bold">정말로 탈퇴하시겠습니까?</h3>
-          <div className="flex justify-end gap-4 mt-6">
-            {social?.type == "naver" || social?.type == "kakao" ? (
-            <button className="text-mainColor" onClick={deleteSocial}>
-            네
-          </button>)
-          :
-          (<button className="text-mainColor" onClick={DeleteAccount}>
-              네
-            </button>
-          )}
-            <button className="text-cancelColor" onClick={() => setDeleteModalOpen(false)}>
-              아니오
-            </button>
-          </div>
-        </MyPageModal>
+      <div className="flex justify-center gap-40 pb-2 my-10">
+        <button
+          className={`text-mainColor font-bold ${activeTab === 'mypage' ? 'border-b-2 border-mainColor' : ''}`}
+          onClick={() => setActiveTab('mypage')}
+        >
+          마이페이지
+        </button>
+        <button
+          className={`text-mainColor font-bold ${activeTab === 'adoption' ? 'border-b-2 border-mainColor' : ''}`}
+          onClick={() => setActiveTab('adoption')}
+        >
+          입양 신청 동물
+        </button>
       </div>
+
+      {renderContent()}
+
+      {/* 수정 모달 */}
+      <MyPageModal isOpen={isEditModalOpen} onClose={() => setEditModalOpen(false)}>
+        <h3 className="mb-4 text-lg font-bold">정보 수정</h3>
+        <div className="flex flex-col gap-4">
+          <label>
+            이름:
+            <input
+              type="text"
+              name="username"
+              value={userInfo?.username || ''} // userInfo가 null이면 빈 문자열 사용
+              onChange={editChange}
+              className="block w-full p-2 border rounded"
+            />
+          </label>
+          <label>
+            비밀번호:
+            <input
+              type="password"
+              name="password"
+              value={userInfo.password}
+              onChange={editChange}
+              className="block w-full p-2 border rounded"
+            />
+            {passwordError && (
+              <p className="text-sm text-red-500">{passwordError}</p>
+            )}
+          </label>
+          <label>
+            전화번호:
+            <input
+              type="text"
+              name="phoneNumber"
+              value={userInfo.phoneNumber}
+              onChange={editChange}
+              className="block w-full p-2 border rounded"
+            />
+          </label>
+          <label>
+            주소:
+            <input
+              type="text"
+              name="address"
+              value={userInfo.address}
+              onChange={editChange}
+              className="block w-full p-2 border rounded"
+            />
+          </label>
+          <label>
+            선호동물:
+            <Link to='/prefer'>
+              <button className="flex items-center w-full p-2 border rounded">
+                {userInfo.preferredSize} / {userInfo.preferredPersonality} / {userInfo.preferredExerciseLevel}
+                <GoChevronRight />
+              </button>
+            </Link>
+          </label>
+        </div>
+        <div className='flex justify-end mt-2'>
+          <button
+            className="text-xs text-gray-600 underline hover:text-red-700"
+            onClick={() => setDeleteModalOpen(true)}
+          >
+            회원탈퇴
+          </button>
+        </div>
+        <div className="flex gap-4 mt-6 justify-evenly">
+          <button className="text-mainColor" onClick={editSubmit}>
+            수정완료
+          </button>
+          <button className="text-cancelColor" onClick={() => setEditModalOpen(false)}>
+            취소
+          </button>
+        </div>
+      </MyPageModal>
+      {/* 회원탈퇴 모달 */}
+      <MyPageModal isOpen={isDeleteModalOpen} onClose={() => setDeleteModalOpen(false)}>
+        <h3 className="mb-4 text-lg font-bold">정말로 탈퇴하시겠습니까?</h3>
+        <div className="flex justify-end gap-4 mt-6">
+          {social?.type == "naver" || social?.type == "kakao" ? (
+          <button className="text-mainColor" onClick={deleteSocial}>
+          네
+        </button>)
+        :
+        (<button className="text-mainColor" onClick={DeleteAccount}>
+            네
+          </button>
+        )}
+          <button className="text-cancelColor" onClick={() => setDeleteModalOpen(false)}>
+            아니오
+          </button>
+        </div>
+      </MyPageModal>
     </div>
   );
 };

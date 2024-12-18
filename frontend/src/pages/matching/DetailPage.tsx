@@ -264,7 +264,7 @@ const DetailPage = () => {
         </section>
         <section className="mt-10">
           <div className="flex flex-col flex-wrap gap-5">
-            <div className="flex items-center justify-between p-2 px-10 border gap-52">
+            <div className="flex items-center justify-between p-2 pl-10 border gap-52">
               <label htmlFor="species" className="text-xl">종류</label>
               <select id="species" className="pl-2 text-xs font-bold"  value={addPet.species} onChange={InputChange}>
                 <option value="">종류</option>
@@ -272,11 +272,11 @@ const DetailPage = () => {
                 <option value="고양이">고양이</option>
               </select>
             </div>
-            <div className="flex items-center justify-between p-2 px-10 border">
+            <div className="flex items-center justify-between p-2 pl-10 border">
               <label htmlFor="petName" className="text-xl">이름</label>
               <input type="text" id="petName" placeholder="예) 코코, 흰둥이" className="w-32 pl-3" value={addPet.petName} onChange={InputChange}/>
             </div>
-            <div className="flex items-center justify-between p-2 px-10 border">
+            <div className="flex items-center justify-between p-2 pl-10 border">
               <label htmlFor="age" className="text-xl">연령</label>
               <select id="age" className="pl-2 text-xs font-bold" value={addPet.age} onChange={InputChange}>
                 <option value="">연령</option>
@@ -285,7 +285,7 @@ const DetailPage = () => {
                 <option value="7~10살">7~10살</option>
               </select>
             </div>
-            <div className="flex items-center justify-between p-2 px-10 border">
+            <div className="flex items-center justify-between p-2 pl-10 border">
               <label htmlFor="gender" className="text-xl">성별</label>
               <select id="gender" className="pl-2 text-xs font-bold" value={addPet.gender} onChange={InputChange}>
                 <option value="">성별</option>
@@ -293,11 +293,11 @@ const DetailPage = () => {
                 <option value="암컷">암컷</option>
               </select>
             </div>
-            <div className="flex items-center justify-between p-2 px-10 border">
+            <div className="flex items-center justify-between gap-32 p-2 pl-10 border">
               <label htmlFor="reason" className="text-xl">보호소로 오게 된 이유</label>
               <input type="text" id="reason" placeholder="예) 유기, 보호자 병환" className="pl-2 w-36" value={addPet.reason} onChange={InputChange}/>
             </div>
-            <div className="flex items-center justify-between p-2 px-10 border">
+            <div className="flex items-center justify-between p-2 pl-10 border">
               <label htmlFor="vaccinated" className="text-xl">접종 유무</label>
               <select id="vaccinated" className="pl-2 text-xs font-bold" value={addPet.vaccinated} onChange={InputChange}>
                 <option value="">접종유무</option>
@@ -310,7 +310,7 @@ const DetailPage = () => {
                 <option value="no">미접종</option>
               </select>
             </div>
-            <div className="flex items-center justify-between p-2 px-10 border">
+            <div className="flex items-center justify-between p-2 pl-10 border">
               <label htmlFor="neutering" className="text-xl">중성화 유무</label>
               <select id="neutering" className="pl-2 text-xs font-bold" value={addPet.neutering} onChange={InputChange}>
                 <option value="">중성화유무</option>
@@ -318,27 +318,28 @@ const DetailPage = () => {
                 <option value="미완료">미완료</option>
               </select>
             </div>
-            <div className="flex items-center justify-between p-2 px-10 border">
+            <div className="flex items-center justify-between p-2 pl-10 border">
               <label htmlFor="personality" className="text-xl">성격</label>
               <select id="personality" className="pl-2 text-xs font-bold" value={addPet.personality} onChange={InputChange}>
                 <option value="">성격</option>
-                <option value="얌전함">얌전함</option>
-                <option value="활발함">활발함</option>
+                <option value="사교적">사교적</option>
+                <option value="독립적">독립적</option>
+                <option value="겁이많음">겁이많음</option>
                 <option value="사나움">사나움</option>
               </select>
             </div>
-            <div className="flex items-center justify-between p-2 px-10 border">
+            <div className="flex items-center justify-between p-2 pl-10 border">
               <label htmlFor="exerciseLevel" className="text-xl">활동량</label>
               <select id="exerciseLevel" className="pl-2 text-xs font-bold" value={addPet.exerciseLevel} onChange={InputChange}>
-                <option value="">적음 1 ~ 많음 5</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="">활동량</option>
+                <option value="매우적음">매우 적음</option>
+                <option value="적음">적음</option>
+                <option value="보통">보통</option>
+                <option value="많음">많음</option>
+                <option value="매우많음">매우 많음</option>
               </select>
             </div>
-            <div className="flex items-center justify-between p-2 px-10 border">
+            <div className="flex items-center justify-between p-2 pl-10 border">
               <label htmlFor="size" className="text-xl">크기</label>
               <select id="size" className="pl-2 text-xs font-bold" value={addPet.size} onChange={InputChange}>
                 <option value="">크기</option>
@@ -347,11 +348,11 @@ const DetailPage = () => {
                 <option value="대형">대형</option>
               </select>
             </div>
-            <div className="flex items-center justify-between p-2 px-10 border">
+            <div className="flex items-center justify-between p-2 pl-10 border">
               <label htmlFor="preAdoption" className="text-xl">맡겨지기 전 가정환경</label>
               <input type="text" id="preAdoption" placeholder="예) 임시보호, 사육장" className="pl-2 w-36" value={addPet.preAdoption} onChange={InputChange}/>
             </div>
-            <div className="flex items-center justify-between p-2 px-10 border">
+            <div className="flex items-center justify-between p-2 pl-10 border">
               <label htmlFor="extra" className="text-xl">추가 정보(선택사항)</label>
               <input type="text" id="extra" placeholder="동물 추가정보 작성" className="pl-2 w-36" value={addPet.extra} onChange={InputChange}/>
             </div>
