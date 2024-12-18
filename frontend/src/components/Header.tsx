@@ -52,6 +52,25 @@ const Header = () => {
     }
   };
 
+  const handleAiMatchingClick = () => {
+    if (!isLoggedIn) {
+      alert("로그인을 해주세요."); // 알림 메시지
+      navigate("/login"); // 로그인 페이지로 이동
+    } else {
+      navigate("/ai-matching"); // AI 매칭 페이지로 이동
+    }
+  };
+
+  const handleMyPageClick = () => {
+    if (!isLoggedIn) {
+      alert("로그인을 해주세요."); // 알림 메시지
+      navigate("/login"); // 로그인 페이지로 이동
+    } else {
+      navigate(userRole === "ROLE_SHELTER" ? "/mypage-shelter" : "/mypage-user"); // 역할에 따른 마이페이지로 이동
+    }
+  };
+
+
   useEffect(() => {
     const updateLoginState = () => {
       const accessToken = localStorage.getItem("accessToken");
@@ -110,7 +129,7 @@ const Header = () => {
           <Link to="/">Ten<span className="text-[#f1a34a]">Paws</span></Link>
         </div>
 
-        {/* 매칭, 안내, 내정보와 드롭다운 바 */}
+        {/* 동물 찾기, AI매칭, 주변 반려시설, 공지사항, 마이페이지 */}
         <div className="relative justify-center flex-1 hidden md:flex">
           <div className="flex items-center justify-between w-full max-w-3xl px-0 py-3 font-medium rounded-lg text-md ">
             {/* 동물 찾기 */}
@@ -122,8 +141,9 @@ const Header = () => {
             {/* AI매칭 */}
             <div
               className="relative flex-1 text-center transition-transform duration-200 hover:scale-105"
+              onClick={handleAiMatchingClick} // 클릭 이벤트 추가
             >
-              <Link to="/ai-matching">AI 매칭</Link>
+              <span className="cursor-pointer">AI 매칭</span>
             </div>
             {/* 주변 반려시설 */}
             <div
@@ -140,8 +160,9 @@ const Header = () => {
             {/* 마이페이지 */}
             <div
               className="relative flex-1 text-center transition-transform duration-200 hover:scale-105"
+              onClick={handleMyPageClick} // 클릭 이벤트 추가
             >
-              {shelter ? <Link to="/mypage-shelter">마이페이지</Link> : <Link to="/mypage-user">마이페이지</Link>}
+              <span className="cursor-pointer">마이페이지</span>
             </div>
           </div>
         </div>

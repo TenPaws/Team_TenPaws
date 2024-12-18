@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from "../../utils/axiosInstance"; 
 import { Link, useNavigate } from 'react-router-dom';
-import { GoChevronRight } from "react-icons/go";
+import { GoArrowRight } from "react-icons/go";
 import MyPageModal from '../../components/MyPageModal';
 import Header from '../../components/Header';
 import axios from 'axios';
@@ -302,29 +302,29 @@ const MyPageUser: React.FC = () => {
                 <div className="flex flex-wrap p-5">
                   <p className="mb-2 text-xl font-bold">이름</p>
                   <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
-                    <p className='text-lg'>{userInfo.username}</p>
+                    <p className='text-lg'>{userInfo?.username}</p>
                   </div>
                   <p className="mb-2 text-xl font-bold">주소</p>
                   <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
-                    <p className='text-lg'>{userInfo.address}</p>
+                    <p className='text-lg'>{userInfo?.address}</p>
                   </div>
                   <p className="mb-2 text-xl font-bold">메일(아이디)</p>
                   <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
-                    <p className='text-lg'>{userInfo.email}</p>
+                    <p className='text-lg'>{userInfo?.email}</p>
                   </div>
                   <p className="mb-2 text-xl font-bold">생년월일</p>
                   <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
-                    <p className='text-lg'>{userInfo.birthDate}</p>
+                    <p className='text-lg'>{userInfo?.birthDate}</p>
                   </div>
                   <p className="mb-2 text-xl font-bold">전화번호</p>
                   <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
-                    <p className='text-lg'>{userInfo.phoneNumber}</p>
+                    <p className='text-lg'>{userInfo?.phoneNumber}</p>
                   </div>
                   <p className="mb-2 text-xl font-bold">선호동물</p>
                   <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
-                    <span className='text-lg'>{userInfo.preferredSize}</span>/
-                    <span className='text-lg'>{userInfo.preferredPersonality}</span>/
-                    <span className='text-lg'>{userInfo.preferredExerciseLevel}</span>
+                    <span className='text-lg'>{userInfo?.preferredSize}</span>/
+                    <span className='text-lg'>{userInfo?.preferredPersonality}</span>/
+                    <span className='text-lg'>{userInfo?.preferredExerciseLevel}</span>
                   </div>
                 </div>
               )}
@@ -439,7 +439,7 @@ const MyPageUser: React.FC = () => {
         <h3 className="mb-4 text-lg font-bold">정보 수정</h3>
         <div className="flex flex-col gap-4">
           <label>
-            이름:
+            이름
             <input
               type="text"
               name="username"
@@ -449,7 +449,7 @@ const MyPageUser: React.FC = () => {
             />
           </label>
           <label>
-            비밀번호:
+            비밀번호
             <input
               type="password"
               name="password"
@@ -462,7 +462,7 @@ const MyPageUser: React.FC = () => {
             )}
           </label>
           <label>
-            전화번호:
+            전화번호
             <input
               type="text"
               name="phoneNumber"
@@ -472,7 +472,7 @@ const MyPageUser: React.FC = () => {
             />
           </label>
           <label>
-            주소:
+            주소
             <input
               type="text"
               name="address"
@@ -482,11 +482,11 @@ const MyPageUser: React.FC = () => {
             />
           </label>
           <label>
-            선호동물:
+            선호동물
             <Link to='/prefer'>
               <button className="flex items-center w-full p-2 border rounded">
                 {userInfo.preferredSize} / {userInfo.preferredPersonality} / {userInfo.preferredExerciseLevel}
-                <GoChevronRight />
+                등록<GoArrowRight />
               </button>
             </Link>
           </label>

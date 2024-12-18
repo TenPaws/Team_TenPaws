@@ -126,14 +126,14 @@ const MatchingPage = () => {
         </div>
         <section className='flex flex-wrap mt-10 mx-36 max-[630px]:mx-28 max-[530px]:mx-20 max-[466px]:mx-10'>
           <form className="flex flex-wrap gap-2">
-            <select id="species" className="py-2 text-2xl border max-[1210px]:pr-56 rounded-md pr-64 max-[910px]:text-lg max-[375px]:text-sm" onChange={filterChange}>
+            <select id="species" className="py-2 text-2xl border max-[1333px]:pr-48 rounded-md max-[1140px]:pr-28 pr-64 max-[910px]:text-lg max-[375px]:text-sm" onChange={filterChange}>
               <option value="">종류</option>
               <option value="강아지">강아지</option>
               <option value="고양이">고양이</option>
             </select>
             <div>
             </div>
-            <select id="age" className="py-2 text-2xl border max-[1210px]:pr-56 rounded-md pr-64 max-[910px]:text-lg max-[375px]:text-sm" onChange={filterChange}>
+            <select id="age" className="py-2 text-2xl border max-[1333px]:pr-48 rounded-md max-[1140px]:pr-28 pr-64 max-[910px]:text-lg max-[375px]:text-sm" onChange={filterChange}>
               <option value="">연령</option>
               <option value="0~3살">0~3살</option>
               <option value="4~6살">4~6살</option>
@@ -141,7 +141,7 @@ const MatchingPage = () => {
             </select>
             <div>
             </div>
-            <select id="size" className="py-2 pr-64 text-2xl border max-[1210px]:pr-56 rounded-md max-[910px]:text-lg max-[375px]:text-sm" onChange={filterChange}>
+            <select id="size" className="py-2 pr-64 text-2xl border max-[1333px]:pr-48 max-[1140px]:pr-28 rounded-md max-[910px]:text-lg max-[375px]:text-sm" onChange={filterChange}>
               <option value="">크기</option>
               <option value="소형">소형</option>
               <option value="중형">중형</option>
