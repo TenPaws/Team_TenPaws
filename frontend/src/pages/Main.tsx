@@ -8,6 +8,7 @@ import Main2 from "/main3.png";
 import AImatching from "/pet-house (2) 1.svg";
 import met from "/pet-food 1.png";
 import care from "/animal (1) 1.png";
+import Inquiry from "../components/Inquiry";
 
 // 상세 설명 데이터 타입 정의
 type IconType = "dog" | "approve" | "board" | "check";
@@ -54,7 +55,7 @@ const Main: React.FC = () => {
       {/* 헤더 */}
       <Header />
       <Chat />
-      <FAQ />
+      {/* <Inquiry/> */}
       {/* About TenPaws */}
       <section className="relative ">
         <div>
