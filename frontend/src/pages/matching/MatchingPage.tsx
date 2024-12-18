@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
-import { GoChevronRight } from "react-icons/go";
-import { RxDividerVertical } from "react-icons/rx";
+import { GoArrowRight } from "react-icons/go";
 import axiosInstance from "../../utils/axiosInstance";
 
 interface ProcessedPet {
@@ -22,11 +21,9 @@ interface UseRole {
 
 const MatchingPage = () => {
   const [pets, setPets] = useState<ProcessedPet[]>([]); // 동물 데이터 저장 상태
-  const [error, setError] = useState<{ status: number; message: string } | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [token, setToken] = useState<string | null>(null);
-  const navigate = useNavigate();
-  const [useRole, setUseRole] = useState({role: ""});
+  const [useRole, setUseRole] = useState<UseRole>({role: ""});
   const [filters, setFilters] = useState({
     species: "",
     age: "",
@@ -56,7 +53,6 @@ const MatchingPage = () => {
         console.log(response.data)
       } catch (error) {
         console.error("동물 리스트를 불러오는 중 오류 발생:", error);
-        // handleError(error);
       } finally {
         setLoading(false); // 로딩 상태 종료
       }
@@ -72,7 +68,6 @@ const MatchingPage = () => {
           setUseRole(response.data)
         } catch (error) {
           console.error("유저 role 불러오는 중 오류 발생:", error);
-          // handleError(error);
         }
       };
       userRole(); // 데이터 가져오기 함수 실행
@@ -94,7 +89,7 @@ const MatchingPage = () => {
   // 필터링된 동물 리스트 반환
   const filteredPets = Array.isArray(pets) ? pets.filter((pet) => {
     return (
-      pet.status === "AVAILABLE" || pet.status === null &&
+      (pet.status === "AVAILABLE") &&
       (!filters.species || pet.species === filters.species) &&
       (!filters.age || pet.age === filters.age) &&
       (!filters.size || pet.size === filters.size)
@@ -108,45 +103,45 @@ const MatchingPage = () => {
     return `/detail/${petId}`; // 상세 페이지 URL 생성
   };
 
-  // 에러 핸들링 함수
-  const handleError = (error: any) => {
-    const status = error.response?.status || 500;
-    const message = error.response?.data?.message || "알 수 없는 오류가 발생했습니다.";
-    navigate("/errorpage", { state: { status, message } }); // state로 에러 정보 전달
-  };
+
 
   if (loading) {
     return <div>로딩 중...</div>; // 로딩 상태 표시
   }
       
-  if (error) return null; // 이미 에러 페이지로 이동한 경우 렌더링 방지
 
   
   return (
     <>
       <Header />
-      <div className='flex flex-col items-center max-w-screen'>
-        <section className='flex flex-wrap items-center justify-center w-8/12 gap-10 p-10 mt-10 border bg-mainColor rounded-2xl'>
-          <p className='p-3 text-3xl font-bold'>선택 옵션</p>
-          <form className="flex flex-wrap max-[1041px]:justify-center max-[1041px]:gap-5 max-[790px]:gap-3 max-[726px]:justify-center mx-10 ">
-            <select id="species" className="text-3xl px-7 rounded-xl" onChange={filterChange}>
+      <div className='flex flex-col max-w-screen'>
+        <div className='flex flex-col mt-20 mx-36 max-[630px]:mx-28 max-[530px]:mx-20 max-[466px]:mx-10'>
+          <div className='mb-3'>
+              <Link to="/detailadd">
+                {shelter ? <button className='flex items-center justify-center text-2xl text-mainColor hover:text-orange-600'>동물 등록 <GoArrowRight /></button> : null}
+              </Link>
+            </div>
+          <h1 className='max-[490px]:text-2xl max-[430px]:text-xl text-4xl font-bold text-mainColor'>매칭 동물 결정</h1>
+          <p className='max-[635px]:text-sm max-[445px]:text-xs pt-5 '>필요한 조건을 골라 원하는 반려동물들을 결정해 보세요.</p>
+        </div>
+        <section className='flex flex-wrap mt-10 mx-36 max-[630px]:mx-28 max-[530px]:mx-20 max-[466px]:mx-10'>
+          <form className="flex flex-wrap gap-2">
+            <select id="species" className="py-2 text-2xl border max-[1210px]:pr-56 rounded-md pr-64 max-[910px]:text-lg max-[375px]:text-sm" onChange={filterChange}>
               <option value="">종류</option>
               <option value="강아지">강아지</option>
               <option value="고양이">고양이</option>
             </select>
             <div>
-              <RxDividerVertical className='w-10 h-10 max-[850px]:hidden' />
             </div>
-            <select id="age" className="text-3xl px-7 rounded-xl" onChange={filterChange}>
+            <select id="age" className="py-2 text-2xl border max-[1210px]:pr-56 rounded-md pr-64 max-[910px]:text-lg max-[375px]:text-sm" onChange={filterChange}>
               <option value="">연령</option>
               <option value="0~3살">0~3살</option>
               <option value="4~6살">4~6살</option>
               <option value="7~8살">7~10살</option>
             </select>
             <div>
-              <RxDividerVertical className='w-10 h-10 max-[1041px]:hidden' />
             </div>
-            <select id="size" className="text-3xl px-7 rounded-xl" onChange={filterChange}>
+            <select id="size" className="py-2 pr-64 text-2xl border max-[1210px]:pr-56 rounded-md max-[910px]:text-lg max-[375px]:text-sm" onChange={filterChange}>
               <option value="">크기</option>
               <option value="소형">소형</option>
               <option value="중형">중형</option>
@@ -154,27 +149,20 @@ const MatchingPage = () => {
             </select>
           </form>     
         </section>
-        <section className='mt-6'>
-          <div>
-            <Link to="/detailadd">
-              {shelter ? <button className='flex items-center justify-center text-2xl text-mainColor hover:text-orange-600'>등록 <GoChevronRight /></button> : null}
-            </Link>
-          </div>
-        </section>
-        <section className='mt-16'>
+        <section className='mt-5'>
           <div className='flex flex-col items-center justify-center'>
-            <h3 className='mb-5 text-4xl font-bold'>매칭이 어려우신가요?</h3>
+            <h3 className='mb-2 text-2xl font-bold'>매칭이 어려우신가요?</h3>
             <Link to="/ai-matching">
-              <button className='flex items-center justify-center text-lg text-mainColor hover:text-orange-600'>AI매칭 바로가기<GoChevronRight /></button>
+              <button className='flex items-center justify-center p-2 border text-md rounded-2xl text-mainColor border-mainColor hover:text-orange-600'>AI매칭 바로가기 <GoArrowRight /></button>
             </Link>
           </div>
         </section>
         <section className='flex items-center justify-center m-20'>
-          <div className='flex flex-wrap justify-center gap-10'>
+          <div className='flex flex-col justify-center gap-10'>
             {filteredPets.map((pet) => (
               <Link to={detailLink(pet.petId)}>
-                <div key={pet.petId} className='border border-solid rounded-lg min-w-48 max-w-48 min-h-80 max-h-80'>
-                  <img src={`http://15.164.103.160:8080${pet.imageUrls[0]}`} alt="동물 사진" className='w-full h-40 rounded-t-md'/>
+                <div key={pet.petId} className='flex border border-solid rounded-lg'>
+                  <img src={`http://15.164.103.160:8080${pet.imageUrls[0]}`} alt="동물 사진" className='max-w-60 rounded-l-md'/>
                   <div className='m-3'>
                     <div className='flex justify-center'>
                       <p className='mt-2 text-xl font-bold'>{pet.species}</p>
