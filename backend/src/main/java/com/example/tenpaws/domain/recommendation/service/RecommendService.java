@@ -58,19 +58,33 @@ public class RecommendService {
 
             // Step 4: 필터링된 Pet 데이터를 AI에 전달
             String petDescriptions = filteredPets.stream()
-                    .map(pet -> String.format(
-                            "Name: %s, Id: %s, Size: %s, Personality: %s, Exercise Level: %s",
-                            pet.getPetName(), pet.getId(), pet.getSize(), pet.getPersonality(), pet.getExerciseLevel(), pet.getStatus()))
-                    .collect(Collectors.joining("\n"));
+        .map(pet -> String.format(
+            "Name: %s, Id: %s, Size: %s, Personality: %s, Exercise Level: %s, Story: %s",
+            pet.getPetName(),
+            pet.getId(),
+            pet.getSize(),
+            pet.getPersonality(),
+            pet.getExerciseLevel(),
+            pet.getReason() // reason 필드 추가
+        ))
+        .collect(Collectors.joining("\n"));
 
-            String prompt = String.format(
-                    "User prefers: Size: %s, Personality: %s, Exercise Level: %s." +
-                            "\nAvailable pets:\n%s\nPlease recommend only one pet with name that perfectly suits to the all of user's preferences, with reason" +
-                            "If there is no pet that suits, just recommend closest one." +
-                            "If pet's 'status' is (APPLIED), do not recommend." +
-                            "There must be id as (Id: ?) at the end." +
-                            "Answer in Korean.",
-                    size, personality, exerciseLevel, petDescriptions);
+    String prompt = String.format(
+        "안녕하세요! 저는 새로운 가족을 찾아주는 매칭 도우미예요 :)\n" +
+        "입양을 희망하시는 분의 선호도는 다음과 같아요:\n" +
+        "- Size: %s\n" +
+        "- Personality: %s\n" +
+        "- Exercise Level: %s\n\n" +
+        "현재 보호소에 있는 아이들은 다음과 같아요:\n%s\n\n" +
+        "위 정보를 바탕으로 한 마리의 아이를 추천해주세요.\n" +
+        "추천하는 아이의 이야기를 다음과 같은 형식으로 들려주세요:\n" +
+        "1. 자기소개 형식으로 작성해주세요\n" +
+        "2. 보호소에 오게 된 사연을 포함하여 아이의 이야기를 들려주세요\n" + // 스토리텔링 요청 추가
+        "3. 입양 희망자와 잘 맞을 것 같은 이유를 구체적으로 설명해주세요\n" +
+        "4. Status가 APPLIED인 아이는 추천하지 말아주세요\n" +
+        "5. 마지막에 반드시 (Id: ?) 형식으로 추천하는 아이의 ID를 포함해주세요\n" +
+        "6. 부정적인 표현이나 '완벽하게 맞지 않지만' 같은 문구는 사용하지 말아주세요",
+        size, personality, exerciseLevel, petDescriptions);
 
             // Step 5: OpenAI 호출
             String aiResponseContent = apiService.getRecommendation(prompt);  // aiResponseContent로 바로 처리;
