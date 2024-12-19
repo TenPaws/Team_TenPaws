@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import Chat from "../components/Chat";
-import FAQ from "../components/FAQ";
 import Main2 from "/main3.png";
 import AImatching from "/pet-house (2) 1.svg";
 import met from "/pet-food 1.png";
 import care from "/animal (1) 1.png";
-import Inquiry from "../components/Inquiry";
 
-// 상세 설명 데이터 타입 정의
 type IconType = "dog" | "approve" | "board" | "check";
 type Description = {
   title: string;
@@ -27,10 +23,7 @@ const iconToImageMap: Record<IconType, string> = {
 const descriptions: Record<IconType, Description> = {
   dog: {
     title: "매칭 동물 결정",
-    content: [
-      "필요한 조건을 골라 원하는 반려 동물들을 결정해 보세요."
-      // "고르는데 어려움이 있으시면 AI 기능을 활용해 보세요.",
-    ]
+    content: ["필요한 조건을 골라 원하는 반려 동물들을 결정해 보세요."]
   },
   approve: {
     title: "매칭 신청",
@@ -46,55 +39,108 @@ const descriptions: Record<IconType, Description> = {
   }
 };
 
+interface ProcessedPet {
+  petId: number;
+  species: string;
+  age: string;
+  personality: string;
+  exerciseLevel: number;
+  size: string;
+  status: string;
+  imageUrls: string[];
+}
+
 const Main: React.FC = () => {
   const [activeIcon, setActiveIcon] = useState<IconType>("dog");
+  const [activeCategory, setActiveCategory] = useState("전체");
+  const [pets, setPets] = useState<ProcessedPet[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const navigation = useNavigate();
+  const [currentPetIndex, setCurrentPetIndex] = useState(0);
+
+  // 동물 매칭 호출
+  useEffect(() => {
+    const fetchPetList = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("http://15.164.103.160:8080/api/v1/pets");
+        const data = await response.json();
+        setPets(data);
+      } catch (error) {
+        console.error("동물 리스트를 불러오는 중 오류 발생:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPetList();
+  }, []);
+
+  // 필터링 로직 
+  const filteredPets = Array.isArray(pets)
+    ? pets.filter((pet) => {
+        if (activeCategory === "전체") return pet.status === "AVAILABLE";
+        return pet.status === "AVAILABLE" && pet.species === activeCategory;
+      })
+    : [];
+
+  // 상세 페이지 이동 
+  const goToDetail = (petId: number) => {
+    navigation(`/detail/${petId}`);
+  };
+
+  // 이전
+  const handlePrevCard = () => {
+    setCurrentPetIndex((prev) => (prev === 0 ? filteredPets.length - 1 : prev - 1));
+  };
+
+  //다음
+  const handleNextCard = () => {
+    setCurrentPetIndex((prev) => (prev === filteredPets.length - 1 ? 0 : prev + 1));
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* 헤더 */}
       <Header />
       <Chat />
-      {/* <Inquiry/> */}
-      {/* About TenPaws */}
-      <section className="relative ">
-        <div>
-          <div className="absolute pt-12 pl-8 sm:pt-16 md:pt-20 lg:pt-24 sm:pl-16 md:pl-24 lg:pl-32">
-            <div className="text-2xl font-semibold sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl ">
-              <div className="sm:pb-5 md:pb-8 lg:pb-8 xl:pb-15">기다림의 끝에서</div>
-              <div className="pb-1 sm:pb-7 md:pb-9 lg:pb-12 xl:pb-15">서로를 만나는 순간</div>
-            </div>
-            <div className="pb-5 text-sm sm:text-3xl md:text-4xl lg:text-5xl sm:pb-7 md:pb-9 lg:pb-12 xl:pb-15">
-              AI가 맺어주는 하나뿐인 인연
-            </div>
-            <div
-              className="font-bold text-white bg-[#f1a34a] inline py-2 sm:py-3 px-8 sm:px-16 text-xl sm:text-2xl md:text-3xl rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] cursor-pointer hover:bg-[#3c2a13] hover:duration-300"
-              onClick={() => navigation("/matching")}>
-              시작하기
-            </div>
+
+      {/* 메인 배너 */}
+      <section className="relative">
+        <div className="relative">
+          <div className="absolute top-0 left-0 w-full h-full z-10">
+            <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-white via-white/95 to-transparent"></div>
           </div>
-          <img src={Main2} alt="main2" />
+
+          <div className="relative xl:pl-20">
+            <div className="absolute pt-12 pl-8 sm:pt-16 md:pt-20 lg:pt-24 sm:pl-16 md:pl-24 lg:pl-32 z-20">
+              <div className="text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+                <div className="sm:pb-5 md:pb-8 lg:pb-8 xl:pb-15">기다림의 끝에서</div>
+                <div className="pb-1 sm:pb-7 md:pb-9 lg:pb-12 xl:pb-15">서로를 만나는 순간</div>
+              </div>
+              <div className="pb-5 text-sm sm:text-xl md:text-2xl lg:text-3xl sm:pb-12 md:pb-14 lg:pb-17 xl:pb-20">
+                TenPaws가 맺어주는 하나뿐인 인연
+              </div>
+              <div
+                className="font-bold text-white bg-[#f1a34a] inline py-2 sm:py-3 px-8 sm:px-16 text-xl sm:text-2xl md:text-3xl rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] cursor-pointer hover:bg-[#3c2a13] hover:duration-300"
+                onClick={() => navigation("/matching")}>
+                시작하기
+              </div>
+            </div>
+            <img src={Main2} alt="main2" className="relative z-0 h-[50vh] w-full object-cover" />
+          </div>
         </div>
       </section>
-      {/* <section className="flex flex-col items-center justify-center bg-[#f1a34a] py-5 px-4">
-        <h2 className="mb-3 text-3xl font-bold sm:text-3xl md:text-4xl">About TenPaws</h2>
-        <p className="max-w-full mb-1 text-xl leading-relaxed text-center sm:text-xl md:text-2xl lg:text-2xl">
-        TenPaws는 나이 드신 분들이 반려동물을 통해 새로운 인연을 맺을 수 있도록 돕는 서비스입니다. <br />
-        </p>
-        <p className="max-w-full mb-1 text-xl leading-relaxed text-center sm:text-xl md:text-2xl lg:text-2xl">
-        나의 정보에 선호하시는 동물의 종, 크기, 운동량 등을  입력하시면, AI가 당신에게 꼭 맞는 반려동물을 추천해드립니다.  
-        </p>
-        <p className="max-w-full mb-1 text-xl leading-relaxed text-center sm:text-xl md:text-2xl lg:text-2xl">
-        AI 매칭을 통해 생활 방식에 어울리는 반려동물을 쉽게 찾을 수 있습니다.
-        </p>
-        <p className="max-w-full text-xl leading-relaxed text-center sm:text-xl md:text-2xl lg:text-2xl">
-        이외에도 TenPaws가 제공하는 산책 코스 추천, 시설 검색 등 다양한 서비스를 확인해보세요.
-        </p>
-      </section> */}
 
-      {/* 설명 섹션 */}
-      <section className="flex flex-col items-center justify-center bg-[#f1a34a] py-10 px-4">
-        <h2 className="mb-10 text-3xl font-bold sm:text-3xl md:text-4xl">About TenPaws</h2>
+      <div
+        className="h-20 bg-gradient-to-b from-transparent to-white relative 
+      -mt-20 z-10"></div>
+
+      {/* About TenPaws */}
+      <section className="relative bg-white -mt-1 py-28 px-4 justify-center text-center">
+        <div
+          className="text-4xl font-bold md:text-4xl lg:text-4xl xl:text-4xl 2xl:text-4xl pb-10"
+          style={{ color: "#7F5546" }}>
+          <span className="text-black">About</span> Ten<span className="text-[#f1a34a]">Paws</span>
+        </div>
 
         <div className="flex flex-col items-center justify-center max-w-6xl gap-8 mx-auto md:flex-row">
           {/* AI 매칭 */}
@@ -140,74 +186,239 @@ const Main: React.FC = () => {
         </div>
       </section>
 
-      {/* 설명 섹션 */}
-      <section className="relative flex flex-col items-center justify-center h-[15vh] sm:h-[20vh] md:h-[20vh] lg:h-[20vh] xl:h-[25vh] 2xl:h-[25vh] bg-[#3c2a13]">
-        {/* 내용 */}
-        <div className="relative flex flex-col items-center justify-center w-[95] sm:w-[85%] md:w-[80%] lg:w-[85%] xl:w-[80%] 2xl:w-[90%] max-w-7xl mt-7">
-          {/* 아이콘 및 화살표 */}
-          <div className="flex items-center justify-around w-full mb-6 md:mb-10">
-            {(["dog", "approve", "board", "check"] as IconType[]).map((icon, idx, arr) => (
-              <React.Fragment key={icon}>
-                <div
-                  className={`flex flex-col items-center cursor-pointer hover:scale-110 transition-transform duration-300 ${
-                    activeIcon === icon ? "opacity-100 scale-110" : "opacity-50"
-                  }`}
-                  onClick={() => setActiveIcon(icon)}>
-                  <img
-                    src={`/${icon}.png`}
-                    alt={icon}
-                    className="object-contain w-10 h-10 mb-3 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-20 xl:h-20"
-                  />
-                  <span className="text-lg font-bold text-white sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl">
-                    {descriptions[icon].title}
-                  </span>
-                </div>
-                {idx < arr.length - 1 && (
-                  <img
-                    src="/arrow.png"
-                    alt="Arrow"
-                    className="object-contain w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-11 xl:h-11 2xl:w-12 2xl:h-12"
-                  />
-                )}
-              </React.Fragment>
-            ))}
+      {/* 동물 카드 */}
+      <section className="w-full bg-gray-50 py-16">
+      <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-3">가족을 기다리고 있어요!
+            </h2>
           </div>
-        </div>
-      </section>
-
-      {/* 상세 설명 */}
-      <section className="relative flex flex-col items-center justify-start h-[53vh] sm:h-[54vh] md:h-[60vh] lg:h-[70vh] xl:h-[75vh] 2xl:h-[75vh]">
-        {/* 상단 배경 */}
-        <div className="absolute top-0 left-0 w-full h-1/3 bg-[#3c2a13]"></div>
-        {/* 하단 배경 */}
-        <div className="absolute bottom-0 left-0 w-full h-2/3 bg-[#eeeceb] shadow-[0_0_15px_rgba(0,0,0,0.5)]"></div>
-        {/* 내용 */}
-        <div className="relative flex flex-col items-center justify-start w-[85%] sm:w-[85%] md:w-[80%] lg:w-[85%] xl:w-[80%] 2xl:w-[90%] max-w-7xl mt-0">
-          <div className="w-[460px] sm:w-[630px] md:w-[730px] lg:w-[980px] xl:w-[1200px] 2xl:w-[1400px] bg-white rounded-md shadow-md p-6 sm:p-6 md:p-8">
-            <div className="mb-6 text-left">
-              <h2 className="mb-4 text-3xl font-semibold text-gray-800 sm:text-3xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-5xl">
-                {descriptions[activeIcon].title}
-              </h2>
-              {descriptions[activeIcon].content.map((line: string, index: number) => (
-                <p
-                  key={index}
-                  className="pl-4 mb-1 text-xl leading-relaxed sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl">
-                  {line}
-                </p>
+        <div className="w-[1100px] mx-auto">
+          <div className="flex flex-col items-center">
+            {/* 카테고리 */}
+            <div className="flex gap-4 mb-8">
+              {["전체", "고양이", "강아지"].map((category) => (
+                <button
+                  key={category}
+                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all
+                    ${
+                      activeCategory === category
+                        ? "bg-[#f1a34a] text-white"
+                        : "bg-white text-gray-500 hover:bg-[#f1a34a]/10"
+                    }`}
+                  onClick={() => setActiveCategory(category)}>
+                  {category}
+                </button>
               ))}
             </div>
-            <img
-              src={`/${iconToImageMap[activeIcon]}`} // activeIcon 값에 따라 매핑된 이미지 파일 이름 참조
-              alt="Matching Animal Example"
-              className="w-full sm:w-[87%] md:w-[85%] lg:w-[75%] xl:w-[70%] 2xl:w-[60%] h-[290px] sm:h-[330px] md:h-[350px] lg:h-[450px] xl:h-[500px] 2xl:h-[520px] mx-auto rounded-md object-contain"
-            />
+
+            {/* 동물 카드 */}
+            {loading ? (
+              <div>동물을 불러오고 있습니다..</div>
+            ) : filteredPets.length === 0 ? (
+              <div className="text-gray-500 text-lg font-medium py-20">
+                새로운 친구들이 곧 찾아올 예정이에요..!
+              </div>
+            ) : (
+              <div className="grid grid-cols-3 gap-6">
+                {filteredPets.map((pet) => (
+                  <div
+                    key={pet.petId}
+                    className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+                    onClick={() => goToDetail(pet.petId)}>
+                    <img
+                      src={`http://15.164.103.160:8080${pet.imageUrls[0]}`}
+                      alt={`${pet.species} 사진`}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="p-6">
+                      <div className="flex justify-between items-center mb-5">
+                        <h3 className="text-lg font-bold"> {pet.species}</h3>
+                      </div>
+                      <p className="text-sm text-gray-600 mb-4">
+                        나이 : {pet.age},
+                        <br />
+                        크기: {pet.size},
+                        <br />
+                        활동량 : {pet.personality}
+                      </p>
+                      <div className="flex justify-center ">
+                        <button className="px-4 py-1 text-sm text-[#f1a34a] border border-[#f1a34a] rounded-full hover:bg-[#f1a34a] hover:text-white transition-colors">
+                          자세히 보기
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* 큰 카드 테스트 */}
+            <div className="w-full mt-16 relative">
+              {/* 왼쪽 */}
+              <button 
+                onClick={handlePrevCard}
+                className="absolute left-[-50px] top-1/2 transform -translate-y-1/2 z-10
+                  w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center
+                  hover:bg-gray-50 transition-colors -mx-5"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 19l-7-7 7-7" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              {/* 카드 */}
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <div className="flex gap-8">
+                  {/* 사진*/}
+                  <div className="flex-1">
+                    <img 
+                      src={`http://15.164.103.160:8080${filteredPets[currentPetIndex]?.imageUrls[0]}`}
+                      alt="동물 사진"
+                      className="w-full h-96 object-cover rounded-lg"
+                    />
+                  </div>
+
+                  {/* 정보 */}
+                  <div className="flex-1 border-l border-gray-200 pl-8">
+                    <h3 className="text-2xl font-bold mb-6">{filteredPets[currentPetIndex]?.species}</h3>
+                    <div className="space-y-4 text-lg">
+                      <p>나이: {filteredPets[currentPetIndex]?.age}</p>
+                      <p>크기: {filteredPets[currentPetIndex]?.size}</p>
+                      <p>활동량: {filteredPets[currentPetIndex]?.personality}</p>
+                      <p>오게된 이유: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam doloribus molestiae atque ex quam dicta laborum, veniam esse? Soluta molestiae at corrupti aliquid aspernatur omnis illum dicta nemo deleniti libero?</p>
+                    </div>
+                    <div className="flex justify-center mt-5">
+                      <button 
+                        className="px-4 py-1 text-sm text-[#f1a34a] border border-[#f1a34a] rounded-full hover:bg-[#f1a34a] hover:text-white transition-colors"
+                        onClick={() => goToDetail(filteredPets[currentPetIndex]?.petId)}
+                      >
+                        자세히 보기
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 오른쪽 */}
+              <button 
+                onClick={handleNextCard}
+                className="absolute right-[-50px] top-1/2 transform -translate-y-1/2 z-10
+                  w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center
+                  hover:bg-gray-50 transition-colors -mx-5"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 5l7 7-7 7" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              {/* 페이지 */}
+              <div className="flex justify-center mt-4 gap-2">
+                {filteredPets.map((_, idx) => (
+                  <div 
+                    key={idx}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      idx === currentPetIndex ? 'bg-[#f1a34a]' : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+
           </div>
         </div>
       </section>
 
-      {/* 푸터 */}
-      <Footer />
+      {/* 입양 여정 */}
+      <div className="w-full flex flex-col items-center bg-white py-20">
+        <div className="w-[1100px] relative">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-3">
+              <span className="text-[#7F5546]">Ten</span>
+              <span className="text-[#f1a34a]">Paws</span> 와 함께하는 입양 여정
+            </h2>
+            <p className="text-gray-600">새로운 가족을 만나는 과정을 미리 확인해 보세요</p>
+          </div>
 
+          <div className="flex gap-8 h-[850px] ">
+            {/* 진행 단계 */}
+            <div className="bg-[#f1a34a] rounded-2xl p-2 shadow-lg w-[220px] h-full">
+              <div className="flex flex-col justify-center h-full space-y-10">
+                {(["dog", "approve", "board", "check"] as IconType[]).map((icon, idx, arr) => (
+                  <React.Fragment key={icon}>
+                    <div
+                      className={`flex flex-col items-center cursor-pointer transition-all duration-300 ${
+                        activeIcon === icon ? "scale-105" : "hover:scale-105"
+                      }`}
+                      onClick={() => setActiveIcon(icon)}>
+                      <div
+                        className={`w-12 h-12 rounded-full flex items-center justify-center mb-3
+                        transition-all duration-300 shadow-md
+                        ${
+                          activeIcon === icon
+                            ? "bg-[#f1a34a] ring-2 ring-white"
+                            : "bg-white hover:bg-[#f1a34a] hover:ring-2 hover:ring-white"
+                        }`}>
+                        <img
+                          src={`/${icon}.png`}
+                          alt={descriptions[icon].title}
+                          className={`w-6 h-6 transition-all duration-300 ${
+                            activeIcon === icon ? "brightness-0 invert" : "hover:brightness-0 hover:invert"
+                          }`}
+                        />
+                      </div>
+                      <span
+                        className={`text-base font-bold text-center  transition-all duration-300 ${
+                          activeIcon === icon ? "opacity-100" : "opacity-70 hover:opacity-100"
+                        }`}>
+                        {descriptions[icon].title}
+                      </span>
+                    </div>
+                    {idx < arr.length - 1 && (
+                      <div className="flex justify-center">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="text-white opacity-70">
+                          <path
+                            d="M12 4L12 16M12 16L7 11M12 16L17 11"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+
+            {/* 설명 */}
+            <div className="flex-1 bg-white rounded-2xl p-10 shadow-lg border border-gray-100 h-full">
+              <div className="max-w-3xl h-full flex flex-col">
+                <h3 className="text-2xl font-bold mb-6 text-[#3c2a13]">{descriptions[activeIcon].title}</h3>
+                {descriptions[activeIcon].content.map((line, index) => (
+                  <p key={index} className="text-gray-600 mb-4 leading-relaxed">
+                    {line}
+                  </p>
+                ))}
+                <div className="flex-1 flex items-center justify-center">
+                  <img
+                    src={`/${iconToImageMap[activeIcon]}`}
+                    alt="Matching Animal Example"
+                    className="w-full max-w-2xl rounded-lg shadow-md"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

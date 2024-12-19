@@ -529,7 +529,7 @@ const Chat = () => {
         </div>
       </div>
 
-      {/* 채팅방 내부  24픽셀*/}
+      {/* 채팅방 내부  */}
       {chatRoomOpen && (
         <div className="fixed bottom-[137px] right-[24px] z-50">
           <div className="bg-[#f1a34a] w-[384px] h-[543px] rounded-lg ">
