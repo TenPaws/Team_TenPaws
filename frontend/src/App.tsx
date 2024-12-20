@@ -30,7 +30,7 @@ import Worldcup from "./pages/worldcup/Worldcup";
 import AnnouncementEdit from "./pages/guide/AnnouncementEdit";
 import QAandAEdit from "./pages/guide/QAndAEdit";
 import AuthResponse from "./pages/AuthResponse";
-import AddressInput from "./pages/AddressInput";
+// import AddressInput from "./pages/AddressInput";
 
 function App() {
 
@@ -70,7 +70,7 @@ function App() {
         <Route path="/adoption-list/:shelterId" element={<AdoptionList />} /> {/* 입양리스트 페이지 */}
         <Route path="/errorpage" element={<Error/>} /> {/* 에러페이지 (임시로 이곳에 위치) */}
         <Route path="/auth/oauth-response/:token/:expiresIn" element={<AuthResponse />} /> {/* 소셜 로그인 */}
-        <Route path="/address-input" element={<AddressInput />} /> {/* 주소 추가한 부분 */}
+        {/*<Route path="/address-input" element={<AddressInput />} /> /!* 주소 추가한 부분 *!/*/}
       </Routes>
     </Router>
 
