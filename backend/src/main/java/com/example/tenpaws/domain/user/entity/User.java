@@ -54,6 +54,15 @@ public class User {
     @Column(name = "user_role", nullable = false)
     private UserRole userRole;
 
+    // 신청 유무
+    @Setter
+    @Enumerated(EnumType.STRING)
+    private User.UserStatus status = User.UserStatus.AVAILABLE; // 기본값: 신청 가능
+    public enum UserStatus {
+        AVAILABLE, // 신청 가능
+        APPLIED    // 신청 완료
+    }
+
     public void changeUsername(String username) { this.username = username; }
     public void changePassword(String password) {
         this.password = password;
