@@ -95,8 +95,6 @@ const MatchingPage = () => {
       (!filters.size || pet.size === filters.size)
     );
   }) : [];
-
-  console.log(filteredPets);
   
   // 상세 페이지로 이동하는 링크 생성 함수
   const detailLink = (petId:number) => {

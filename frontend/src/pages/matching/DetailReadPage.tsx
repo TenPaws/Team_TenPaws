@@ -23,7 +23,7 @@ interface PetInfo {
   imageUrls: string[];
   shelterId: number;
   shelterName: string;
-  address: string;
+  shelterAddress: string;
 }
 
 interface PetApplyInfo {
@@ -50,6 +50,7 @@ interface UseId {
 const DetailReadPage = () => {
   const { petId } = useParams();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate(); 
   const [roles, setRoles] = useState({role:""});
   const [isLoading, setIsLoading] = useState(true); 
@@ -76,7 +77,7 @@ const DetailReadPage = () => {
     imageUrls: [""],
     shelterId: 0,
     shelterName: "",
-    address: "",
+    shelterAddress: "",
   })
 
   const [applyInfo, setApplyInfo] = useState({
@@ -91,6 +92,7 @@ const DetailReadPage = () => {
     const storedToken = localStorage.getItem("accessToken");
     if (storedToken) {
       setToken(storedToken);
+  
     } else {
       console.error("로컬 스토리지에 토큰이 없습니다.");
     }
@@ -106,6 +108,7 @@ const DetailReadPage = () => {
   // 동물 상세정보 불러오기
   useEffect(() => {
     const pets = async () => {
+      setIsLoggedIn(!!token); //로그인 상태 확인
       try{
         const response = await axiosInstance.get<PetInfo>(`/api/v1/pets/${petId}`);
         setPetInfo(response.data);
@@ -230,10 +233,18 @@ const DetailReadPage = () => {
     return `/detail-correct/${petId}`; // 입양신청 리스트 페이지 URL 생성
   };
   
-  const mapLink = (petId:any) => {
-    return `/shelter-address/${petId}`; // 지도 페이지 URL 생성
+
+  const handleAppliClick = () => {
+    if (!isLoggedIn) {
+      alert("로그인을 해주세요."); // 비로그인 시 메시지
+    }else if(otherShelter){
+      alert("보호소 회원은 입양신청하실 수 없습니다."); // 보호소 로그인 시 메시지
+    }else {
+      setApplyModalOpen(true)
+    }
   };
 
+  const otherShelter = roles.role == "ROLE_SHELTER" && useId.Id !== petInfo.shelterId
   const shelter = roles.role == "ROLE_SHELTER" && useId.Id == petInfo.shelterId
 
 
@@ -337,7 +348,7 @@ const DetailReadPage = () => {
           <div className="flex flex-wrap justify-center gap-8 p-3 border-b border-mainColor">
             <div className="flex justify-between w-full">
               <p className="text-xl font-bold text-mainColor">보호 기관</p>
-                <Link to={mapLink(petId)}>
+                <Link to={`/shelter-address/${petInfo.shelterId}`} state={{ shelterName: petInfo.shelterName, address: petInfo.shelterAddress}}>
                   <p className="flex items-center text-lg">{petInfo.shelterName}<GoChevronRight /></p>
                 </Link>
             </div>
@@ -366,7 +377,7 @@ const DetailReadPage = () => {
             ) : (
               <button
                 className="px-4 py-2 text-lg font-bold text-mainColor hover:text-bgColor"
-                onClick={() => setApplyModalOpen(true)}
+                onClick={handleAppliClick}
               >
                 입양 신청
               </button>
