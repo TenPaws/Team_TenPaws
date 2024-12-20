@@ -17,7 +17,7 @@ interface UserInfo {
   address: string;
   preferredSize: string;
   preferredPersonality: string;
-  preferredExerciseLevel: number;
+  preferredExerciseLevel: string;
   userRole: string;
   password: string;
 }
@@ -30,7 +30,7 @@ interface PetInfo {
     size: string;
     age: string;
     personality: string;
-    exerciseLevel: number;
+    exerciseLevel: string;
     imageUrls: string[];
   };
   userId: number;
@@ -74,7 +74,7 @@ const MyPageUser: React.FC = () => {
     address: "",
     preferredSize: "",
     preferredPersonality: "",
-    preferredExerciseLevel: 0,
+    preferredExerciseLevel: "",
     userRole: ""
   });
 

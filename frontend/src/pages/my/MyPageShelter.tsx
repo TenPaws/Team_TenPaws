@@ -22,7 +22,7 @@ interface Pet {
   size: string;
   age: string;
   personality: string;
-  exerciseLevel: number;
+  exerciseLevel: string;
   imageUrls: string[];
 }
 

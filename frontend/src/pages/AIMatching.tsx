@@ -168,19 +168,37 @@ const AIMatching = () => {
         <div className="w-[90%] sm:w-[100%] md:w-[100%] lg:w-[100%] xl:w-[90%] 2xl:w-[70%] min-h-[80vh] bg-white rounded-md shadow-md p-8 space-y-8 flex flex-col items-center">
         <div className="relative flex flex-col w-full mt-4 sm:flex-row sm:items-center sm:justify-center">
             {/* 제목 */}
-            <h1 className="text-4xl font-bold text-[#7F5546] text-center sm:text-left">
+            <h1 className="text-4xl font-bold text-center text-mainColor sm:text-left">
               반려동물 매칭 정보
             </h1>
             {/* 상세보기 버튼 */}
             {petInfo.petId && !isLoading && (
               <button
-                className="mt-2 sm:mt-0 sm:absolute sm:right-4 sm:top-1/2 sm:-translate-y-1/2 text-[#7F5546] font-medium text-lg sm:text-xl lg:text-2xl hover:underline"
+                className="px-4 mt-2 text-xs text-white sm:mt-0 sm:absolute sm:right-4 sm:top-1/2 sm:-translate-y-1/2 bg-mainColor rounded-2xl sm:text-xl lg:text-2xl hover:underline"
                 style={{ marginBottom: "-20px" }} 
                 onClick={() => (window.location.href = `/detail/${petInfo.petId}`)}
               >
                 상세보기
               </button>
             )}
+          </div>
+          <div className="flex justify-center w-full gap-10">
+            {petInfo.details.map((item, index) => (
+              <div
+                key={index}
+                className="pt-1 pb-3 text-2xl"
+              >
+                <span
+                  className={`font-semibold${
+                    item.value === "정보 없음" || item.value === "매칭 정보를 불러오는 중..."
+                      ? "text-gray-500"
+                      : "text-black"
+                  }`}
+                >
+                  #{item.value}
+                </span>
+              </div>
+            ))}
           </div>
           <div className="h-[30vh] sm:h-[35vh] md:h-[40vh] lg:h-[40vh] xl:h-[40vh] 2xl:h-[40vh] w-[30vh] sm:w-[45vh] md:w-[55vh] lg:w-[60vh] xl:w-[65vh] 2xl:w-[65vh] bg-gray-200 flex items-center justify-center rounded-md overflow-hidden min-h-[280px] min-w-[300px]">
             {petInfo.petImage ? (
@@ -198,42 +216,25 @@ const AIMatching = () => {
               className={`block text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-3xl font-bold ${
                 petInfo.petName === "정보 없음" || petInfo.petName === "매칭 정보를 불러오는 중..."
                   ? "text-gray-500"
-                  : "text-[#7F5546]"
+                  : "text-mainColor"
               }`}
             >
               {petInfo.petName}
             </span>
             <button
-              className="absolute right-0 text-[#7F5546] font-medium text-lg sm:text-xl lg:text-2xl hover:underline"
+              className="absolute right-0 px-4 text-sm text-white bg-mainColor rounded-2xl sm:text-xl lg:text-2xl hover:underline"
               onClick={() => window.location.reload()}
             >
               재시도
             </button>
           </div>
-          <div className="w-full space-y-3">
-            {petInfo.details.map((item, index) => (
-              <div
-                key={index}
-                className="flex justify-between pt-1 pb-3 text-2xl border-b sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-3xl"
-              >
-                <span className="font-bold text-[#7F5546]">{item.label}</span>
-                <span
-                  className={`font-semibold ${
-                    item.value === "정보 없음" || item.value === "매칭 정보를 불러오는 중..."
-                      ? "text-gray-500"
-                      : "text-black"
-                  }`}
-                >
-                  {item.value}
-                </span>
-              </div>
-            ))}
-            <div
-                className="flex flex-col justify-between pt-1 pb-3 text-2xl border-b sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-3xl"
+
+          <div
+                className="flex flex-col justify-between pt-1 pb-3 text-2xl border-b"
             >
-              <span className="font-bold text-[#7F5546]">추천 이유</span> 
+              <span className="mb-5 font-bold text-mainColor">추천 이유</span> 
               <span
-                  className={`font-semibold ${
+                  className={`font-semibold${
                     petInfo.recommendation === "정보 없음" || petInfo.recommendation === "매칭 정보를 불러오는 중..."
                       ? "text-gray-500"
                       : "text-black"
@@ -242,7 +243,6 @@ const AIMatching = () => {
                   {petInfo.recommendation}
                 </span>   
             </div>
-          </div>
         </div>
       </main>
       <Footer />

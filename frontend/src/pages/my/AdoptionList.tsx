@@ -13,7 +13,7 @@ interface Pet {
   size: string;
   age: string;
   personality: string;
-  exerciseLevel: number;
+  exerciseLevel: string;
 }
 
 interface ApplyPet {
@@ -31,7 +31,7 @@ interface ProcessedPet {
   age: string;
   size: string;
   personality: string;
-  exerciseLevel: number;
+  exerciseLevel: string;
   userId: number;
   applyDate: string;
   applyStatus: string;

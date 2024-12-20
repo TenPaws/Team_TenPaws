@@ -19,7 +19,7 @@ interface PetInfo {
   vaccinated: string;
   extra: string;
   personality: string;
-  exerciseLevel: number;
+  exerciseLevel: string;
   imageUrls: string[];
   shelterId: number;
   shelterName: string;
@@ -34,7 +34,7 @@ interface PetApplyInfo {
     size: string;
     age: string;
     personality: string;
-    exerciseLevel: number;
+    exerciseLevel: string;
     imageUrls: string[];
   };
   userId: number;
@@ -72,7 +72,7 @@ const DetailReadPage = () => {
     vaccinated: "",
     extra: "",
     personality: "",
-    exerciseLevel: 0,
+    exerciseLevel: "",
     imageUrls: [""],
     shelterId: 0,
     shelterName: "",

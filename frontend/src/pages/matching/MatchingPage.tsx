@@ -9,7 +9,7 @@ interface ProcessedPet {
   species: string;
   age: string;
   personality: string;
-  exerciseLevel: number;
+  exerciseLevel: string;
   size: string;
   status: string;
   imageUrls: string[];
