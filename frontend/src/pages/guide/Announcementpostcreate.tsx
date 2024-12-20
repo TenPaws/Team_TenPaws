@@ -30,7 +30,7 @@ const Announcementpostcreate = () => {
       const token = localStorage.getItem("accessToken")
       console.log('Content length:', content.length);
 
-      await axios.post('http://15.164.103.160:8080/api/v1/announcements', {
+      await axios.post('http://3.38.196.10:8080/api/v1/announcements', {
         category,
         title,
         content,

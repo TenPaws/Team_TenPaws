@@ -173,7 +173,7 @@ const DetailReadPage = () => {
   // 입양 신청 
   const applypet = async () => {
     try {
-      await axios.post(`http://15.164.103.160:8080/api/v1/applypet`, null, {
+      await axios.post(`http://3.38.196.10:8080/api/v1/applypet`, null, {
         headers: {
           'Authorization': token,
           'Content-Type': 'application/json'
@@ -251,7 +251,7 @@ const DetailReadPage = () => {
             </button>
             <div className="flex items-center justify-center w-full h-64">
               <img
-                src={`http://15.164.103.160:8080${petInfo.imageUrls[currentIndex]}`}
+                src={`http://3.38.196.10:8080${petInfo.imageUrls[currentIndex]}`}
                 alt={`Slide ${currentIndex + 1}`}
                 className="object-contain w-full h-full"
               />

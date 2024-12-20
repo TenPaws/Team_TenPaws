@@ -8,10 +8,10 @@ files:
   # S3 버킷에 업로드된 애플리케이션 파일들을 EC2 인스턴스로 복사
   # source의 '/'는 S3에 업로드된 배포 패키지(ZIP)의 루트 디렉토리를 의미
   # 예: s3://bucket-name/app.zip을 압축 해제했을 때의 최상위 디렉토리
-  # 지정된 EC2 인스턴스의 /home/ubuntu/instagram-server 디렉토리에
+  # 지정된 EC2 인스턴스의 /home/ubuntu/tenpaws-server 디렉토리에
   # ZIP 파일에 있는 모든 파일과 디렉토리가 동일한 구조로 복사됨(source: /)
   - source: /
-    destination: /home/ubuntu/instagram-server
+    destination: /home/ubuntu/tenpaws-server
 
 # 파일 권한 설정
 permissions:
