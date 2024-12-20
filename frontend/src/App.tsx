@@ -30,7 +30,6 @@ import Worldcup from "./pages/worldcup/Worldcup";
 import AnnouncementEdit from "./pages/guide/AnnouncementEdit";
 import QAandAEdit from "./pages/guide/QAndAEdit";
 import AuthResponse from "./pages/AuthResponse";
-import AddressInput from "./pages/AddressInput";
 
 function App() {
 
@@ -66,11 +65,10 @@ function App() {
         <Route path="/detail-correct/:petId" element={<DetailCorrect />} /> {/* 반려동물 상세정보 수정 페이지 (보호소) */}
         <Route path="/mypage-user" element={<MyPageUser />} /> {/* 마이페이지 (유저) */}
         <Route path="/mypage-shelter" element={<MyPageShelter />} /> {/* 마이페이지 (보호소) */}
-        <Route path="/shelter-address/:petId" element={<ShelterAddress />} /> {/* 보호소 주소 등록 페이지 */}
+        <Route path="/shelter-address/:shelterId" element={<ShelterAddress />} /> {/* 보호소 주소 등록 페이지 */}
         <Route path="/adoption-list/:shelterId" element={<AdoptionList />} /> {/* 입양리스트 페이지 */}
         <Route path="/errorpage" element={<Error/>} /> {/* 에러페이지 (임시로 이곳에 위치) */}
         <Route path="/auth/oauth-response/:token/:expiresIn" element={<AuthResponse />} /> {/* 소셜 로그인 */}
-        <Route path="/address-input" element={<AddressInput />} /> {/* 주소 추가한 부분 */}
       </Routes>
     </Router>
 

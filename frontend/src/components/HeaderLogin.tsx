@@ -108,7 +108,7 @@ const Header = () => {
           className="text-4xl font-bold md:text-4xl lg:text-4xl xl:text-4xl 2xl:text-4xl"
           style={{ color: "#7F5546" }}
         >
-          <Link to="/">TenPaws</Link>
+          <Link to="/">Ten<span className="text-mainColor">Paws</span></Link>
         </div>
 
         {/* 동물 찾기, AI매칭, 주변 반려시설, 공지사항, 마이페이지 */}

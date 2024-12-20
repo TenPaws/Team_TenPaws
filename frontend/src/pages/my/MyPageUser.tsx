@@ -17,7 +17,7 @@ interface UserInfo {
   address: string;
   preferredSize: string;
   preferredPersonality: string;
-  preferredExerciseLevel: number;
+  preferredExerciseLevel: string;
   userRole: string;
   password: string;
 }
@@ -30,7 +30,7 @@ interface PetInfo {
     size: string;
     age: string;
     personality: string;
-    exerciseLevel: number;
+    exerciseLevel: string;
     imageUrls: string[];
   };
   userId: number;
@@ -74,7 +74,7 @@ const MyPageUser: React.FC = () => {
     address: "",
     preferredSize: "",
     preferredPersonality: "",
-    preferredExerciseLevel: 0,
+    preferredExerciseLevel: "",
     userRole: ""
   });
 
@@ -347,7 +347,7 @@ const MyPageUser: React.FC = () => {
           <h3 className="text-3xl font-bold text-mainColor">입양 신청 동물</h3>
           {/* 입양 신청 리스트 내용 */}
           {
-            <section className='mt-20'>
+            <section className='mt-10'>
               {Array.isArray(petInfo) && petInfo.filter(pet => pet.applyStatus === "PENDING" || pet.applyStatus === "COMPLETED").length > 0 ? (
                 petInfo
                   .filter(pet => pet.applyStatus === "PENDING" || pet.applyStatus === "COMPLETED") // applyStatus가 "PENDING"인 것만 필터링

@@ -18,7 +18,7 @@ interface PetAdd {
   vaccinated: string;
   extra?: string;
   personality: string;
-  exerciseLevel: number;
+  exerciseLevel: string;
   shelterId: number;
   shelterName: string;
   address: string;
@@ -58,7 +58,7 @@ const DetailPage = () => {
     vaccinated: "",
     extra: "",
     personality: "",
-    exerciseLevel: 0,
+    exerciseLevel: "",
     shelterId: useId.Id,
     shelterName: shelterInfo.shelterName,
     address: shelterInfo.address,
