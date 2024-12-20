@@ -1,7 +1,5 @@
 FROM eclipse-temurin:17-jdk-alpine
 
-RUN apk add --no-cache netcat-openbsd
-
 # 필요한 디렉토리 구조 생성
 RUN mkdir -p /home/ubuntu/tenpaws-server/src/main/resources \
     && mkdir -p /home/ubuntu/tenpaws-server/uploads \
