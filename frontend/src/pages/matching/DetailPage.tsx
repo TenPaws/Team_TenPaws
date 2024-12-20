@@ -175,7 +175,7 @@ const DetailPage = () => {
 
     try {
       const response = await axios.post(
-        `http://15.164.103.160:8080/api/v1/pets/${useId.Id}`,
+        `http://3.38.196.10:8080/api/v1/pets/${useId.Id}`,
         petData,
         {
           headers: {

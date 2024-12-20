@@ -52,7 +52,7 @@ const QAandApost = () => {
   useEffect(() => {
     const fetchQnapost = async () => {
       try {
-        const response = await axios.get(`http://15.164.103.160:8080/api/v1/inquiries/${id}`);
+        const response = await axios.get(`http://3.38.196.10:8080/api/v1/inquiries/${id}`);
         setQnapost(response.data);
         if (response.data.comments.length > 0) {
           setCommentId(response.data.comments[0].id);
@@ -73,7 +73,7 @@ const QAandApost = () => {
     if (!window.confirm("정말로 게시글을 삭제하시겠습니까?")) return;
 
     try {
-      await axios.delete(`http://15.164.103.160:8080/api/v1/inquiries/${id}`, {
+      await axios.delete(`http://3.38.196.10:8080/api/v1/inquiries/${id}`, {
         headers: {
           Authorization: localStorage.getItem("accessToken"),
           "Content-Type": "application/json"
@@ -91,7 +91,7 @@ const QAandApost = () => {
   const handleReply = async () => {
     try {
       await axios.post(
-        `http://15.164.103.160:8080/api/v1/inquiries/${id}/comments`,
+        `http://3.38.196.10:8080/api/v1/inquiries/${id}/comments`,
         {
           content
         },
@@ -106,7 +106,7 @@ const QAandApost = () => {
       setContent("");
       setReply(false);
 
-      const response = await axios.get(`http://15.164.103.160:8080/api/v1/inquiries/${id}`);
+      const response = await axios.get(`http://3.38.196.10:8080/api/v1/inquiries/${id}`);
       setQnapost(response.data);
     } catch (error) {
       console.error("답변 작성이 취소되었습니다.", error);
@@ -120,7 +120,7 @@ const QAandApost = () => {
     if (!window.confirm("정말로 답변을 삭제하시겠습니까?")) return;
 
     try {
-      await axios.delete(`http://15.164.103.160:8080/api/v1/inquiries/${id}/comments/${commentId}`, {
+      await axios.delete(`http://3.38.196.10:8080/api/v1/inquiries/${id}/comments/${commentId}`, {
         headers: {
           Authorization: localStorage.getItem("accessToken"),
           "Content-Type": "application/json"
@@ -128,7 +128,7 @@ const QAandApost = () => {
       });
       alert("답변이 삭제되었습니다.");
       setReply(false);
-      const response = await axios.get(`http://15.164.103.160:8080/api/v1/inquiries/${id}`);
+      const response = await axios.get(`http://3.38.196.10:8080/api/v1/inquiries/${id}`);
       setQnapost(response.data);
     } catch (error) {
       console.error("삭제 실패", error);
@@ -140,7 +140,7 @@ const QAandApost = () => {
   const handleReplyEdit = async () => {
     try {
       await axios.put(
-        `http://15.164.103.160:8080/api/v1/inquiries/${id}/comments/${commentId}`,
+        `http://3.38.196.10:8080/api/v1/inquiries/${id}/comments/${commentId}`,
         {
           content: editContent
         },
@@ -155,7 +155,7 @@ const QAandApost = () => {
       setEdit(false);
       setContent("");
       setEditContent("");
-      const response = await axios.get(`http://15.164.103.160:8080/api/v1/inquiries/${id}`);
+      const response = await axios.get(`http://3.38.196.10:8080/api/v1/inquiries/${id}`);
       setQnapost(response.data);
     } catch (error) {
       console.error("수정 실패:", error);
