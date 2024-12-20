@@ -47,7 +47,7 @@ docker volume ls
 
 # ECR 이미지 pull 시도
 echo "도커 이미지 가져오기 시도..."
-if ! docker pull ${ECR_REGISTRY}/tenpaws-server:latest; then
+if ! docker pull 533267244952.dkr.ecr.ap-northeast-2.amazonaws.com/tenpaws-server:latest; then
     echo "이미지 pull 실패. credential helper 상태 확인..."
     cat ~/.docker/config.json
     exit 1
@@ -62,7 +62,6 @@ docker-compose down || {
 # Docker 볼륨 생성 확인
 echo "Docker 볼륨 생성 상태 확인..."
 docker volume create --name=uploads_data || echo "볼륨이 이미 존재하거나 생성됨"
-
 
 echo "새 컨테이너 시작..."
 docker-compose up -d || {
