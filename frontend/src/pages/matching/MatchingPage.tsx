@@ -156,16 +156,16 @@ const MatchingPage = () => {
           </div>
         </section>
         <section className='flex items-center justify-center m-20'>
-          <div className='flex flex-col justify-center gap-10'>
+          <div className='flex flex-wrap justify-center gap-10'>
             {filteredPets.map((pet) => (
               <Link to={detailLink(pet.petId)}>
                 <div key={pet.petId} className='flex border border-solid rounded-lg'>
-                  <img src={`http://15.164.103.160:8080${pet.imageUrls[0]}`} alt="동물 사진" className='max-w-60 rounded-l-md'/>
+                  <img src={`http://15.164.103.160:8080${pet.imageUrls[0]}`} alt="동물 사진" className='max-w-44 rounded-l-md'/>
                   <div className='m-3'>
                     <div className='flex justify-center'>
                       <p className='mt-2 text-xl font-bold'>{pet.species}</p>
                     </div>
-                    <div className='flex justify-between px-5'>
+                    <div className='flex justify-between gap-8 px-5'>
                       <p className='text-neutral-500'>연령</p><p className='text-black'>{pet.age}</p>
                     </div>
                     <div className='flex justify-between px-5'>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { GoChevronLeft, GoChevronRight } from "react-icons/go";
+import { GoChevronLeft, GoChevronRight, GoArrowRight } from "react-icons/go";
 import Header from "../../components/Header";
 import axiosInstance from "../../utils/axiosInstance"; 
 import MyPageModal from "../../components/MyPageModal";
@@ -349,7 +349,7 @@ const DetailReadPage = () => {
             <div className="flex justify-between w-full">
               <p className="text-xl font-bold text-mainColor">보호 기관</p>
                 <Link to={`/shelter-address/${petInfo.shelterId}`} state={{ shelterName: petInfo.shelterName, address: petInfo.shelterAddress}}>
-                  <p className="flex items-center text-lg">{petInfo.shelterName}<GoChevronRight /></p>
+                  <p className="flex items-center text-lg">{petInfo.shelterName} <GoArrowRight /></p>
                 </Link>
             </div>
           </div>
