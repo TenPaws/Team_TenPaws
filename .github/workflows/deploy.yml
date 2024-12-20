@@ -82,7 +82,7 @@ jobs:
       # Step 10: ECR에 이미지 푸시
       - name: ECR에 Docker 이미지 Push
         working-directory: ./backend
-        run: docker push ${{ steps.login-ecr.outputs.registry }}/tenpaws-server:latest
+        run: docker push ${{ steps.login-ecr.outputs.registry }}/tenpaws-server-ecr:latest
 
       # Step 11: 배포 스크립트 실행 권한 설정 (scripts 디렉토리의 모든 파일에 실행 권한 부여)
       - name: 배포 스크립트 실행 권한 추가
