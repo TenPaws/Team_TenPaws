@@ -15,7 +15,7 @@ services:
       - tenpaws-server
 
   tenpaws-server:
-    image: ${ECR_REGISTRY}/tenpaws-server:latest
+    image: 533267244952.dkr.ecr.ap-northeast-2.amazonaws.com/tenpaws-server:latest
     ports:
       - 8080:8080
     environment:
