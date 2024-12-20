@@ -55,6 +55,7 @@ public class User {
     private UserRole userRole;
 
     // 신청 유무
+    @Builder.Default
     @Setter
     @Enumerated(EnumType.STRING)
     private User.UserStatus status = User.UserStatus.AVAILABLE; // 기본값: 신청 가능
