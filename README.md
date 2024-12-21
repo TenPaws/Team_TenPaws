@@ -92,7 +92,7 @@ TENPAWS는 카카오 맵 API를 활용하여 사용자의 현재 위치에서 �
 
 ### CI / CD
 
-![CICD2차](https://github.com/user-attachments/assets/1b75024a-5d17-489c-8bc3-578fc703ae57)
+![CICD2차](https://github.com/user-attachments/assets/7babcc7f-e6a1-4303-a92c-b5e991b72e83)
 
 </details>
 
