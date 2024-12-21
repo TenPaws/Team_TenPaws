@@ -178,7 +178,7 @@ const MyPageUser: React.FC = () => {
   const deleteApply = async (): Promise<void> => {
     try {
       await axios.post(
-        `http://15.164.103.160:8080/api/v1/applypet/${selectedPetId}/cancel`,
+        `http://3.38.196.10:8080/api/v1/applypet/${selectedPetId}/cancel`,
         null,
         {
           headers: {
@@ -358,7 +358,7 @@ const MyPageUser: React.FC = () => {
                     >
                       <div>
                         <img
-                          src={`http://15.164.103.160:8080${pet.pet.imageUrls[0]}` || undefined}
+                          src={`http://3.38.196.10:8080${pet.pet.imageUrls[0]}` || undefined}
                           alt={`${pet.pet.species || "알 수 없는 동물"} 사진`}
                         />
                       </div>

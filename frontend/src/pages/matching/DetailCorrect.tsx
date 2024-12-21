@@ -181,7 +181,7 @@ const DetailCorrect = () => {
 
     try {
       const response = await axios.put(
-        `http://15.164.103.160:8080/api/v1/pets/${useId.Id}/${petId}`,
+        `http://3.38.196.10:8080/api/v1/pets/${useId.Id}/${petId}`,
         petData,
         {
           headers: {

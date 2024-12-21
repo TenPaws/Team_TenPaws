@@ -28,7 +28,7 @@ const Announcementpost = () => {
 
     const fetchAnnouncementPost = async () => {
       try {
-        const response = await axios.get(`http://15.164.103.160:8080/api/v1/announcements/${id}`);
+        const response = await axios.get(`http://3.38.196.10:8080/api/v1/announcements/${id}`);
         if (isMounted) {
           setAnnouncementPost(response.data);
         }
@@ -55,7 +55,7 @@ const Announcementpost = () => {
     
     try{
       const token = localStorage.getItem("accessToken")
-      await axios.delete(`http://15.164.103.160:8080/api/v1/announcements/${id}?userId=${userId}`,
+      await axios.delete(`http://3.38.196.10:8080/api/v1/announcements/${id}?userId=${userId}`,
         {
         headers: {
           Authorization : token,

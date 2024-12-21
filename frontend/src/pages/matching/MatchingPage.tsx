@@ -160,7 +160,7 @@ const MatchingPage = () => {
             {filteredPets.map((pet) => (
               <Link to={detailLink(pet.petId)}>
                 <div key={pet.petId} className='flex border border-solid rounded-lg'>
-                  <img src={`http://15.164.103.160:8080${pet.imageUrls[0]}`} alt="동물 사진" className='max-w-44 rounded-l-md'/>
+                  <img src={`http://3.38.196.10:8080${pet.imageUrls[0]}`} alt="동물 사진" className='max-w-44 rounded-l-md'/>
                   <div className='m-3'>
                     <div className='flex justify-center'>
                       <p className='mt-2 text-xl font-bold'>{pet.species}</p>

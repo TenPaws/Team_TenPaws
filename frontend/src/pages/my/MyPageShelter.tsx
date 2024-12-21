@@ -264,7 +264,7 @@ const MyPageShelter: React.FC = () => {
                     <Link to={detailLink(pet.petId)}>
                       <div key={pet.petId} className='overflow-hidden border border-solid rounded-lg min-w-40 max-w-48 min-h-72 max-h-72'>
                         <img
-                          src={pet.imageUrls && pet.imageUrls.length > 0 ? `http://15.164.103.160:8080${pet.imageUrls[0]}` : mainImage} 
+                          src={pet.imageUrls && pet.imageUrls.length > 0 ? `http://3.38.196.10:8080${pet.imageUrls[0]}` : mainImage} 
                           alt="동물 사진"
                           onError={(e) => {
                             e.currentTarget.src = mainImage;

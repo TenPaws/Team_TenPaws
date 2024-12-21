@@ -30,7 +30,7 @@ const QAndA = () => {
   useEffect(() => {
     const fetchQnA = async () => {
       try {
-        const response = await axios.get("http://15.164.103.160:8080/api/v1/inquiries");
+        const response = await axios.get("http://3.38.196.10:8080/api/v1/inquiries");
         if (response.data && response.data.content) {
           setQnA(response.data.content);
         }

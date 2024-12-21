@@ -65,7 +65,7 @@ const location = window.location.pathname;
       setChatRoomId(RoomId);
 
       // 이전 메시지 조회
-      const messageResponse = await axios.get(`http://15.164.103.160:8080/api/v1/chatmessages/${RoomId}`, {
+      const messageResponse = await axios.get(`http://3.38.196.10:8080/api/v1/chatmessages/${RoomId}`, {
         headers: {
           Authorization: localStorage.getItem("accessToken")
         }
@@ -109,7 +109,7 @@ const location = window.location.pathname;
   useEffect(() => {
     setFetchChatroom(async () => {
       try {
-        const response = await axios.get("http://15.164.103.160:8080/api/v1/chatrooms/user", {
+        const response = await axios.get("http://3.38.196.10:8080/api/v1/chatrooms/user", {
           headers: {
             Authorization: localStorage.getItem("accessToken")
           }
@@ -134,7 +134,7 @@ const location = window.location.pathname;
   const handleCreateChat = async () => {
     try {
       const response = await axios.post(
-        "http://15.164.103.160:8080/api/v1/chatrooms",
+        "http://3.38.196.10:8080/api/v1/chatrooms",
         {
           userEmail,
           oppositeEmail
@@ -179,7 +179,7 @@ const location = window.location.pathname;
   useEffect(() => {
     const fetchChatroom = async () => {
       try {
-        const response = await axios.get("http://15.164.103.160:8080/api/v1/chatrooms/user", {
+        const response = await axios.get("http://3.38.196.10:8080/api/v1/chatrooms/user", {
           headers: {
             Authorization: localStorage.getItem("accessToken")
           }
@@ -199,7 +199,7 @@ const location = window.location.pathname;
   const handleChatDelete = async () => {
     console.log(chatRoomId);
     try {
-      await axios.delete(`http://15.164.103.160:8080/api/v1/chatrooms/${chatRoomId}`, {
+      await axios.delete(`http://3.38.196.10:8080/api/v1/chatrooms/${chatRoomId}`, {
         headers: {
           Authorization: localStorage.getItem("accessToken")
         }
@@ -250,7 +250,7 @@ const location = window.location.pathname;
   useEffect(() => {
     const fetchChatUser = async () => {
       try {
-        const response = await axios.get("http://15.164.103.160:8080/api/v1/users/chat-users", {
+        const response = await axios.get("http://3.38.196.10:8080/api/v1/users/chat-users", {
           headers: {
             Authorization: localStorage.getItem("accessToken")
           }
@@ -299,7 +299,7 @@ const location = window.location.pathname;
   const initializeUnRead = async (roomId: number) => {
     try {
       await axios.put(
-        `http://15.164.103.160:8080/api/v1/unread/init`,
+        `http://3.38.196.10:8080/api/v1/unread/init`,
         {
           userEmail: userEmail,
           chatRoomId: roomId

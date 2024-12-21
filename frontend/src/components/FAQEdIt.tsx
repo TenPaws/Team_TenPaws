@@ -23,7 +23,7 @@ const FAQEdIt = ({ Close }: FAQEdit) => {
   //상위 질문 작성
   const TopHandleSubmit = async () => {
     try {
-      await axios.post("http://15.164.103.160:8080/api/v1/faqs", {
+      await axios.post("http://3.38.196.10:8080/api/v1/faqs", {
         content
       },
     {
@@ -43,7 +43,7 @@ const FAQEdIt = ({ Close }: FAQEdit) => {
   useEffect(() => {
     const fetchTopFAQ = async () => {
       try {
-        const response = await axios.get("http://15.164.103.160:8080/api/v1/faqs");
+        const response = await axios.get("http://3.38.196.10:8080/api/v1/faqs");
         setTopContent(response.data);
       } catch (error) {
         console.error("최상위 질문 불러오기 실패", error);
@@ -55,7 +55,7 @@ const FAQEdIt = ({ Close }: FAQEdit) => {
   //하위 질문 작성
   const RefHandleSubmit = async () => {
     try {
-      await axios.post("http://15.164.103.160:8080/api/v1/faqs", {
+      await axios.post("http://3.38.196.10:8080/api/v1/faqs", {
         content,
         parentId: selectedTopId
       },
@@ -75,7 +75,7 @@ const FAQEdIt = ({ Close }: FAQEdit) => {
   //수정
   const handleTopEdit = async () => {
     try {
-      await axios.put(`http://15.164.103.160:8080/api/v1/faqs/${selectedTopId}`, {
+      await axios.put(`http://3.38.196.10:8080/api/v1/faqs/${selectedTopId}`, {
         content
       },
       {
@@ -84,7 +84,7 @@ const FAQEdIt = ({ Close }: FAQEdit) => {
         }
       });
       alert("수정되었습니다.");
-      const response = await axios.get("http://15.164.103.160:8080/api/v1/faqs");
+      const response = await axios.get("http://3.38.196.10:8080/api/v1/faqs");
       setTopContent(response.data);
     } catch (error) {
       console.error("수정 실패:", error);
@@ -97,14 +97,14 @@ const FAQEdIt = ({ Close }: FAQEdit) => {
     if (!window.confirm("해당 질문을 삭제하시겠습니까?")) return;
 
     try {
-      await axios.delete(`http://15.164.103.160:8080/api/v1/faqs/${selectedTopId}`,
+      await axios.delete(`http://3.38.196.10:8080/api/v1/faqs/${selectedTopId}`,
         {
           headers:{
             Authorization : localStorage.getItem("accessToken")
           }
         });
       alert("삭제되었습니다.");
-      const response = await axios.get("http://15.164.103.160:8080/api/v1/faqs");
+      const response = await axios.get("http://3.38.196.10:8080/api/v1/faqs");
       setTopContent(response.data);
       setSelectedTopId(null);
       setContent("");
