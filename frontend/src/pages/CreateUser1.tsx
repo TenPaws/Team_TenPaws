@@ -12,10 +12,6 @@ const CreateUser1 = () => {
     birthDate: "",
     phoneNumber: "",
     address: "",
-    species: "",
-    preferredSize: "",
-    preferredPersonality: "",
-    preferredExerciseLevel: null as number | null,
   });
 
   const [emailCheckStatus, setEmailCheckStatus] = useState<string | null>(null);
@@ -114,7 +110,7 @@ const CreateUser1 = () => {
   };
 
   const validateInputs = () => {
-    const { email, password, passwordConfirm, username, birthDate, phoneNumber, address, preferredExerciseLevel } = inputValues;
+    const { email, password, passwordConfirm, username, birthDate, phoneNumber, address} = inputValues;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const phoneNumberRegex = /^\d{3}-\d{4}-\d{4}$/;
 
@@ -211,12 +207,6 @@ const CreateUser1 = () => {
           birthDate: inputValues.birthDate,
           phoneNumber: inputValues.phoneNumber,
           address: inputValues.address,
-          species: inputValues.species || null,
-          preferredSize: inputValues.preferredSize || null,
-          preferredPersonality: inputValues.preferredPersonality || null,
-          preferredExerciseLevel: inputValues.preferredExerciseLevel
-            ? Number(inputValues.preferredExerciseLevel)
-            : null,
           userRole: "ROLE_USER",
         });
 
@@ -441,28 +431,6 @@ const CreateUser1 = () => {
                 } overflow-hidden truncate`}
               />
               {addressError && <p className="mt-2 text-red-600">{addressError}</p>}
-            </div>
-
-            <div>
-              <label
-                htmlFor="species"
-                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
-              >
-                <span className="text-black">선호 동물 종</span>
-                <span className="text-xl text-gray-400 sm:text-xl md:text-2xl">(선택사항)</span>
-              </label>
-              <input
-                id="species"
-                type="text"
-                placeholder="선호하는 동물을 종을 입력해주세요. (예: 강아지)"
-                value={inputValues.species}
-                onChange={handleInputChange}
-                className={`w-full px-5 py-4 sm:py-5 md:py-6 border rounded-lg text-2xl sm:text-2xl md:text-2xl ${
-                  inputValues.species
-                    ? "border-gray-500 bg-gray-100"
-                    : "border-gray-300 focus:ring-2 focus:ring-gray-400"
-                } overflow-hidden truncate`}
-              />
             </div>
             {/* 회원가입 버튼 */}
             <div className="flex justify-center mt-10">

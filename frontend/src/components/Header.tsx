@@ -114,8 +114,6 @@ const Header = () => {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
-
-  const shelter = userRole == "ROLE_SHELTER"
   
 
   return (
