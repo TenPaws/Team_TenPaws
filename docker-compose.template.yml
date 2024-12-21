@@ -19,7 +19,7 @@ services:
     ports:
       - 8080:8080
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://tenpaws-server-rds.c3ki4qoo6im1.ap-northeast-2.rds.amazonaws.com:3306/tenpaws?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+      SPRING_DATASOURCE_URL: jdbc:mysql://${RDS_ENDPOINT}:3306/tenpaws?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
       SPRING_DATASOURCE_USERNAME: MYSQL_USERNAME_PLACEHOLDER
       SPRING_DATASOURCE_PASSWORD: MYSQL_PASSWORD_PLACEHOLDER
     volumes:
