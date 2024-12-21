@@ -94,6 +94,7 @@ jobs:
           cp docker-compose.template.yml docker-compose.yml  
           sed -i "s/MYSQL_USERNAME_PLACEHOLDER/${{ secrets.MYSQL_USERNAME }}/g" docker-compose.yml  
           sed -i "s/MYSQL_PASSWORD_PLACEHOLDER/${{ secrets.MYSQL_PASSWORD }}/g" docker-compose.yml  
+          sed -i "s/RDS_ENDPOINT_PLACEHOLDER/${{ secrets.RDS_ENDPOINT }}/g" docker-compose.yml
 
       # Step 12-1: Nginx 설정 파일 권한 설정
       - name: Nginx 설정 파일 권한 설정
