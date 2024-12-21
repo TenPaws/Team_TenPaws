@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -67,6 +68,7 @@ public class PetService {
 
         // Pet 엔티티 생성
         Pet pet = requestDTO.toEntity(shelter, imageUrls);
+        pet.setCreatedDate(LocalDateTime.now()); // createdDate 설정 추가
         shelter.addPet(pet);
         Pet savedPet = petRepository.save(pet);
 
@@ -89,7 +91,7 @@ public class PetService {
                     file.transferTo(savedFile);
                     imageUrls.add("/images/" + fileName); // 이미지 URL 생성
                 } catch (IOException e) {
-                    throw new RuntimeException("File upload failed: " + e.getMessage());
+                    throw new BaseException(ErrorCode.FILE_UPLOAD_FAILED);
                 }
             }
         }

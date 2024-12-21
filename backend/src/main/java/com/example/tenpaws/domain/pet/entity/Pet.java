@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Setter
@@ -79,6 +80,14 @@ public class Pet {
     public enum PetStatus {
         AVAILABLE, // 신청 가능
         APPLIED    // 신청 완료
+    }
+
+    @Column(name = "created_date", updatable = false)
+    private LocalDateTime createdDate;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdDate = LocalDateTime.now();
     }
 
     @Builder
