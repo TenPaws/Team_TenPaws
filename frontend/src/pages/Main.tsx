@@ -75,7 +75,7 @@ const Main: React.FC = () => {
     fetchPetList();
   }, []);
 
-  // 필터링 로직 
+  // 필터링 로직
   const filteredPets = Array.isArray(pets)
     ? pets.filter((pet) => {
         if (activeCategory === "전체") return pet.status === "AVAILABLE";
@@ -83,7 +83,7 @@ const Main: React.FC = () => {
       })
     : [];
 
-  // 상세 페이지 이동 
+  // 상세 페이지 이동
   const goToDetail = (petId: number) => {
     navigation(`/detail/${petId}`);
   };
@@ -110,7 +110,7 @@ const Main: React.FC = () => {
             <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-white via-white/95 to-transparent"></div>
           </div>
 
-          <div className="relative xl:pl-20">
+          <div className="relative xl:pl-[500px]">
             <div className="absolute pt-12 pl-8 sm:pt-16 md:pt-20 lg:pt-24 sm:pl-16 md:pl-24 lg:pl-32 z-20">
               <div className="text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
                 <div className="sm:pb-5 md:pb-8 lg:pb-8 xl:pb-15">기다림의 끝에서</div>
@@ -188,90 +188,37 @@ const Main: React.FC = () => {
 
       {/* 동물 카드 */}
       <section className="w-full bg-gray-50 py-16">
-      <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-3">가족을 기다리고 있어요!
-            </h2>
-          </div>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-3">가족을 기다리고 있어요!</h2>
+        </div>
         <div className="w-[1100px] mx-auto">
           <div className="flex flex-col items-center">
-            {/* 카테고리 */}
-            <div className="flex gap-4 mb-8">
-              {["전체", "고양이", "강아지"].map((category) => (
-                <button
-                  key={category}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all
-                    ${
-                      activeCategory === category
-                        ? "bg-[#f1a34a] text-white"
-                        : "bg-white text-gray-500 hover:bg-[#f1a34a]/10"
-                    }`}
-                  onClick={() => setActiveCategory(category)}>
-                  {category}
-                </button>
-              ))}
-            </div>
 
-            {/* 동물 카드 */}
-            {loading ? (
-              <div>동물을 불러오고 있습니다..</div>
-            ) : filteredPets.length === 0 ? (
-              <div className="text-gray-500 text-lg font-medium py-20">
-                새로운 친구들이 곧 찾아올 예정이에요..!
-              </div>
-            ) : (
-              <div className="grid grid-cols-3 gap-6">
-                {filteredPets.map((pet) => (
-                  <div
-                    key={pet.petId}
-                    className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
-                    onClick={() => goToDetail(pet.petId)}>
-                    <img
-                      src={`http://15.164.103.160:8080${pet.imageUrls[0]}`}
-                      alt={`${pet.species} 사진`}
-                      className="w-full h-48 object-cover"
-                    />
-                    <div className="p-6">
-                      <div className="flex justify-between items-center mb-5">
-                        <h3 className="text-lg font-bold"> {pet.species}</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 mb-4">
-                        나이 : {pet.age},
-                        <br />
-                        크기: {pet.size},
-                        <br />
-                        활동량 : {pet.personality}
-                      </p>
-                      <div className="flex justify-center ">
-                        <button className="px-4 py-1 text-sm text-[#f1a34a] border border-[#f1a34a] rounded-full hover:bg-[#f1a34a] hover:text-white transition-colors">
-                          자세히 보기
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* 큰 카드 테스트 */}
+            {/* 큰 카드 */}
             <div className="w-full mt-16 relative">
               {/* 왼쪽 */}
-              <button 
+              <button
                 onClick={handlePrevCard}
                 className="absolute left-[-50px] top-1/2 transform -translate-y-1/2 z-10
-                  w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center
-                  hover:bg-gray-50 transition-colors -mx-5"
-              >
+                  w-10 h-10 rounded-full bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] flex items-center justify-center 
+                  hover:bg-gray-50 transition-colors -mx-5">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M15 19l-7-7 7-7" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path
+                    d="M15 19l-7-7 7-7"
+                    stroke="#666"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </button>
 
               {/* 카드 */}
-              <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <div className="flex gap-8">
+              <div className="bg-white rounded-2xl p-8 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <div className="flex gap-8 ">
                   {/* 사진*/}
                   <div className="flex-1">
-                    <img 
+                    <img
                       src={`http://15.164.103.160:8080${filteredPets[currentPetIndex]?.imageUrls[0]}`}
                       alt="동물 사진"
                       className="w-full h-96 object-cover rounded-lg"
@@ -279,19 +226,22 @@ const Main: React.FC = () => {
                   </div>
 
                   {/* 정보 */}
-                  <div className="flex-1 border-l border-gray-200 pl-8">
+                  <div className="flex-1 border-l border-gray-200 pl-8 ">
                     <h3 className="text-2xl font-bold mb-6">{filteredPets[currentPetIndex]?.species}</h3>
                     <div className="space-y-4 text-lg">
                       <p>나이: {filteredPets[currentPetIndex]?.age}</p>
                       <p>크기: {filteredPets[currentPetIndex]?.size}</p>
                       <p>활동량: {filteredPets[currentPetIndex]?.personality}</p>
-                      <p>오게된 이유: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam doloribus molestiae atque ex quam dicta laborum, veniam esse? Soluta molestiae at corrupti aliquid aspernatur omnis illum dicta nemo deleniti libero?</p>
+                      <p>
+                        오게된 이유: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam doloribus
+                        molestiae atque ex quam dicta laborum, veniam esse? Soluta molestiae at corrupti aliquid
+                        aspernatur omnis illum dicta nemo deleniti libero?
+                      </p>
                     </div>
                     <div className="flex justify-center mt-5">
-                      <button 
+                      <button
                         className="px-4 py-1 text-sm text-[#f1a34a] border border-[#f1a34a] rounded-full hover:bg-[#f1a34a] hover:text-white transition-colors"
-                        onClick={() => goToDetail(filteredPets[currentPetIndex]?.petId)}
-                      >
+                        onClick={() => goToDetail(filteredPets[currentPetIndex]?.petId)}>
                         자세히 보기
                       </button>
                     </div>
@@ -300,31 +250,28 @@ const Main: React.FC = () => {
               </div>
 
               {/* 오른쪽 */}
-              <button 
+              <button
                 onClick={handleNextCard}
                 className="absolute right-[-50px] top-1/2 transform -translate-y-1/2 z-10
-                  w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center
-                  hover:bg-gray-50 transition-colors -mx-5"
-              >
+                  w-10 h-10 rounded-full bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] flex items-center justify-center 
+                  hover:bg-gray-50 transition-colors -mx-5">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M9 5l7 7-7 7" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M9 5l7 7-7 7" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
 
               {/* 페이지 */}
               <div className="flex justify-center mt-4 gap-2">
                 {filteredPets.map((_, idx) => (
-                  <div 
+                  <div
                     key={idx}
                     className={`w-2 h-2 rounded-full transition-colors ${
-                      idx === currentPetIndex ? 'bg-[#f1a34a]' : 'bg-gray-300'
+                      idx === currentPetIndex ? "bg-[#f1a34a]" : "bg-gray-300"
                     }`}
                   />
                 ))}
               </div>
             </div>
-
-
           </div>
         </div>
       </section>

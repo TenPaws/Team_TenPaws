@@ -83,8 +83,8 @@ const FAQ = ({ isOpen, onClose }: FAQProps) => {
     <div>
       {isOpen && (
         <>
-          <div className="bg-white w-96 h-[544px] fixed bottom-[112px] right-[0px] m-6 z-50 rounded-t-md">
-            <div className="bg-[#f1a34a] font-bold text-xl p-3 flex rounded-t-md content-center justify-between">
+          <div className=" w-[450px] h-[720px] fixed bottom-[56px] -right-[24px] m-6 z-50 rounded-t-md">
+            <div className="font-bold text-xl p-4 flex rounded-t-md content-center justify-between">
               <div>FAQ</div>
               <div className="flex gap-2">
                 {role === "ROLE_ADMIN" && (
@@ -141,7 +141,7 @@ const FAQ = ({ isOpen, onClose }: FAQProps) => {
 
                           <div
                             onClick={handleBack}
-                            className="text-white bg-[#f1a34a] mx-20 mt-5 p-2 text-center rounded-lg font-bold text-xl cursor-pointer absolute bottom-4 right-[60px]
+                            className="text-white bg-[#f1a34a] mx-20 mt-5 p-2 text-center rounded-lg font-bold text-xl cursor-pointer absolute bottom-4 right-[95px]
                             hover:scale-105 hover:transition-transform z-50">
                             처음으로
                           </div>
@@ -161,7 +161,7 @@ const FAQ = ({ isOpen, onClose }: FAQProps) => {
                         )),
                         <div
                           onClick={handleBack}
-                          className="text-white bg-[#f1a34a] mx-20 mt-5 p-2 text-center rounded-lg font-bold text-xl cursor-pointer absolute bottom-4 right-[60px]
+                          className="text-white bg-[#f1a34a] mx-20 mt-5 p-2 text-center rounded-lg font-bold text-xl cursor-pointer absolute bottom-4 right-[95px]
                           hover:scale-105 hover:transition-transform z-50">
                           처음으로
                         </div>
