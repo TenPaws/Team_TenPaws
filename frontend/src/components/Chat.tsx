@@ -66,6 +66,7 @@ const Chat = () => {
   const location = window.location.pathname;
   const [isAnimating, setIsAnimating] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
+  const messageInputRef = useRef<HTMLInputElement>(null);
 
 
   useEffect(() => {
@@ -275,10 +276,9 @@ const Chat = () => {
     }
   };
 
-  // 스크롤 관리를 위한 ref 추가
   const messageEndRef = useRef<HTMLDivElement>(null);
 
-  // 스크롤 이동 함수
+  // 스크롤
   const scrollToBottom = () => {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -418,7 +418,7 @@ const Chat = () => {
     }
   }, [isConnected, fetchChatroom]);
 
-  // isopen이 처음 true가 될 때 FAQ를 표시
+  // isopen이 true가 될 때 FAQ를 표시
   useEffect(() => {
     if (isopen) {
       setFnqopen(true);
@@ -461,6 +461,12 @@ const Chat = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    if (chatRoomOpen) {
+      messageInputRef.current?.focus();
+    }
+  }, [chatRoomOpen]);
 
   return (
     <div className="fixed bottom-[89px] right-2 z-50">
@@ -608,10 +614,10 @@ const Chat = () => {
         </div>
       </div>
 
-      {/* 채팅방 내부  */}
+      {/* 채팅방 내부*/}
       {chatRoomOpen && (
         <div className="fixed bottom-[160px] right-[24px] z-50">
-          <div className="bg-[#f1a34a] w-[450px] h-[720px] rounded-lg ">
+          <div className="bg-[#f1a34a] w-[450px] h-[720px] rounded-lg">
             {/* 헤더 */}
             {userChatRoom
               .filter((item) => item.chatRoomId === chatRoomId)
@@ -660,6 +666,7 @@ const Chat = () => {
 
             <div className="flex justify-between h-10 mx-3 bg-white border-t-2 border-black rounded-b-lg w-76">
               <input
+                ref={messageInputRef}
                 type="text"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
@@ -668,7 +675,10 @@ const Chat = () => {
                 placeholder="메시지를 입력하세요"
               />
               <div
-                onClick={sendMessage}
+                onClick={() => {
+                  sendMessage();
+                  messageInputRef.current?.focus();
+                }}
                 className="px-1 text-3xl transition-transform duration-300 cursor-pointer hover:scale-105">
                 ➤
               </div>

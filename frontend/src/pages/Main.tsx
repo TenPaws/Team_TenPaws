@@ -6,6 +6,7 @@ import Main2 from "/main3.png";
 import AImatching from "/pet-house (2) 1.svg";
 import met from "/pet-food 1.png";
 import care from "/animal (1) 1.png";
+import { motion, AnimatePresence } from "framer-motion";
 
 type IconType = "dog" | "approve" | "board" | "check";
 type Description = {
@@ -57,6 +58,54 @@ const Main: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const navigation = useNavigate();
   const [currentPetIndex, setCurrentPetIndex] = useState(0);
+  const [currentSection, setCurrentSection] = useState(0);
+  const sections = ["dog", "approve", "board", "check"] as IconType[];
+  const [isScrolling, setIsScrolling] = useState(false);
+  const adoptionRef = React.useRef<HTMLDivElement>(null);
+
+  // 스크롤
+  useEffect(() => {
+    const adoptionSection = adoptionRef.current;
+    if (!adoptionSection) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // 무시
+      if (isScrolling) return;
+
+      if (currentSection === 0 && e.deltaY < 0) {
+        // 스크롤 허용
+        const wheelEvent = new WheelEvent("wheel", {
+          deltaY: e.deltaY,
+          bubbles: true
+        });
+        window.dispatchEvent(wheelEvent);
+        return;
+      }
+
+      // 섹션 전환
+      if (e.deltaY > 0 && currentSection < sections.length - 1) {
+        setIsScrolling(true);
+        setCurrentSection((prev) => prev + 1);
+        setActiveIcon(sections[currentSection + 1]);
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 950);
+      } else if (e.deltaY < 0 && currentSection > 0) {
+        setIsScrolling(true);
+        setCurrentSection((prev) => prev - 1);
+        setActiveIcon(sections[currentSection - 1]);
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 950);
+      }
+    };
+
+    adoptionSection.addEventListener("wheel", handleWheel, { passive: false });
+    return () => adoptionSection.removeEventListener("wheel", handleWheel);
+  }, [currentSection, sections, isScrolling]);
 
   // 동물 매칭 호출
   useEffect(() => {
@@ -96,6 +145,121 @@ const Main: React.FC = () => {
   //다음
   const handleNextCard = () => {
     setCurrentPetIndex((prev) => (prev === filteredPets.length - 1 ? 0 : prev + 1));
+  };
+
+  const renderAdoptionJourney = () => {
+    return (
+      <div className="w-full bg-white py-20 relative overflow-hidden">
+        <div className="w-[1100px] mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-3">
+              <span className="text-[#7F5546]">Ten</span>
+              <span className="text-[#f1a34a]">Paws</span> 와 함께하는 입양 여정
+            </h2>
+            <p className="text-gray-600">새로운 가족을 만나는 과정을 미리 확인해 보세요</p>
+          </div>
+
+          <div
+            ref={adoptionRef}
+            className="flex gap-8 h-[850px] overflow-hidden sticky top-0"
+            style={{ scrollBehavior: "smooth" }}>
+            {/* 진행 단계 */}
+            <div className="bg-[#f1a34a] rounded-2xl p-2 shadow-lg w-[220px] h-full">
+              <div className="flex flex-col justify-center h-full space-y-10">
+                {sections.map((icon, idx) => (
+                  <React.Fragment key={icon}>
+                    <div
+                      className={`flex flex-col items-center cursor-pointer transition-all duration-300 ${
+                        currentSection === idx ? "scale-105" : "hover:scale-105"
+                      }`}
+                      onClick={() => {
+                        setCurrentSection(idx);
+                        setActiveIcon(icon);
+                      }}>
+                      <div
+                        className={`w-12 h-12 rounded-full flex items-center justify-center mb-3
+                        transition-all duration-300 shadow-md
+                        ${
+                          currentSection === idx
+                            ? "bg-[#f1a34a] ring-2 ring-white"
+                            : "bg-white hover:bg-[#f1a34a] hover:ring-2 hover:ring-white"
+                        }`}>
+                        <img
+                          src={`/${icon}.png`}
+                          alt={descriptions[icon].title}
+                          className={`w-6 h-6 transition-all duration-300 ${
+                            currentSection === idx ? "brightness-0 invert" : "hover:brightness-0 hover:invert"
+                          }`}
+                        />
+                      </div>
+                      <span
+                        className={`text-base font-bold text-center transition-all duration-300 ${
+                          currentSection === idx ? "opacity-100" : "opacity-70 hover:opacity-100"
+                        }`}>
+                        {descriptions[icon].title}
+                      </span>
+                    </div>
+                    {idx < sections.length - 1 && (
+                      <div className="flex justify-center">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="text-white opacity-70">
+                          <path
+                            d="M12 4L12 16M12 16L7 11M12 16L17 11"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+
+            {/* 설명 */}
+            <div className="flex-1 bg-white rounded-2xl p-10 shadow-lg border border-gray-100 h-full overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSection}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="max-w-3xl h-full flex flex-col">
+                  <h3 className="text-2xl font-bold mb-6 text-[#3c2a13]">
+                    {descriptions[sections[currentSection]].title}
+                  </h3>
+                  {descriptions[sections[currentSection]].content.map((line, index) => (
+                    <p key={index} className="text-gray-600 mb-4 leading-relaxed">
+                      {line}
+                    </p>
+                  ))}
+                  <div className="flex-1 flex items-center justify-center">
+                    <motion.img
+                      key={`img-${currentSection}`}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.5 }}
+                      src={`/${iconToImageMap[sections[currentSection]]}`}
+                      alt="Matching Animal Example"
+                      className="w-full max-w-2xl rounded-lg shadow-md"
+                    />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -193,14 +357,13 @@ const Main: React.FC = () => {
         </div>
         <div className="w-[1100px] mx-auto">
           <div className="flex flex-col items-center">
-
             {/* 큰 카드 */}
             <div className="w-full mt-16 relative">
               {/* 왼쪽 */}
               <button
                 onClick={handlePrevCard}
                 className="absolute left-[-50px] top-1/2 transform -translate-y-1/2 z-10
-                  w-10 h-10 rounded-full bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] flex items-center justify-center 
+                  w-10 h-10 rounded-full bg-white shadow-[0_0_15px_rgba(0,0,0,0.2)] flex items-center justify-center 
                   hover:bg-gray-50 transition-colors -mx-5">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path
@@ -214,7 +377,7 @@ const Main: React.FC = () => {
               </button>
 
               {/* 카드 */}
-              <div className="bg-white rounded-2xl p-8 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+              <div className="bg-white rounded-2xl p-8 shadow-[0_0_15px_rgba(0,0,0,0.2)]">
                 <div className="flex gap-8 ">
                   {/* 사진*/}
                   <div className="flex-1">
@@ -253,7 +416,7 @@ const Main: React.FC = () => {
               <button
                 onClick={handleNextCard}
                 className="absolute right-[-50px] top-1/2 transform -translate-y-1/2 z-10
-                  w-10 h-10 rounded-full bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] flex items-center justify-center 
+                  w-10 h-10 rounded-full bg-white shadow-[0_0_15px_rgba(0,0,0,0.2)] flex items-center justify-center 
                   hover:bg-gray-50 transition-colors -mx-5">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M9 5l7 7-7 7" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -262,7 +425,7 @@ const Main: React.FC = () => {
 
               {/* 페이지 */}
               <div className="flex justify-center mt-4 gap-2">
-                {filteredPets.map((_, idx) => (
+                {filteredPets.slice(0, 5).map((_, idx) => (
                   <div
                     key={idx}
                     className={`w-2 h-2 rounded-full transition-colors ${
@@ -276,96 +439,7 @@ const Main: React.FC = () => {
         </div>
       </section>
 
-      {/* 입양 여정 */}
-      <div className="w-full flex flex-col items-center bg-white py-20">
-        <div className="w-[1100px] relative">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-3">
-              <span className="text-[#7F5546]">Ten</span>
-              <span className="text-[#f1a34a]">Paws</span> 와 함께하는 입양 여정
-            </h2>
-            <p className="text-gray-600">새로운 가족을 만나는 과정을 미리 확인해 보세요</p>
-          </div>
-
-          <div className="flex gap-8 h-[850px] ">
-            {/* 진행 단계 */}
-            <div className="bg-[#f1a34a] rounded-2xl p-2 shadow-lg w-[220px] h-full">
-              <div className="flex flex-col justify-center h-full space-y-10">
-                {(["dog", "approve", "board", "check"] as IconType[]).map((icon, idx, arr) => (
-                  <React.Fragment key={icon}>
-                    <div
-                      className={`flex flex-col items-center cursor-pointer transition-all duration-300 ${
-                        activeIcon === icon ? "scale-105" : "hover:scale-105"
-                      }`}
-                      onClick={() => setActiveIcon(icon)}>
-                      <div
-                        className={`w-12 h-12 rounded-full flex items-center justify-center mb-3
-                        transition-all duration-300 shadow-md
-                        ${
-                          activeIcon === icon
-                            ? "bg-[#f1a34a] ring-2 ring-white"
-                            : "bg-white hover:bg-[#f1a34a] hover:ring-2 hover:ring-white"
-                        }`}>
-                        <img
-                          src={`/${icon}.png`}
-                          alt={descriptions[icon].title}
-                          className={`w-6 h-6 transition-all duration-300 ${
-                            activeIcon === icon ? "brightness-0 invert" : "hover:brightness-0 hover:invert"
-                          }`}
-                        />
-                      </div>
-                      <span
-                        className={`text-base font-bold text-center  transition-all duration-300 ${
-                          activeIcon === icon ? "opacity-100" : "opacity-70 hover:opacity-100"
-                        }`}>
-                        {descriptions[icon].title}
-                      </span>
-                    </div>
-                    {idx < arr.length - 1 && (
-                      <div className="flex justify-center">
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="text-white opacity-70">
-                          <path
-                            d="M12 4L12 16M12 16L7 11M12 16L17 11"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </div>
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-
-            {/* 설명 */}
-            <div className="flex-1 bg-white rounded-2xl p-10 shadow-lg border border-gray-100 h-full">
-              <div className="max-w-3xl h-full flex flex-col">
-                <h3 className="text-2xl font-bold mb-6 text-[#3c2a13]">{descriptions[activeIcon].title}</h3>
-                {descriptions[activeIcon].content.map((line, index) => (
-                  <p key={index} className="text-gray-600 mb-4 leading-relaxed">
-                    {line}
-                  </p>
-                ))}
-                <div className="flex-1 flex items-center justify-center">
-                  <img
-                    src={`/${iconToImageMap[activeIcon]}`}
-                    alt="Matching Animal Example"
-                    className="w-full max-w-2xl rounded-lg shadow-md"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {renderAdoptionJourney()}
     </div>
   );
 };
