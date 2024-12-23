@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import axiosInstance from "../utils/axiosInstance";
@@ -97,7 +97,7 @@ const CreateUser2 = () => {
   };
   
   const validateInputs = () => {
-    const { email, password, passwordConfirm, organizationName, phoneNumber, address } = inputValues;
+    const { email, password, passwordConfirm, organizationName, phoneNumber, address} = inputValues;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const phoneNumberRegex = /^\d{3}-\d{4}-\d{4}$/;
 
@@ -163,7 +163,7 @@ const CreateUser2 = () => {
 
     return true;
   };
- 
+
   // 백엔드 API로 POST 요청 보내기
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -189,13 +189,27 @@ const CreateUser2 = () => {
     }
   };
 
+  const handlePostcode = () => {
+    const script = document.createElement("script");
+    script.src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+    script.onload = () => {
+      new (window as any).daum.Postcode({
+        oncomplete: (data: any) => {
+          // Combine address fields if needed
+          const fullAddress = data.address;
+          setInputValues((prev) => ({ ...prev, address: fullAddress }));
+        },
+      }).open();
+    };
+    document.body.appendChild(script);
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-[#CDC3BF]">
       <Header />
-      <main className="flex-grow flex items-center justify-center px-4 sm:px-8 md:px-16 lg:px-24 py-8">
-        <div className="w-full max-w-7xl bg-white shadow-lg rounded-lg p-10 sm:p-12 md:p-16 lg:p-20">
-          <h1 className="text-4xl sm:text-5xl md:text-5xl font-bold text-gray-800 mb-10 text-center">
+      <main className="flex items-center justify-center flex-grow px-4 py-8 sm:px-8 md:px-16 lg:px-24">
+        <div className="w-full p-10 bg-white rounded-lg shadow-lg max-w-7xl sm:p-12 md:p-16 lg:p-20">
+          <h1 className="mb-10 text-4xl font-bold text-center text-gray-800 sm:text-5xl md:text-5xl">
             단체 회원가입
           </h1>
           <form className="space-y-10" onSubmit={handleSubmit}>
@@ -203,7 +217,7 @@ const CreateUser2 = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                  className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
                 >
                   이메일
                 </label>
@@ -228,7 +242,7 @@ const CreateUser2 = () => {
                     type="button"
                     onClick={handleEmailCheck}
                     disabled={isEmailChecking}
-                    className="px-3 py-5 sm:px-4 sm:py-6 bg-gray-500 text-white rounded-lg sm:text-lg hover:bg-gray-600 transition text-center"
+                    className="px-3 py-5 text-center text-white transition bg-gray-500 rounded-lg sm:px-4 sm:py-6 sm:text-lg hover:bg-gray-600"
                     style={{ whiteSpace: "pre" }}
                   >
                     중복 확인
@@ -251,7 +265,7 @@ const CreateUser2 = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 비밀번호
               </label>
@@ -269,14 +283,14 @@ const CreateUser2 = () => {
                     : "border-gray-300 bg-white"
                 } overflow-hidden truncate`}
               />
-              {passwordError && <p className="text-red-600 mt-2">{passwordError}</p>}
+              {passwordError && <p className="mt-2 text-red-600">{passwordError}</p>}
             </div>
             
             {/* 비밀번호 확인 */}
             <div>
               <label
                 htmlFor="passwordConfirm"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 비밀번호 확인
               </label>
@@ -296,7 +310,7 @@ const CreateUser2 = () => {
                 } overflow-hidden truncate`}
               />
               {passwordConfirmError && (
-                <p className="text-red-600 mt-2">{passwordConfirmError}</p>
+                <p className="mt-2 text-red-600">{passwordConfirmError}</p>
               )}
             </div>
 
@@ -304,7 +318,7 @@ const CreateUser2 = () => {
             <div>
               <label
                 htmlFor="organizationName"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 단체 이름
               </label>
@@ -322,7 +336,7 @@ const CreateUser2 = () => {
                     : "border-gray-300 bg-white"
                 } overflow-hidden truncate`}
               />
-              {organizationError && <p className="text-red-600 mt-2">{organizationError}</p>}
+              {organizationError && <p className="mt-2 text-red-600">{organizationError}</p>}
             </div>
           
 
@@ -330,7 +344,7 @@ const CreateUser2 = () => {
             <div>
               <label
                 htmlFor="phoneNumber"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 전화번호
               </label>
@@ -348,32 +362,41 @@ const CreateUser2 = () => {
                     : "border-gray-300 bg-white"
                 } overflow-hidden truncate`}
               />
-              {phoneNumberError && <p className="text-red-600 mt-2">{phoneNumberError}</p>}
+              {phoneNumberError && <p className="mt-2 text-red-600">{phoneNumberError}</p>}
             </div>
 
             {/* 주소 */}
             <div>
               <label
                 htmlFor="address"
-                className="block text-2xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4"
+                className="block mb-4 text-2xl font-medium text-gray-700 sm:text-2xl md:text-3xl"
               >
                 주소
               </label>
-              <input
-                id="address"
-                type="text"
-                placeholder="주소를 입력해주세요."
-                value={inputValues.address}
-                onChange={handleInputChange}
-                className={`w-full px-5 py-4 sm:py-5 md:py-6 border rounded-lg text-2xl sm:text-2xl md:text-2xl ${
-                  addressError
-                    ? "border-red-500 bg-red-100"
-                    : inputValues.address
-                    ? "border-gray-300 bg-gray-100"
-                    : "border-gray-300 bg-white"
-                } overflow-hidden truncate`}
-              />
-              {addressError && <p className="text-red-600 mt-2">{addressError}</p>}
+              <div className="flex flex-col items-end justify-end">
+                <input
+                  id="address"
+                  type="text"
+                  placeholder="주소"
+                  value={inputValues.address}
+                  onChange={handleInputChange}
+                  className={`w-full px-5 py-4 sm:py-5 md:py-6 border rounded-lg text-2xl sm:text-2xl md:text-2xl ${
+                    addressError
+                      ? "border-red-500 bg-red-100"
+                      : inputValues.address
+                      ? "border-gray-300 bg-gray-100"
+                      : "border-gray-300 bg-white"
+                  } overflow-hidden truncate`}
+                />
+                <button
+                    type="button"
+                    onClick={handlePostcode}
+                    className="px-5 py-3 mt-3 text-white bg-gray-500 rounded-lg hover:bg-gray-600"
+                >
+                  <div>주소 검색</div>
+                </button>
+              </div>
+              {addressError && <p className="mt-2 text-red-600">{addressError}</p>}
             </div>
 
             {/* 회원가입 버튼 */}
