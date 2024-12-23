@@ -274,7 +274,7 @@ const Main: React.FC = () => {
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white via-white/95 to-transparent"></div>
           </div>
 
-          <div className="relative xl:pl-[500px]">
+          <div className="relative xl:pl-[250px]">
             <div className="absolute z-20 pt-12 pl-8 sm:pt-16 md:pt-20 lg:pt-24 sm:pl-16 md:pl-24 lg:pl-32">
               <div className="text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
                 <div className="sm:pb-5 md:pb-8 lg:pb-8 xl:pb-15">기다림의 끝에서</div>
@@ -284,7 +284,7 @@ const Main: React.FC = () => {
                 TenPaws가 맺어주는 하나뿐인 인연
               </div>
               <div
-                className="font-bold text-white bg-[#f1a34a] inline py-2 sm:py-3 px-8 sm:px-16 text-xl sm:text-2xl md:text-3xl rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] cursor-pointer hover:bg-[#3c2a13] hover:duration-300"
+                className=" text-white bg-[#f1a34a] inline py-2 sm:py-3 px-8 sm:px-16 text-xl sm:text-2xl md:text-3xl rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] cursor-pointer hover:bg-[#3c2a13] hover:duration-300"
                 onClick={() => navigation("/matching")}>
                 시작하기
               </div>
@@ -308,7 +308,7 @@ const Main: React.FC = () => {
         <div className="flex flex-col items-center justify-center max-w-6xl gap-8 mx-auto md:flex-row">
           {/* AI 매칭 */}
           <div
-            className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.5)] bg-white w-full md:w-1/3 cursor-pointer
+            className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.3)] bg-white w-full md:w-1/3 cursor-pointer
           hover:scale-105 transition-transform duration-300">
             <div className="bg-[#f1a34a] mb-4 p-2 pb-3 rounded-full">
               <img src={AImatching} alt="AI 매칭" className="w-10 h-10 " />
@@ -321,7 +321,7 @@ const Main: React.FC = () => {
 
           {/* 신중한 입양 */}
           <div
-            className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.5)] bg-white w-full md:w-1/3 cursor-pointer
+            className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.3)] bg-white w-full md:w-1/3 cursor-pointer
           hover:scale-105 transition-transform duration-300">
             <div className="bg-[#f1a34a] mb-4 p-2 pb-3 rounded-full">
               <img src={met} alt="신중한 입양" className="w-10 h-10 " />
@@ -335,7 +335,7 @@ const Main: React.FC = () => {
 
           {/* 편의 케어 */}
           <div
-            className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.5)] bg-white w-full md:w-1/3 cursor-pointer
+            className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.3)] bg-white w-full md:w-1/3 cursor-pointer
           hover:scale-105 transition-transform duration-300">
             <div className="bg-[#f1a34a] mb-[21px] p-2 rounded-full">
               <img src={care} alt="편의 케어" className="w-10 h-10 " />

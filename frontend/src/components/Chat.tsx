@@ -522,7 +522,7 @@ const Chat = () => {
 
                         <div className="pt-4 flex justify-center">
                           <button
-                            className="justify-center items-center w-[150px] bg-[#f8b968] text-white text-xl font-bold py-3 px-4 rounded-md hover:scale-105 hover:transition-transform"
+                            className="justify-center items-center w-[150px] bg-[#f8b968] text-white text-xl py-3 px-4 rounded-md hover:scale-105 hover:transition-transform"
                             onClick={handleCreateChat}>
                             채팅방 생성
                           </button>
