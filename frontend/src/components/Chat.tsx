@@ -29,13 +29,9 @@ interface chatMessage {
 
 const Chat = () => {
   const isLoggedIn = localStorage.getItem("accessToken");
-  
-
   if (!isLoggedIn) {
     return <Chatnotlogin />;
   }
-
-
   const [isopen, setIsOpen] = useState(false);
   const [makeChatRoom, setMakeChatRoom] = useState(false);
   const [chatRoomOpen, setChatRoomOpen] = useState(false);
@@ -50,12 +46,12 @@ const Chat = () => {
   const [subscribed, setSubscribed] = useState(false);
   const [chatopen, setChatopen] = useState(false);
   const [fnqopen, setFnqopen] = useState(false);
-  const { 
-    connectWebSocket = () => {}, 
-    stompClient = null, 
-    isConnected = false, 
-    fetchChatroom = async () => {}, 
-    setFetchChatroom = () => {} 
+  const {
+    connectWebSocket = () => {},
+    stompClient = null,
+    isConnected = false,
+    fetchChatroom = async () => {},
+    setFetchChatroom = () => {}
   } = useStore();
   const [searchTerm, setSearchTerm] = useState("");
   const filteredUsers = chatUser.filter(
@@ -68,7 +64,6 @@ const Chat = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const messageInputRef = useRef<HTMLInputElement>(null);
 
-
   useEffect(() => {
     if (!isConnected) {
       connectWebSocket();
@@ -76,9 +71,7 @@ const Chat = () => {
     fetchChatroom();
   }, [isConnected, connectWebSocket, fetchChatroom]);
 
-
   const handlemakechatroom = () => {
-
     setMakeChatRoom(true);
     setChatopen(false);
     setChatRoomOpen(false);
@@ -86,7 +79,6 @@ const Chat = () => {
   };
 
   const handlechatopen = () => {
-
     setChatopen(true);
     setMakeChatRoom(false);
     setFnqopen(false);
@@ -418,7 +410,6 @@ const Chat = () => {
     }
   }, [isConnected, fetchChatroom]);
 
-  // isopen이 true가 될 때 FAQ를 표시
   useEffect(() => {
     if (isopen) {
       setFnqopen(true);
@@ -447,6 +438,12 @@ const Chat = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      if ((event.target as HTMLElement).closest('input') || 
+          (event.target as HTMLElement).closest('.chat-message-area') ||
+          (event.target as HTMLElement).closest('.send-message-button')) {
+        return;
+      }
+
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         setIsOpen(false);
         setChatRoomOpen(false);
@@ -456,9 +453,9 @@ const Chat = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -482,7 +479,7 @@ const Chat = () => {
 
             {(isopen || isAnimating) && (
               <div
-                className={`bg-white fixed bottom-20 right-6 z-50 w-[450px] h-[800px] rounded-xl 
+                className={`bg-white fixed bottom-20 right-6 z-50 w-[430px] h-[750px] rounded-xl 
                 shadow-[0_0_15px_rgba(0,0,0,0.2)] flex flex-col
                 transform transition-all duration-300 ease-in-out
                 ${isopen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
@@ -525,7 +522,7 @@ const Chat = () => {
 
                         <div className="pt-4 flex justify-center">
                           <button
-                            className="justify-center items-center w-[150px] bg-[#f8b968] text-white text-xl font-bold py-3 px-4 rounded-md hover:scale-105 hover:transition-transform"
+                            className="justify-center items-center w-[150px] bg-[#f8b968] text-white text-xl py-3 px-4 rounded-md hover:scale-105 hover:transition-transform"
                             onClick={handleCreateChat}>
                             채팅방 생성
                           </button>
@@ -616,22 +613,22 @@ const Chat = () => {
 
       {/* 채팅방 내부*/}
       {chatRoomOpen && (
-        <div className="fixed bottom-[160px] right-[24px] z-50">
-          <div className="bg-[#f1a34a] w-[450px] h-[720px] rounded-lg">
+        <div className="fixed bottom-[160px] right-[24px] z-50 send-message-button">
+          <div className="bg-[#f1a34a] w-[430px] h-[670px] rounded-lg">
             {/* 헤더 */}
             {userChatRoom
               .filter((item) => item.chatRoomId === chatRoomId)
               .map((item) => (
                 <div className=" flex justify-between p-3 bg-white rounded-t-lg" key={item.chatRoomId}>
                   <div className="font-bold">{item.oppositeName}</div>
-                  <div className="flex gap-3 cursor-pointer">
+                  <div className="flex gap-3 cursor-pointer ">
                     <div onClick={handleChatDelete}>🗑️</div>
                     <div onClick={handleCloseChatRoom}>✖️</div>
                   </div>
                 </div>
               ))}
 
-            <div className="bg-white mx-3 mt-3 w-76 rounded-t-lg overflow-y-auto max-h-[604px] scrollbar-hide">
+            <div className="bg-white mx-3 mt-3 w-76 rounded-t-lg overflow-y-auto max-h-[604px] h-[560px] scrollbar-hide">
               {chatMessage.map((message, index) =>
                 message.senderEmail === userEmail ? (
                   // 자신의 메시지
@@ -679,7 +676,7 @@ const Chat = () => {
                   sendMessage();
                   messageInputRef.current?.focus();
                 }}
-                className="px-1 text-3xl transition-transform duration-300 cursor-pointer hover:scale-105">
+                className="send-message-button px-1 text-3xl transition-transform duration-300 cursor-pointer hover:scale-105">
                 ➤
               </div>
             </div>
