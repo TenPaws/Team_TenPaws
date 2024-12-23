@@ -5,8 +5,6 @@ import MyPageModal from '../../components/MyPageModal';
 import Header from '../../components/Header';
 import axiosInstance from "../../utils/axiosInstance"; 
 
-import mainImage from '../../assets/image/mainimage.webp';
-
 
 interface ShelterInfo {
   id:number;
@@ -203,6 +201,21 @@ const MyPageShelter: React.FC = () => {
     return `/detail/${petId}`; // 상세 페이지 URL 생성
   };
 
+  const handlePostcode = () => {
+    const script = document.createElement("script");
+    script.src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+    script.onload = () => {
+      new (window as any).daum.Postcode({
+        oncomplete: (data: any) => {
+          // Combine address fields if needed
+          const fullAddress = data.address;
+          setShelterInfo((prev) => ({ ...prev, address: fullAddress }));
+        },
+      }).open();
+    };
+    document.body.appendChild(script);
+  };
+
 
 
   const renderContent = () => {
@@ -342,13 +355,25 @@ const MyPageShelter: React.FC = () => {
             </label>
             <label>
               <p className='text-gray-500'>주소</p>
-              <input
-                type="text"
-                name="address"
-                value={shelterInfo.address}
-                onChange={editChange}
-                className="block w-full p-2 border rounded border-mainColor"
-              />
+              <div className='flex flex-col items-end justify-end'>
+                <input
+                  id="address"
+                  name="address"
+                  type="text"
+                  placeholder="주소"
+                  value={shelterInfo.address}
+                  onChange={editChange}
+                  readOnly
+                  className="block w-full p-2 border rounded border-mainColor"
+                />
+                <button
+                    type="button"
+                    onClick={handlePostcode}
+                    className="px-2 py-2 mt-2 text-xs text-white bg-gray-500 rounded-lg hover:bg-gray-600"
+                >
+                  <div>주소 검색</div>
+                </button>
+              </div>
             </label>
             <label>
               <p className='text-gray-500'>전화번호</p>
