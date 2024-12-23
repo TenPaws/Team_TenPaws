@@ -149,10 +149,10 @@ const Main: React.FC = () => {
 
   const renderAdoptionJourney = () => {
     return (
-      <div className="w-full bg-white py-20 relative overflow-hidden">
+      <div className="relative w-full py-20 overflow-hidden bg-white">
         <div className="w-[1100px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-3">
+          <div className="mb-16 text-center">
+            <h2 className="mb-3 text-4xl font-bold">
               <span className="text-[#7F5546]">Ten</span>
               <span className="text-[#f1a34a]">Paws</span> 와 함께하는 입양 여정
             </h2>
@@ -224,7 +224,7 @@ const Main: React.FC = () => {
             </div>
 
             {/* 설명 */}
-            <div className="flex-1 bg-white rounded-2xl p-10 shadow-lg border border-gray-100 h-full overflow-hidden">
+            <div className="flex-1 h-full p-10 overflow-hidden bg-white border border-gray-100 shadow-lg rounded-2xl">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSection}
@@ -232,16 +232,16 @@ const Main: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="max-w-3xl h-full flex flex-col">
+                  className="flex flex-col h-full max-w-3xl">
                   <h3 className="text-2xl font-bold mb-6 text-[#3c2a13]">
                     {descriptions[sections[currentSection]].title}
                   </h3>
                   {descriptions[sections[currentSection]].content.map((line, index) => (
-                    <p key={index} className="text-gray-600 mb-4 leading-relaxed">
+                    <p key={index} className="mb-4 leading-relaxed text-gray-600">
                       {line}
                     </p>
                   ))}
-                  <div className="flex-1 flex items-center justify-center">
+                  <div className="flex items-center justify-center flex-1">
                     <motion.img
                       key={`img-${currentSection}`}
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -270,12 +270,12 @@ const Main: React.FC = () => {
       {/* 메인 배너 */}
       <section className="relative">
         <div className="relative">
-          <div className="absolute top-0 left-0 w-full h-full z-10">
-            <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-white via-white/95 to-transparent"></div>
+          <div className="absolute top-0 left-0 z-10 w-full h-full">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white via-white/95 to-transparent"></div>
           </div>
 
           <div className="relative xl:pl-[500px]">
-            <div className="absolute pt-12 pl-8 sm:pt-16 md:pt-20 lg:pt-24 sm:pl-16 md:pl-24 lg:pl-32 z-20">
+            <div className="absolute z-20 pt-12 pl-8 sm:pt-16 md:pt-20 lg:pt-24 sm:pl-16 md:pl-24 lg:pl-32">
               <div className="text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
                 <div className="sm:pb-5 md:pb-8 lg:pb-8 xl:pb-15">기다림의 끝에서</div>
                 <div className="pb-1 sm:pb-7 md:pb-9 lg:pb-12 xl:pb-15">서로를 만나는 순간</div>
@@ -295,13 +295,12 @@ const Main: React.FC = () => {
       </section>
 
       <div
-        className="h-20 bg-gradient-to-b from-transparent to-white relative 
-      -mt-20 z-10"></div>
+        className="relative z-10 h-20 -mt-20 bg-gradient-to-b from-transparent to-white"></div>
 
       {/* About TenPaws */}
-      <section className="relative bg-white -mt-1 py-28 px-4 justify-center text-center">
+      <section className="relative justify-center px-4 -mt-1 text-center bg-white py-28">
         <div
-          className="text-4xl font-bold md:text-4xl lg:text-4xl xl:text-4xl 2xl:text-4xl pb-10"
+          className="pb-10 text-4xl font-bold md:text-4xl lg:text-4xl xl:text-4xl 2xl:text-4xl"
           style={{ color: "#7F5546" }}>
           <span className="text-black">About</span> Ten<span className="text-[#f1a34a]">Paws</span>
         </div>
@@ -351,14 +350,14 @@ const Main: React.FC = () => {
       </section>
 
       {/* 동물 카드 */}
-      <section className="w-full bg-gray-50 py-16">
+      <section className="w-full py-16 bg-gray-50">
         <div className="text-center">
-          <h2 className="text-4xl font-bold mb-3">가족을 기다리고 있어요!</h2>
+          <h2 className="mb-3 text-4xl font-bold">가족을 기다리고 있어요!</h2>
         </div>
         <div className="w-[1100px] mx-auto">
           <div className="flex flex-col items-center">
             {/* 큰 카드 */}
-            <div className="w-full mt-16 relative">
+            <div className="relative w-full mt-16">
               {/* 왼쪽 */}
               <button
                 onClick={handlePrevCard}
@@ -384,13 +383,13 @@ const Main: React.FC = () => {
                     <img
                       src={`http://15.164.103.160:8080${filteredPets[currentPetIndex]?.imageUrls[0]}`}
                       alt="동물 사진"
-                      className="w-full h-96 object-cover rounded-lg"
+                      className="object-cover w-full rounded-lg h-96"
                     />
                   </div>
 
                   {/* 정보 */}
-                  <div className="flex-1 border-l border-gray-200 pl-8 ">
-                    <h3 className="text-2xl font-bold mb-6">{filteredPets[currentPetIndex]?.species}</h3>
+                  <div className="flex-1 pl-8 border-l border-gray-200 ">
+                    <h3 className="mb-6 text-2xl font-bold">{filteredPets[currentPetIndex]?.species}</h3>
                     <div className="space-y-4 text-lg">
                       <p>나이: {filteredPets[currentPetIndex]?.age}</p>
                       <p>크기: {filteredPets[currentPetIndex]?.size}</p>
@@ -424,7 +423,7 @@ const Main: React.FC = () => {
               </button>
 
               {/* 페이지 */}
-              <div className="flex justify-center mt-4 gap-2">
+              <div className="flex justify-center gap-2 mt-4">
                 {filteredPets.slice(0, 5).map((_, idx) => (
                   <div
                     key={idx}
