@@ -19,6 +19,7 @@ interface ShelterInfo {
 
 interface Pet {
   petId: number;
+  petName: string;
   species: string;
   size: string;
   age: string;
@@ -262,19 +263,30 @@ const MyPageShelter: React.FC = () => {
                 {Array.isArray(petLists) && petLists.length > 0 ? (
                   petLists.map((pet) => (
                     <Link to={detailLink(pet.petId)}>
-                      <div key={pet.petId} className='overflow-hidden border border-solid rounded-lg min-w-40 max-w-48 min-h-72 max-h-72'>
-                        <img
-                          src={pet.imageUrls && pet.imageUrls.length > 0 ? `http://3.38.196.10:8080${pet.imageUrls[0]}` : mainImage} 
-                          alt="동물 사진"
-                          onError={(e) => {
-                            e.currentTarget.src = mainImage;
-                            e.currentTarget.onerror = null;
-                          }}
-                        />
-                        <div className='m-3'>
-                          <p>{pet.species} / {pet.size} / {pet.age} / <br />
-                            {pet.personality} / 활동량({pet.exerciseLevel})
-                          </p>
+                      {/* 큰 카드 */}
+                      <div key={pet.petId} className="relative w-full mt-16">
+                        {/* 카드 */}
+                        <div className="bg-white rounded-2xl p-8 shadow-[0_0_15px_rgba(0,0,0,0.2)]">
+                          <div className="flex items-center justify-center gap-8 ">
+                            {/* 사진*/}
+                            <div className="flex flex-col items-center justify-center font-bold">
+                              <img
+                                src={`http://3.38.196.10:8080${pet.imageUrls[0]}`}
+                                alt="동물 사진"
+                                className="object-cover w-full h-48 rounded-lg"
+                              />
+                              <p>{pet.petName}</p>
+                            </div>
+                            {/* 정보 */}
+                            <div className="flex-1 pl-8 mt-2 border-l border-gray-200">
+                              <div className="space-y-4 text-lg">
+                                <p className='px-3 border rounded-xl border-mainColor'>#나이: {pet.age}</p>
+                                <p className='px-3 border rounded-xl border-mainColor'>#크기: {pet.size}</p>
+                                <p className='px-3 border rounded-xl border-mainColor'>#성격: {pet.personality}</p>
+                                <p className='px-3 border rounded-xl border-mainColor'>#활동량: {pet.exerciseLevel}</p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </Link>
