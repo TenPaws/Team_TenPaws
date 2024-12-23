@@ -30,11 +30,13 @@ import Worldcup from "./pages/worldcup/Worldcup";
 import AnnouncementEdit from "./pages/guide/AnnouncementEdit";
 import QAandAEdit from "./pages/guide/QAndAEdit";
 import AuthResponse from "./pages/AuthResponse";
+import { classDeclaration } from '../node_modules/react-vertical-timeline-component/node_modules/@babel/helper-module-transforms/node_modules/@babel/types/lib/index.d';
 
 function App() {
 
   
   return (
+    <div className="font-godo">
     <Router>
       <Routes>
         <Route path="/" element={<Main />} /> {/* 메인 페이지 */}
@@ -71,7 +73,7 @@ function App() {
         <Route path="/auth/oauth-response/:token/:expiresIn" element={<AuthResponse />} /> {/* 소셜 로그인 */}
       </Routes>
     </Router>
-
+    </div>
   );
 }
 
