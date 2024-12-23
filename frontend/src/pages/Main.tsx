@@ -352,7 +352,7 @@ const Main: React.FC = () => {
 
       {/* 동물 카드 */}
       <section className="w-full bg-gray-50 py-16">
-        <div className="text-center mb-16">
+        <div className="text-center">
           <h2 className="text-4xl font-bold mb-3">가족을 기다리고 있어요!</h2>
         </div>
         <div className="w-[1100px] mx-auto">
