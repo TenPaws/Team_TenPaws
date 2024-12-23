@@ -24,7 +24,7 @@ public class PetResponseDTO {
     private final String extra;
     private final String introduction;
     private final String personality;
-    private final int exerciseLevel;
+    private final String exerciseLevel;
     private final Long shelterId;
     private final String shelterName;
     private final String shelterAddress;
