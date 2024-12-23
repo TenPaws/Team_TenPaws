@@ -274,11 +274,11 @@ const Main: React.FC = () => {
             <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-white via-white/95 to-transparent"></div>
           </div>
 
-          <div className="relative xl:pl-[500px]">
+          <div className="relative xl:pl-[250px]">
             <div className="absolute pt-12 pl-8 sm:pt-16 md:pt-20 lg:pt-24 sm:pl-16 md:pl-24 lg:pl-32 z-20">
               <div className="text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
                 <div className="sm:pb-5 md:pb-8 lg:pb-8 xl:pb-15">기다림의 끝에서</div>
-                <div className="pb-1 sm:pb-7 md:pb-9 lg:pb-12 xl:pb-15">서로를 만나는 순간</div>
+                <div className="pb-1 sm:pb-7 md:pb-9 lg:pb-12 xl:pb-10">서로를 만나는 순간</div>
               </div>
               <div className="pb-5 text-sm sm:text-xl md:text-2xl lg:text-3xl sm:pb-12 md:pb-14 lg:pb-17 xl:pb-20">
                 TenPaws가 맺어주는 하나뿐인 인연

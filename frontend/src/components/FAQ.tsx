@@ -83,7 +83,7 @@ const FAQ = ({ isOpen, onClose }: FAQProps) => {
     <div>
       {isOpen && (
         <>
-          <div className=" w-[450px] h-[720px] fixed bottom-[56px] -right-[24px] m-6 z-50 rounded-t-md">
+          <div className=" w-[430px] h-[670px] fixed bottom-[56px] -right-[24px] m-6 z-50 rounded-t-md">
             <div className="font-bold text-xl p-4 flex rounded-t-md content-center justify-between">
               <div>FAQ</div>
               <div className="flex gap-2">

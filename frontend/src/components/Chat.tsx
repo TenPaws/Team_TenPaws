@@ -28,14 +28,10 @@ interface chatMessage {
 }
 
 const Chat = () => {
-  // 단순히 로그인 여부만 확인
   const isLoggedIn = localStorage.getItem("accessToken");
-
-  // 로그인되지 않은 경우 제한된 채팅 컴포넌트 표시
   if (!isLoggedIn) {
     return <Chatnotlogin />;
   }
-
   const [isopen, setIsOpen] = useState(false);
   const [makeChatRoom, setMakeChatRoom] = useState(false);
   const [chatRoomOpen, setChatRoomOpen] = useState(false);
@@ -414,7 +410,6 @@ const Chat = () => {
     }
   }, [isConnected, fetchChatroom]);
 
-  // isopen이 true가 될 때 FAQ를 표시
   useEffect(() => {
     if (isopen) {
       setFnqopen(true);
@@ -484,7 +479,7 @@ const Chat = () => {
 
             {(isopen || isAnimating) && (
               <div
-                className={`bg-white fixed bottom-20 right-6 z-50 w-[450px] h-[800px] rounded-xl 
+                className={`bg-white fixed bottom-20 right-6 z-50 w-[430px] h-[750px] rounded-xl 
                 shadow-[0_0_15px_rgba(0,0,0,0.2)] flex flex-col
                 transform transition-all duration-300 ease-in-out
                 ${isopen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
@@ -618,22 +613,22 @@ const Chat = () => {
 
       {/* 채팅방 내부*/}
       {chatRoomOpen && (
-        <div className="fixed bottom-[160px] right-[24px] z-50">
-          <div className="bg-[#f1a34a] w-[450px] h-[720px] rounded-lg">
+        <div className="fixed bottom-[160px] right-[24px] z-50 send-message-button">
+          <div className="bg-[#f1a34a] w-[430px] h-[670px] rounded-lg">
             {/* 헤더 */}
             {userChatRoom
               .filter((item) => item.chatRoomId === chatRoomId)
               .map((item) => (
                 <div className=" flex justify-between p-3 bg-white rounded-t-lg" key={item.chatRoomId}>
                   <div className="font-bold">{item.oppositeName}</div>
-                  <div className="flex gap-3 cursor-pointer send-message-button">
+                  <div className="flex gap-3 cursor-pointer ">
                     <div onClick={handleChatDelete}>🗑️</div>
                     <div onClick={handleCloseChatRoom}>✖️</div>
                   </div>
                 </div>
               ))}
 
-            <div className="bg-white mx-3 mt-3 w-76 rounded-t-lg overflow-y-auto max-h-[604px] h-[620px] scrollbar-hide">
+            <div className="bg-white mx-3 mt-3 w-76 rounded-t-lg overflow-y-auto max-h-[604px] h-[560px] scrollbar-hide">
               {chatMessage.map((message, index) =>
                 message.senderEmail === userEmail ? (
                   // 자신의 메시지
