@@ -57,7 +57,7 @@ const FAQ = ({ isOpen, onClose }: FAQProps) => {
   useEffect(() => {
     const fetchTopFAQ = async () => {
       try {
-        const response = await axios.get("http://15.164.103.160:8080/api/v1/faqs/top-level");
+        const response = await axios.get("http://3.38.196.10:8080/api/v1/faqs/top-level");
         setTopContent(response.data);
       } catch (error) {
         console.error("최상위 질문 불러오기 실패", error);
@@ -70,7 +70,7 @@ const FAQ = ({ isOpen, onClose }: FAQProps) => {
   useEffect(() => {
     const fetchAllFAQ = async () => {
       try {
-        const response = await axios.get(`http://15.164.103.160:8080/api/v1/faqs`);
+        const response = await axios.get(`http://3.38.196.10:8080/api/v1/faqs`);
         setAllContent(response.data);
       } catch (error) {
         console.error("하위 질문 불러오기 실패", error);

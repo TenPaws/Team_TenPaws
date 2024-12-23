@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Setter
@@ -54,6 +55,9 @@ public class Pet {
     @Column(name = "extra")
     private String extra;
 
+    @Column(name = "introduction")
+    private String introduction;
+
     @Column(name = "personality", nullable = false)
     private String personality;
 
@@ -78,9 +82,18 @@ public class Pet {
         APPLIED    // 신청 완료
     }
 
+    @Column(name = "created_date", updatable = false)
+    private LocalDateTime createdDate;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdDate = LocalDateTime.now();
+    }
+
     @Builder
     public Pet(Long id, String petName, Species species,  String size, String age, String gender, String neutering, String reason,
-               String preAdoption, String vaccinated, String extra, String personality, int exerciseLevel, Shelter shelter, List<String> imageUrls, PetStatus status) {
+               String preAdoption, String vaccinated, String extra, String personality, int exerciseLevel, Shelter shelter,
+               List<String> imageUrls, PetStatus status, String introduction) {
         this.id = id;
         this.petName = petName;
         this.species = species;
@@ -92,6 +105,7 @@ public class Pet {
         this.preAdoption = preAdoption;
         this.vaccinated = vaccinated;
         this.extra = extra;
+        this.introduction = introduction;
         this.personality = personality;
         this.exerciseLevel = exerciseLevel;
         this.shelter = shelter;
@@ -111,6 +125,7 @@ public class Pet {
         this.preAdoption = requestDTO.getPreAdoption();
         this.vaccinated = requestDTO.getVaccinated();
         this.extra = requestDTO.getExtra();
+        this.introduction = requestDTO.getIntroduction();
         this.personality = requestDTO.getPersonality();
         this.exerciseLevel = requestDTO.getExerciseLevel();
     }

@@ -9,6 +9,7 @@ import mainImage from '../../assets/image/mainimage.webp';
 
 
 interface ShelterInfo {
+  id:number;
   email: string;
   shelterName: string;
   phoneNumber: string;
@@ -22,7 +23,7 @@ interface Pet {
   size: string;
   age: string;
   personality: string;
-  exerciseLevel: number;
+  exerciseLevel: string;
   imageUrls: string[];
 }
 
@@ -41,6 +42,7 @@ const MyPageShelter: React.FC = () => {
     Id: 0
   })
   const [shelterInfo, setShelterInfo] = useState<ShelterInfo>({
+    id: 0,
     shelterName: '',
     address: '',
     email: '',
@@ -182,6 +184,10 @@ const MyPageShelter: React.FC = () => {
     }
   };
 
+  const mapLink = (shelterId:number) => {
+    return `/shelter-address/${shelterId}`; // 지도 페이지 URL 생성
+  };
+
 
   // 입양신청 리스트 페이지로 이동하는 링크 생성 함수
   const applyListLink = (shelterId:number) => {
@@ -214,7 +220,9 @@ const MyPageShelter: React.FC = () => {
               </div>
               <p className="mb-2 text-xl font-bold">주소</p>
               <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
-                <button className='flex items-center justify-center text-lg'>{shelterInfo.address}</button>
+                <Link to={mapLink(shelterInfo.id)} state={{ shelterName: shelterInfo.shelterName, address: shelterInfo.address}}>
+                  <button className='flex items-center justify-center gap-5 text-lg'>{shelterInfo.address} <GoArrowRight /></button>
+                </Link>
               </div>
               <p className="mb-2 text-xl font-bold">단체 메일</p>
               <div className="flex justify-between w-full p-3 mb-5 border-b border-mainColor">
@@ -256,7 +264,7 @@ const MyPageShelter: React.FC = () => {
                     <Link to={detailLink(pet.petId)}>
                       <div key={pet.petId} className='overflow-hidden border border-solid rounded-lg min-w-40 max-w-48 min-h-72 max-h-72'>
                         <img
-                          src={pet.imageUrls && pet.imageUrls.length > 0 ? `http://15.164.103.160:8080${pet.imageUrls[0]}` : mainImage} 
+                          src={pet.imageUrls && pet.imageUrls.length > 0 ? `http://3.38.196.10:8080${pet.imageUrls[0]}` : mainImage} 
                           alt="동물 사진"
                           onError={(e) => {
                             e.currentTarget.src = mainImage;

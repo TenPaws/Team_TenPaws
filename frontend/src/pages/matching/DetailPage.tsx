@@ -18,7 +18,7 @@ interface PetAdd {
   vaccinated: string;
   extra?: string;
   personality: string;
-  exerciseLevel: number;
+  exerciseLevel: string;
   shelterId: number;
   shelterName: string;
   address: string;
@@ -58,7 +58,7 @@ const DetailPage = () => {
     vaccinated: "",
     extra: "",
     personality: "",
-    exerciseLevel: 0,
+    exerciseLevel: "",
     shelterId: useId.Id,
     shelterName: shelterInfo.shelterName,
     address: shelterInfo.address,
@@ -175,7 +175,7 @@ const DetailPage = () => {
 
     try {
       const response = await axios.post(
-        `http://15.164.103.160:8080/api/v1/pets/${useId.Id}`,
+        `http://3.38.196.10:8080/api/v1/pets/${useId.Id}`,
         petData,
         {
           headers: {

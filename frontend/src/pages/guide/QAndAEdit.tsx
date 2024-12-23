@@ -19,7 +19,7 @@ const QAandAEdit = () => {
     useEffect(() => {
       const fetchPost = async () => {
         try {
-          const response = await axios.get(`http://15.164.103.160:8080/api/v1/inquiries/${id}`);
+          const response = await axios.get(`http://3.38.196.10:8080/api/v1/inquiries/${id}`);
           setTitle(response.data.title);
           setContent(response.data.content);
         } catch (error) {
@@ -35,7 +35,7 @@ const QAandAEdit = () => {
     //수정 요청
     const handleSubmit = async () => {
       try {
-        await axios.put(`http://15.164.103.160:8080/api/v1/inquiries/${id}`, {
+        await axios.put(`http://3.38.196.10:8080/api/v1/inquiries/${id}`, {
           title,
           content
         },

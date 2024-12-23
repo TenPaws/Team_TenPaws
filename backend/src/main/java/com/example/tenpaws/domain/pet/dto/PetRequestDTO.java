@@ -36,6 +36,7 @@ public class PetRequestDTO {
     private String preAdoption;
     private String vaccinated;
     private String extra;
+    private String introduction;
     private String personality;
     private int exerciseLevel;
     private List<MultipartFile> images; // Store multiple image files
@@ -53,6 +54,7 @@ public class PetRequestDTO {
                 .preAdoption(this.preAdoption)
                 .vaccinated(this.vaccinated)
                 .extra(this.extra)
+                .introduction(this.introduction)
                 .personality(this.personality)
                 .exerciseLevel(this.exerciseLevel)
                 .shelter(shelter)

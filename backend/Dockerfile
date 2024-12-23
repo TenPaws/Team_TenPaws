@@ -1,14 +1,12 @@
 FROM eclipse-temurin:17-jdk-alpine
 
-RUN apk add --no-cache netcat-openbsd
-
 # 필요한 디렉토리 구조 생성
-RUN mkdir -p /home/ubuntu/instagram-server/src/main/resources \
-    && mkdir -p /home/ubuntu/instagram-server/uploads \
-    && chmod -R 777 /home/ubuntu/instagram-server/uploads
+RUN mkdir -p /home/ubuntu/tenpaws-server/src/main/resources \
+    && mkdir -p /home/ubuntu/tenpaws-server/uploads \
+    && chmod -R 777 /home/ubuntu/tenpaws-server/uploads
 
 # application.properties 파일을 스프링 부트 컨테이너(이미지) 내부의 프로젝트 경로로 복사
-COPY src/main/resources/application.properties /home/ubuntu/instagram-server/src/main/resources/application.properties
+COPY src/main/resources/application.properties /home/ubuntu/tenpaws-server/src/main/resources/application.properties
 
 # 프로젝트의 JAR 파일을 컨테이너 내부로 복사
 # build/libs 디렉토리에서 SNAPSHOT.jar로 끝나는 모든 파일을 project.jar라는 이름으로 복사
@@ -25,4 +23,4 @@ EXPOSE 8080
 #ENTRYPOINT ["java", "-jar", "project.jar"]
 
 # Java 실행 시 properties 파일 위치 지정
-ENTRYPOINT ["java", "-jar", "project.jar", "--spring.config.location=file:/home/ubuntu/instagram-server/src/main/resources/application.properties"]
+ENTRYPOINT ["java", "-jar", "project.jar", "--spring.config.location=file:/home/ubuntu/tenpaws-server/src/main/resources/application.properties"]

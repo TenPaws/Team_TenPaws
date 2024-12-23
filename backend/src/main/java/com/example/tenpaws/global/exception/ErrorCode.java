@@ -68,9 +68,14 @@ public enum ErrorCode {
     PET_NOT_FOUND(HttpStatus.NOT_FOUND,"Pet not found with ID"),
     NOT_ASSIGNED(HttpStatus.BAD_REQUEST,"The pet is not assigned to this shelter." ),
     NO_PETS_AVAILABLE(HttpStatus.CONTINUE, "No pets available"),
-    AI_COMMUNICATION_ERROR(HttpStatus.SERVICE_UNAVAILABLE, "Failed to communicate with AI service.");
+    AI_COMMUNICATION_ERROR(HttpStatus.SERVICE_UNAVAILABLE, "Failed to communicate with AI service."),
 
+    FILE_UPLOAD_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "File upload failed due to an unexpected error."),
+    PET_ALREADY_APPLIED(HttpStatus.CONFLICT, "Pet already applied"),
 
+    // Apply
+    APPLICATION_NOT_FOUND(HttpStatus.NOT_FOUND, "Application not found"),
+    USER_NOT_AUTHORIZED(HttpStatus.FORBIDDEN, "You are not owner"),;
 
     private final HttpStatus httpStatus;
     private final String message;

@@ -52,7 +52,7 @@ const useStore = create<StoreState>((set, get) => ({
     if (!token || get().isConnected) return;
 
     const client = new Client({
-      brokerURL: `ws://15.164.103.160:8080/ws?authorization=${token}`,
+      brokerURL: `ws://3.38.196.10:8080/ws?authorization=${token}`,
       connectHeaders: {
         Authorization: token
       },

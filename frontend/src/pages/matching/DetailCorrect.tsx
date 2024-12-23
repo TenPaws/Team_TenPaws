@@ -18,7 +18,7 @@ interface PetAdd {
   vaccinated: string;
   extra?: string;
   personality: string;
-  exerciseLevel: number;
+  exerciseLevel: string;
   shelterId: number;
   shelterName: string;
   address: string;
@@ -60,7 +60,7 @@ const DetailCorrect = () => {
     vaccinated: "",
     extra: "",
     personality: "",
-    exerciseLevel: 0,
+    exerciseLevel: "",
     shelterId: useId.Id,
     shelterName: shelterInfo.shelterName,
     address: shelterInfo.address,
@@ -181,7 +181,7 @@ const DetailCorrect = () => {
 
     try {
       const response = await axios.put(
-        `http://15.164.103.160:8080/api/v1/pets/${useId.Id}/${petId}`,
+        `http://3.38.196.10:8080/api/v1/pets/${useId.Id}/${petId}`,
         petData,
         {
           headers: {
@@ -324,21 +324,22 @@ const DetailCorrect = () => {
             <div className="flex items-center justify-between p-2 px-10 border">
               <label htmlFor="personality" className="text-xl">성격</label>
               <select id="personality" className="pl-2 text-xs font-bold" value={addPet.personality} onChange={InputChange}>
-                <option value="">성격</option>
-                <option value="얌전함">얌전함</option>
-                <option value="활발함">활발함</option>
+              <option value="">성격</option>
+                <option value="사교적">사교적</option>
+                <option value="독립적">독립적</option>
+                <option value="겁이많음">겁이많음</option>
                 <option value="사나움">사나움</option>
               </select>
             </div>
             <div className="flex items-center justify-between p-2 px-10 border">
               <label htmlFor="exerciseLevel" className="text-xl">활동량</label>
               <select id="exerciseLevel" className="pl-2 text-xs font-bold" value={addPet.exerciseLevel} onChange={InputChange}>
-                <option value="">적음 1 ~ 많음 5</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+              <option value="">활동량</option>
+                <option value="매우적음">매우 적음</option>
+                <option value="적음">적음</option>
+                <option value="보통">보통</option>
+                <option value="많음">많음</option>
+                <option value="매우많음">매우 많음</option>
               </select>
             </div>
             <div className="flex items-center justify-between p-2 px-10 border">

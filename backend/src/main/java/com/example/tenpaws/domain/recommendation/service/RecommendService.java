@@ -110,7 +110,11 @@ public class RecommendService {
             PetResponseDTO petResponseDTO = PetResponseDTO.fromEntity(recommendedPet); //dto에 fromEntity 존재, 이걸로 정적 팩토리 메서드 사용
 
             Map<String, Object> result = new HashMap<>();
-            result.put("content", aiResponseContent); // AI 응답의 content
+
+            // ai 응답에서 (Id: ~~~) 부분을 클라이언트에 반환 시 삭제하여 공백으로 반환(서버 응답은 남아있으므로 여전히 petId는 사용 가능함.
+            String reason = aiResponseContent.replaceAll("\\(Id: \\s*\\d+\\)", "");
+
+            result.put("content", reason); // AI 응답의 content
             result.put("petId", petResponseDTO.getPetId()); // 추천된 Pet의 ID
             result.put("pet", petResponseDTO); // Pet 정보
 

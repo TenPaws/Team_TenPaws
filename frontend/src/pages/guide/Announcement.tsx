@@ -26,7 +26,7 @@ const Announcement = () => {
   useEffect(() => {
     const fetchAnnouncements = async () => {
       try {
-        const response = await axios.get("http://15.164.103.160:8080/api/v1/announcements");
+        const response = await axios.get("http://3.38.196.10:8080/api/v1/announcements");
 
         if (response.data && response.data.content) {
           setAnnouncements(response.data.content);
