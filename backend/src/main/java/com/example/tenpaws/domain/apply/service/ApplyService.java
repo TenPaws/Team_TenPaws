@@ -8,14 +8,13 @@ import com.example.tenpaws.domain.notification.factory.NotificationFactory;
 import com.example.tenpaws.domain.notification.service.NotificationService;
 import com.example.tenpaws.domain.pet.entity.Pet;
 import com.example.tenpaws.domain.pet.repository.PetRepository;
-import com.example.tenpaws.domain.shelter.entity.Shelter;
 import com.example.tenpaws.domain.user.entity.User;
 import com.example.tenpaws.domain.user.repositoty.UserRepository;
 import com.example.tenpaws.global.exception.BaseException;
 import com.example.tenpaws.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.dao.PessimisticLockingFailureException;
+import org.springframework.dao.QueryTimeoutException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,12 +37,12 @@ public class ApplyService {
         try {
 
             User user = userRepository.findByEmail(email)
-                    .orElseThrow(() -> new RuntimeException("User not found"));
+                    .orElseThrow(() -> new BaseException(ErrorCode.MEMBER_NOT_FOUND));
 
             Pet pet = petRepository.findByIdWithPessimisticLock(petId)
-                    .orElseThrow(() -> new RuntimeException("Pet not found"));
+                    .orElseThrow(() -> new BaseException(ErrorCode.PET_NOT_FOUND));
             if (pet.getStatus() == Pet.PetStatus.APPLIED) {
-                throw new RuntimeException("This pet has already been applied for.");
+                throw new BaseException(ErrorCode.PET_ALREADY_APPLIED);
             }
 
             ensureUserCanApply(user.getId(), petId);
@@ -102,9 +101,9 @@ public class ApplyService {
             return ApplyDto.fromEntity(savedApply);
 
         } catch (PessimisticLockingFailureException e) {
-            throw new RuntimeException("Could not acquire lock. Please try again later.", e);
+            throw new BaseException(ErrorCode.LOCK_ACQUISITION_FAILED);
         } catch (QueryTimeoutException e) {
-            throw new RuntimeException("Operation timed out. Please try again later.", e);
+            throw new BaseException(ErrorCode.OPERATION_TIMEOUT);
         }
     }
 
