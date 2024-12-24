@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Setter
@@ -61,7 +62,7 @@ public class Pet {
     private String personality;
 
     @Column(name = "exercise_level", nullable = false)
-    private int exerciseLevel;
+    private String exerciseLevel;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shelter_id")
@@ -81,9 +82,17 @@ public class Pet {
         APPLIED    // 신청 완료
     }
 
+    @Column(name = "created_date", updatable = false)
+    private LocalDateTime createdDate;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdDate = LocalDateTime.now();
+    }
+
     @Builder
     public Pet(Long id, String petName, Species species,  String size, String age, String gender, String neutering, String reason,
-               String preAdoption, String vaccinated, String extra, String personality, int exerciseLevel, Shelter shelter,
+               String preAdoption, String vaccinated, String extra, String personality, String exerciseLevel, Shelter shelter,
                List<String> imageUrls, PetStatus status, String introduction) {
         this.id = id;
         this.petName = petName;

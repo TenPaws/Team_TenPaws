@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import Chat from "../components/Chat";
-import FAQ from "../components/FAQ";
 import Main2 from "/main3.png";
 import AImatching from "/pet-house (2) 1.svg";
 import met from "/pet-food 1.png";
 import care from "/animal (1) 1.png";
+import { motion, AnimatePresence } from "framer-motion";
 
-// 상세 설명 데이터 타입 정의
 type IconType = "dog" | "approve" | "board" | "check";
 type Description = {
   title: string;
@@ -26,10 +24,7 @@ const iconToImageMap: Record<IconType, string> = {
 const descriptions: Record<IconType, Description> = {
   dog: {
     title: "매칭 동물 결정",
-    content: [
-      "필요한 조건을 골라 원하는 반려 동물들을 결정해 보세요."
-      // "고르는데 어려움이 있으시면 AI 기능을 활용해 보세요.",
-    ]
+    content: ["필요한 조건을 골라 원하는 반려 동물들을 결정해 보세요."]
   },
   approve: {
     title: "매칭 신청",
@@ -45,60 +40,275 @@ const descriptions: Record<IconType, Description> = {
   }
 };
 
+interface ProcessedPet {
+  petId: number;
+  species: string;
+  age: string;
+  personality: string;
+  exerciseLevel: number;
+  size: string;
+  status: string;
+  imageUrls: string[];
+}
+
 const Main: React.FC = () => {
   const [activeIcon, setActiveIcon] = useState<IconType>("dog");
+  const [activeCategory, setActiveCategory] = useState("전체");
+  const [pets, setPets] = useState<ProcessedPet[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const navigation = useNavigate();
+  const [currentPetIndex, setCurrentPetIndex] = useState(0);
+  const [currentSection, setCurrentSection] = useState(0);
+  const sections = ["dog", "approve", "board", "check"] as IconType[];
+  const [isScrolling, setIsScrolling] = useState(false);
+  const adoptionRef = React.useRef<HTMLDivElement>(null);
+
+  // 스크롤
+  useEffect(() => {
+    const adoptionSection = adoptionRef.current;
+    if (!adoptionSection) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // 무시
+      if (isScrolling) return;
+
+      if (currentSection === 0 && e.deltaY < 0) {
+        // 스크롤 허용
+        const wheelEvent = new WheelEvent("wheel", {
+          deltaY: e.deltaY,
+          bubbles: true
+        });
+        window.dispatchEvent(wheelEvent);
+        return;
+      }
+
+      // 섹션 전환
+      if (e.deltaY > 0 && currentSection < sections.length - 1) {
+        setIsScrolling(true);
+        setCurrentSection((prev) => prev + 1);
+        setActiveIcon(sections[currentSection + 1]);
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 950);
+      } else if (e.deltaY < 0 && currentSection > 0) {
+        setIsScrolling(true);
+        setCurrentSection((prev) => prev - 1);
+        setActiveIcon(sections[currentSection - 1]);
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 950);
+      }
+    };
+
+    adoptionSection.addEventListener("wheel", handleWheel, { passive: false });
+    return () => adoptionSection.removeEventListener("wheel", handleWheel);
+  }, [currentSection, sections, isScrolling]);
+
+  // 동물 매칭 호출
+  useEffect(() => {
+    const fetchPetList = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("http://15.164.103.160:8080/api/v1/pets");
+        const data = await response.json();
+        setPets(data);
+      } catch (error) {
+        console.error("동물 리스트를 불러오는 중 오류 발생:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPetList();
+  }, []);
+
+  // 필터링 로직
+  const filteredPets = Array.isArray(pets)
+    ? pets.filter((pet) => {
+        if (activeCategory === "전체") return pet.status === "AVAILABLE";
+        return pet.status === "AVAILABLE" && pet.species === activeCategory;
+      })
+    : [];
+
+  // 상세 페이지 이동
+  const goToDetail = (petId: number) => {
+    navigation(`/detail/${petId}`);
+  };
+
+  // 이전
+  const handlePrevCard = () => {
+    setCurrentPetIndex((prev) => (prev === 0 ? filteredPets.length - 1 : prev - 1));
+  };
+
+  //다음
+  const handleNextCard = () => {
+    setCurrentPetIndex((prev) => (prev === filteredPets.length - 1 ? 0 : prev + 1));
+  };
+
+  const renderAdoptionJourney = () => {
+    return (
+      <div className="relative w-full py-20 overflow-hidden bg-white">
+        <div className="w-[1100px] mx-auto">
+          <div className="mb-16 text-center">
+            <h2 className="mb-3 text-4xl font-bold">
+              <span className="text-[#7F5546]">Ten</span>
+              <span className="text-[#f1a34a]">Paws</span> 와 함께하는 입양 여정
+            </h2>
+            <p className="text-gray-600">새로운 가족을 만나는 과정을 미리 확인해 보세요</p>
+          </div>
+
+          <div
+            ref={adoptionRef}
+            className="flex gap-8 h-[850px] overflow-hidden sticky top-0"
+            style={{ scrollBehavior: "smooth" }}>
+            {/* 진행 단계 */}
+            <div className="bg-[#f1a34a] rounded-2xl p-2 shadow-lg w-[220px] h-full">
+              <div className="flex flex-col justify-center h-full space-y-10">
+                {sections.map((icon, idx) => (
+                  <React.Fragment key={icon}>
+                    <div
+                      className={`flex flex-col items-center cursor-pointer transition-all duration-300 ${
+                        currentSection === idx ? "scale-105" : "hover:scale-105"
+                      }`}
+                      onClick={() => {
+                        setCurrentSection(idx);
+                        setActiveIcon(icon);
+                      }}>
+                      <div
+                        className={`w-12 h-12 rounded-full flex items-center justify-center mb-3
+                        transition-all duration-300 shadow-md
+                        ${
+                          currentSection === idx
+                            ? "bg-[#f1a34a] ring-2 ring-white"
+                            : "bg-white hover:bg-[#f1a34a] hover:ring-2 hover:ring-white"
+                        }`}>
+                        <img
+                          src={`/${icon}.png`}
+                          alt={descriptions[icon].title}
+                          className={`w-6 h-6 transition-all duration-300 ${
+                            currentSection === idx ? "brightness-0 invert" : "hover:brightness-0 hover:invert"
+                          }`}
+                        />
+                      </div>
+                      <span
+                        className={`text-base font-bold text-center transition-all duration-300 ${
+                          currentSection === idx ? "opacity-100" : "opacity-70 hover:opacity-100"
+                        }`}>
+                        {descriptions[icon].title}
+                      </span>
+                    </div>
+                    {idx < sections.length - 1 && (
+                      <div className="flex justify-center">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="text-white opacity-70">
+                          <path
+                            d="M12 4L12 16M12 16L7 11M12 16L17 11"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+
+            {/* 설명 */}
+            <div className="flex-1 h-full p-10 overflow-hidden bg-white border border-gray-100 shadow-lg rounded-2xl">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSection}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-col h-full max-w-3xl">
+                  <h3 className="text-2xl font-bold mb-6 text-[#3c2a13]">
+                    {descriptions[sections[currentSection]].title}
+                  </h3>
+                  {descriptions[sections[currentSection]].content.map((line, index) => (
+                    <p key={index} className="mb-4 leading-relaxed text-gray-600">
+                      {line}
+                    </p>
+                  ))}
+                  <div className="flex items-center justify-center flex-1">
+                    <motion.img
+                      key={`img-${currentSection}`}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.5 }}
+                      src={`/${iconToImageMap[sections[currentSection]]}`}
+                      alt="Matching Animal Example"
+                      className="w-full max-w-2xl rounded-lg shadow-md"
+                    />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* 헤더 */}
       <Header />
       <Chat />
-      <FAQ />
-      {/* About TenPaws */}
-      <section className="relative ">
-        <div>
-          <div className="absolute pt-12 pl-8 sm:pt-16 md:pt-20 lg:pt-24 sm:pl-16 md:pl-24 lg:pl-32">
-            <div className="text-2xl font-semibold sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl ">
-              <div className="sm:pb-5 md:pb-8 lg:pb-8 xl:pb-15">기다림의 끝에서</div>
-              <div className="pb-1 sm:pb-7 md:pb-9 lg:pb-12 xl:pb-15">서로를 만나는 순간</div>
-            </div>
-            <div className="pb-5 text-sm sm:text-3xl md:text-4xl lg:text-5xl sm:pb-7 md:pb-9 lg:pb-12 xl:pb-15">
-              AI가 맺어주는 하나뿐인 인연
-            </div>
-            <div
-              className="font-bold text-white bg-[#f1a34a] inline py-2 sm:py-3 px-8 sm:px-16 text-xl sm:text-2xl md:text-3xl rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] cursor-pointer hover:bg-[#3c2a13] hover:duration-300"
-              onClick={() => navigation("/matching")}>
-              시작하기
-            </div>
+
+      {/* 메인 배너 */}
+      <section className="relative">
+        <div className="relative">
+          <div className="absolute top-0 left-0 z-10 w-full h-full">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white via-white/95 to-transparent"></div>
           </div>
-          <img src={Main2} alt="main2" />
+
+          <div className="relative xl:pl-[250px]">
+            <div className="absolute z-20 pt-12 pl-8 sm:pt-16 md:pt-20 lg:pt-24 sm:pl-16 md:pl-24 lg:pl-32">
+              <div className="text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+                <div className="sm:pb-5 md:pb-8 lg:pb-8 xl:pb-15">기다림의 끝에서</div>
+                <div className="pb-1 sm:pb-7 md:pb-9 lg:pb-12 xl:pb-10">서로를 만나는 순간</div>
+              </div>
+              <div className="pb-5 text-sm sm:text-xl md:text-2xl lg:text-3xl sm:pb-12 md:pb-14 lg:pb-17 xl:pb-20">
+                TenPaws가 맺어주는 하나뿐인 인연
+              </div>
+              <div
+                className=" text-white bg-[#f1a34a] inline py-2 sm:py-3 px-8 sm:px-16 text-xl sm:text-2xl md:text-3xl rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] cursor-pointer hover:bg-[#3c2a13] hover:duration-300"
+                onClick={() => navigation("/matching")}>
+                시작하기
+              </div>
+            </div>
+            <img src={Main2} alt="main2" className="relative z-0 h-[50vh] w-full object-cover" />
+          </div>
         </div>
       </section>
-      {/* <section className="flex flex-col items-center justify-center bg-[#f1a34a] py-5 px-4">
-        <h2 className="mb-3 text-3xl font-bold sm:text-3xl md:text-4xl">About TenPaws</h2>
-        <p className="max-w-full mb-1 text-xl leading-relaxed text-center sm:text-xl md:text-2xl lg:text-2xl">
-        TenPaws는 나이 드신 분들이 반려동물을 통해 새로운 인연을 맺을 수 있도록 돕는 서비스입니다. <br />
-        </p>
-        <p className="max-w-full mb-1 text-xl leading-relaxed text-center sm:text-xl md:text-2xl lg:text-2xl">
-        나의 정보에 선호하시는 동물의 종, 크기, 운동량 등을  입력하시면, AI가 당신에게 꼭 맞는 반려동물을 추천해드립니다.  
-        </p>
-        <p className="max-w-full mb-1 text-xl leading-relaxed text-center sm:text-xl md:text-2xl lg:text-2xl">
-        AI 매칭을 통해 생활 방식에 어울리는 반려동물을 쉽게 찾을 수 있습니다.
-        </p>
-        <p className="max-w-full text-xl leading-relaxed text-center sm:text-xl md:text-2xl lg:text-2xl">
-        이외에도 TenPaws가 제공하는 산책 코스 추천, 시설 검색 등 다양한 서비스를 확인해보세요.
-        </p>
-      </section> */}
 
-      {/* 설명 섹션 */}
-      <section className="flex flex-col items-center justify-center bg-[#f1a34a] py-10 px-4">
-        <h2 className="mb-10 text-3xl font-bold sm:text-3xl md:text-4xl">About TenPaws</h2>
+      <div
+        className="relative z-10 h-20 -mt-20 bg-gradient-to-b from-transparent to-white"></div>
+
+      {/* About TenPaws */}
+      <section className="relative justify-center px-4 -mt-1 text-center bg-white py-28">
+        <div
+          className="pb-10 text-4xl font-bold md:text-4xl lg:text-4xl xl:text-4xl 2xl:text-4xl"
+          style={{ color: "#7F5546" }}>
+          <span className="text-black">About</span> Ten<span className="text-[#f1a34a]">Paws</span>
+        </div>
 
         <div className="flex flex-col items-center justify-center max-w-6xl gap-8 mx-auto md:flex-row">
           {/* AI 매칭 */}
           <div
-            className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.5)] bg-white w-full md:w-1/3 cursor-pointer
+            className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.3)] bg-white w-full md:w-1/3 cursor-pointer
           hover:scale-105 transition-transform duration-300">
             <div className="bg-[#f1a34a] mb-4 p-2 pb-3 rounded-full">
               <img src={AImatching} alt="AI 매칭" className="w-10 h-10 " />
@@ -111,7 +321,7 @@ const Main: React.FC = () => {
 
           {/* 신중한 입양 */}
           <div
-            className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.5)] bg-white w-full md:w-1/3 cursor-pointer
+            className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.3)] bg-white w-full md:w-1/3 cursor-pointer
           hover:scale-105 transition-transform duration-300">
             <div className="bg-[#f1a34a] mb-4 p-2 pb-3 rounded-full">
               <img src={met} alt="신중한 입양" className="w-10 h-10 " />
@@ -125,7 +335,7 @@ const Main: React.FC = () => {
 
           {/* 편의 케어 */}
           <div
-            className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.5)] bg-white w-full md:w-1/3 cursor-pointer
+            className="flex flex-col items-center p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.3)] bg-white w-full md:w-1/3 cursor-pointer
           hover:scale-105 transition-transform duration-300">
             <div className="bg-[#f1a34a] mb-[21px] p-2 rounded-full">
               <img src={care} alt="편의 케어" className="w-10 h-10 " />
@@ -139,74 +349,96 @@ const Main: React.FC = () => {
         </div>
       </section>
 
-      {/* 설명 섹션 */}
-      <section className="relative flex flex-col items-center justify-center h-[15vh] sm:h-[20vh] md:h-[20vh] lg:h-[20vh] xl:h-[25vh] 2xl:h-[25vh] bg-[#3c2a13]">
-        {/* 내용 */}
-        <div className="relative flex flex-col items-center justify-center w-[95] sm:w-[85%] md:w-[80%] lg:w-[85%] xl:w-[80%] 2xl:w-[90%] max-w-7xl mt-7">
-          {/* 아이콘 및 화살표 */}
-          <div className="flex items-center justify-around w-full mb-6 md:mb-10">
-            {(["dog", "approve", "board", "check"] as IconType[]).map((icon, idx, arr) => (
-              <React.Fragment key={icon}>
-                <div
-                  className={`flex flex-col items-center cursor-pointer hover:scale-110 transition-transform duration-300 ${
-                    activeIcon === icon ? "opacity-100 scale-110" : "opacity-50"
-                  }`}
-                  onClick={() => setActiveIcon(icon)}>
-                  <img
-                    src={`/${icon}.png`}
-                    alt={icon}
-                    className="object-contain w-10 h-10 mb-3 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-20 xl:h-20"
+      {/* 동물 카드 */}
+      <section className="w-full py-16 bg-gray-50">
+        <div className="text-center">
+          <h2 className="mb-3 text-4xl font-bold">가족을 기다리고 있어요!</h2>
+        </div>
+        <div className="w-[1100px] mx-auto">
+          <div className="flex flex-col items-center">
+            {/* 큰 카드 */}
+            <div className="relative w-full mt-16">
+              {/* 왼쪽 */}
+              <button
+                onClick={handlePrevCard}
+                className="absolute left-[-50px] top-1/2 transform -translate-y-1/2 z-10
+                  w-10 h-10 rounded-full bg-white shadow-[0_0_15px_rgba(0,0,0,0.2)] flex items-center justify-center 
+                  hover:bg-gray-50 transition-colors -mx-5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M15 19l-7-7 7-7"
+                    stroke="#666"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
-                  <span className="text-lg font-bold text-white sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl">
-                    {descriptions[icon].title}
-                  </span>
+                </svg>
+              </button>
+
+              {/* 카드 */}
+              <div className="bg-white rounded-2xl p-8 shadow-[0_0_15px_rgba(0,0,0,0.2)]">
+                <div className="flex gap-8 ">
+                  {/* 사진*/}
+                  <div className="flex-1">
+                    <img
+                      src={`http://15.164.103.160:8080${filteredPets[currentPetIndex]?.imageUrls[0]}`}
+                      alt="동물 사진"
+                      className="object-cover w-full rounded-lg h-96"
+                    />
+                  </div>
+
+                  {/* 정보 */}
+                  <div className="flex-1 pl-8 border-l border-gray-200 ">
+                    <h3 className="mb-6 text-2xl font-bold">{filteredPets[currentPetIndex]?.species}</h3>
+                    <div className="space-y-4 text-lg">
+                      <p>나이: {filteredPets[currentPetIndex]?.age}</p>
+                      <p>크기: {filteredPets[currentPetIndex]?.size}</p>
+                      <p>활동량: {filteredPets[currentPetIndex]?.personality}</p>
+                      <p>
+                        오게된 이유: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam doloribus
+                        molestiae atque ex quam dicta laborum, veniam esse? Soluta molestiae at corrupti aliquid
+                        aspernatur omnis illum dicta nemo deleniti libero?
+                      </p>
+                    </div>
+                    <div className="flex justify-center mt-5">
+                      <button
+                        className="px-4 py-1 text-sm text-[#f1a34a] border border-[#f1a34a] rounded-full hover:bg-[#f1a34a] hover:text-white transition-colors"
+                        onClick={() => goToDetail(filteredPets[currentPetIndex]?.petId)}>
+                        자세히 보기
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                {idx < arr.length - 1 && (
-                  <img
-                    src="/arrow.png"
-                    alt="Arrow"
-                    className="object-contain w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-10 lg:h-10 xl:w-11 xl:h-11 2xl:w-12 2xl:h-12"
+              </div>
+
+              {/* 오른쪽 */}
+              <button
+                onClick={handleNextCard}
+                className="absolute right-[-50px] top-1/2 transform -translate-y-1/2 z-10
+                  w-10 h-10 rounded-full bg-white shadow-[0_0_15px_rgba(0,0,0,0.2)] flex items-center justify-center 
+                  hover:bg-gray-50 transition-colors -mx-5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 5l7 7-7 7" stroke="#666" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              {/* 페이지 */}
+              <div className="flex justify-center gap-2 mt-4">
+                {filteredPets.slice(0, 5).map((_, idx) => (
+                  <div
+                    key={idx}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      idx === currentPetIndex ? "bg-[#f1a34a]" : "bg-gray-300"
+                    }`}
                   />
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 상세 설명 */}
-      <section className="relative flex flex-col items-center justify-start h-[53vh] sm:h-[54vh] md:h-[60vh] lg:h-[70vh] xl:h-[75vh] 2xl:h-[75vh]">
-        {/* 상단 배경 */}
-        <div className="absolute top-0 left-0 w-full h-1/3 bg-[#3c2a13]"></div>
-        {/* 하단 배경 */}
-        <div className="absolute bottom-0 left-0 w-full h-2/3 bg-[#eeeceb] shadow-[0_0_15px_rgba(0,0,0,0.5)]"></div>
-        {/* 내용 */}
-        <div className="relative flex flex-col items-center justify-start w-[85%] sm:w-[85%] md:w-[80%] lg:w-[85%] xl:w-[80%] 2xl:w-[90%] max-w-7xl mt-0">
-          <div className="w-[460px] sm:w-[630px] md:w-[730px] lg:w-[980px] xl:w-[1200px] 2xl:w-[1400px] bg-white rounded-md shadow-md p-6 sm:p-6 md:p-8">
-            <div className="mb-6 text-left">
-              <h2 className="mb-4 text-3xl font-semibold text-gray-800 sm:text-3xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-5xl">
-                {descriptions[activeIcon].title}
-              </h2>
-              {descriptions[activeIcon].content.map((line: string, index: number) => (
-                <p
-                  key={index}
-                  className="pl-4 mb-1 text-xl leading-relaxed sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-3xl">
-                  {line}
-                </p>
-              ))}
+                ))}
+              </div>
             </div>
-            <img
-              src={`/${iconToImageMap[activeIcon]}`} // activeIcon 값에 따라 매핑된 이미지 파일 이름 참조
-              alt="Matching Animal Example"
-              className="w-full sm:w-[87%] md:w-[85%] lg:w-[75%] xl:w-[70%] 2xl:w-[60%] h-[290px] sm:h-[330px] md:h-[350px] lg:h-[450px] xl:h-[500px] 2xl:h-[520px] mx-auto rounded-md object-contain"
-            />
           </div>
         </div>
       </section>
 
-      {/* 푸터 */}
-      <Footer />
-
+      {renderAdoptionJourney()}
     </div>
   );
 };

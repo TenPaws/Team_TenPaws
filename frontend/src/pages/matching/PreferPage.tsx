@@ -7,7 +7,7 @@ interface UserInfo {
   species: string;
   preferredSize: string;
   preferredPersonality: string;
-  preferredExerciseLevel: number;
+  preferredExerciseLevel: string;
 }
 
 interface UseId {
@@ -26,7 +26,7 @@ const PreferPage: React.FC = () => {
     species: "",
     preferredSize: "",
     preferredPersonality: "",
-    preferredExerciseLevel: 0
+    preferredExerciseLevel: ""
   })
 
   useEffect(() => {

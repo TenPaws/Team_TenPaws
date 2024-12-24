@@ -8,14 +8,11 @@ import com.example.tenpaws.domain.notification.factory.NotificationFactory;
 import com.example.tenpaws.domain.notification.service.NotificationService;
 import com.example.tenpaws.domain.pet.entity.Pet;
 import com.example.tenpaws.domain.pet.repository.PetRepository;
-import com.example.tenpaws.domain.shelter.entity.Shelter;
 import com.example.tenpaws.domain.user.entity.User;
 import com.example.tenpaws.domain.user.repositoty.UserRepository;
 import com.example.tenpaws.global.exception.BaseException;
 import com.example.tenpaws.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,12 +32,12 @@ public class ApplyService {
 
     public ApplyDto applyForPet(Long petId, Long userId) {
         Pet pet = petRepository.findById(petId)
-                .orElseThrow(() -> new RuntimeException("Pet not found"));
+                .orElseThrow(() -> new BaseException(ErrorCode.PET_NOT_FOUND));
         if (pet.getStatus() == Pet.PetStatus.APPLIED) {
-            throw new RuntimeException("This pet has already been applied for.");
+            throw new BaseException(ErrorCode.PET_ALREADY_APPLIED);
         }
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new BaseException(ErrorCode.MEMBER_NOT_FOUND));
 
         ensureUserCanApply(userId, petId);
 
@@ -58,6 +55,10 @@ public class ApplyService {
             // 동물 상태를 다시 APPLIED로 변경
             pet.setStatus(Pet.PetStatus.APPLIED);
             petRepository.save(pet);
+
+            // 유저 상태 변경
+            user.setStatus(User.UserStatus.APPLIED);
+            userRepository.save(user);
         } else {
             Apply apply = Apply.builder()
                     .pet(pet)
@@ -69,6 +70,10 @@ public class ApplyService {
             // 동물의 상태를 'APPLIED'로 변경
             pet.setStatus(Pet.PetStatus.APPLIED);
             petRepository.save(pet); // 상태 업데이트
+
+            // 유저 상태 변경
+            user.setStatus(User.UserStatus.APPLIED);
+            userRepository.save(user);
 
             savedApply = applyRepository.save(apply);
         }
@@ -93,11 +98,11 @@ public class ApplyService {
     // 신청 취소
     public void cancelApply(Long applyId, Long userId) {
         Apply apply = applyRepository.findById(applyId)
-                .orElseThrow(() -> new RuntimeException("Application not found"));
+                .orElseThrow(() -> new BaseException(ErrorCode.APPLICATION_NOT_FOUND));
 
         // 신청자 확인
         if (!apply.getUser().getId().equals(userId)) {
-            throw new RuntimeException("You are not authorized to cancel this application.");
+            throw new BaseException(ErrorCode.MEMBER_NOT_AUTHORIZED);
         }
 
         // 신청 상태 변경
@@ -108,6 +113,11 @@ public class ApplyService {
         Pet pet = apply.getPet();
         pet.setStatus(Pet.PetStatus.AVAILABLE);
         petRepository.save(pet);
+
+        // 유저 상태 변경
+        User user = apply.getUser();
+        user.setStatus(User.UserStatus.AVAILABLE);
+        userRepository.save(user);
     }
 
     // userId로 신청 목록 조회
@@ -140,6 +150,13 @@ public class ApplyService {
                 Pet pet = apply.getPet();
                 pet.setStatus(Pet.PetStatus.AVAILABLE);
                 petRepository.save(pet);
+            }
+
+            // 신청 상태가 거절 또는 취소일 경우, 회원 상태를 'AVAILABLE'로 변경
+            if (newStatus == Apply.ApplyStatus.REJECTED || newStatus == Apply.ApplyStatus.CANCELED) {
+                User user = apply.getUser();
+                user.setStatus(User.UserStatus.AVAILABLE);
+                userRepository.save(user);
             }
 
             // 입양 신청 결과 알림 전송 (승인 또는 거절의 경우)

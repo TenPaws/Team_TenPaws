@@ -38,7 +38,7 @@ public class PetRequestDTO {
     private String extra;
     private String introduction;
     private String personality;
-    private int exerciseLevel;
+    private String exerciseLevel;
     private List<MultipartFile> images; // Store multiple image files
     private Pet.PetStatus status;
 

@@ -5,6 +5,7 @@ import com.example.tenpaws.domain.pet.species.Species;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -23,12 +24,13 @@ public class PetResponseDTO {
     private final String extra;
     private final String introduction;
     private final String personality;
-    private final int exerciseLevel;
+    private final String exerciseLevel;
     private final Long shelterId;
     private final String shelterName;
     private final String shelterAddress;
     private final List<String> imageUrls;
     private final Pet.PetStatus status;
+    private final LocalDateTime createdDate;
 
     public static PetResponseDTO fromEntity(Pet pet) {
         return PetResponseDTO.builder()
@@ -51,6 +53,7 @@ public class PetResponseDTO {
                 .shelterAddress(pet.getShelter().getAddress())
                 .imageUrls(pet.getImageUrls() != null ? pet.getImageUrls() : List.of()) // null 처리
                 .status(pet.getStatus())
+                .createdDate(pet.getCreatedDate())
                 .build();
     }
 }

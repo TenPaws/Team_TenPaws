@@ -11,14 +11,20 @@ interface TopFAQ {
   parentId: null | number;
 }
 
-const FAQ = () => {
-  const [open, setOpen] = useState<boolean>(false);
+// FAQ 컴포넌트의 props 타입 정의 추가
+interface FAQProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const FAQ = ({ isOpen, onClose }: FAQProps) => {
   const [selectFAQ, setSelectFAQ] = useState<string | null>(null);
   const [edit, setEdit] = useState<boolean>(false);
   const [topContent, setTopContent] = useState<TopFAQ[]>([]);
   const [allContent, setAllContent] = useState<TopFAQ[]>([]);
   const [parentId, setParentId] = useState<number | null>(null);
   const role = useUserStore((state) => state.role);
+
   //작성창 열기
   const handleEditClick = () => {
     setEdit(!edit);
@@ -26,7 +32,7 @@ const FAQ = () => {
 
   //FAQ채팅 열기
   const handleClick = () => {
-    setOpen(!open);
+    onClose();
     setSelectFAQ(null);
   };
 
@@ -75,15 +81,10 @@ const FAQ = () => {
 
   return (
     <div>
-      <div
-        className="bg-[#3c2a13] text-white m-6 p-6 rounded-full font-bold text-[40px] w-16 h-16 flex justify-center items-center pl-[24.6px] pb-[29px] cursor-pointer fixed bottom-0 right-2 hover:scale-105 transition-transform z-50 shadow-[0_0_15px_rgba(0,0,0,0.5)]"
-        onClick={handleClick}>
-        {open ? "x" : "?"}
-      </div>
-      {open && (
+      {isOpen && (
         <>
-          <div className="bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] w-96 h-[556px] fixed right-[90px] bottom-2 m-6 z-50 rounded-md">
-            <div className=" bg-[#3c2a13] text-white font-bold text-xl p-3 flex  rounded-t-md content-center justify-between">
+          <div className=" w-[430px] h-[670px] fixed bottom-[56px] -right-[24px] m-6 z-50 rounded-t-md">
+            <div className="font-bold text-xl p-4 flex rounded-t-md content-center justify-between">
               <div>FAQ</div>
               <div className="flex gap-2">
                 {role === "ROLE_ADMIN" && (
@@ -91,9 +92,6 @@ const FAQ = () => {
                     +
                   </div>
                 )}
-                <div className="cursor-pointer" onClick={() => setOpen(false)}>
-                  ✖️
-                </div>
               </div>
             </div>
             <div className="overflow-y-auto max-h-[500px] scrollbar-hide">
@@ -109,7 +107,7 @@ const FAQ = () => {
                   {topContent.map((faq) => (
                     <div className="flex justify-end px-5 py-1" key={faq.faqId}>
                       <div
-                        className="mr-2 p-2 rounded-xl content-center border-2  border-[#3c2a13] text-[#3c2a13] cursor-pointer hover:bg-[#3c2a13] hover:text-white"
+                        className="mr-2 p-2 rounded-xl content-center border-2  border-[#f1a34a]  cursor-pointer hover:bg-[#f1a34a] hover:text-white"
                         onClick={() => handleSelectFAQ(faq.content.toString(), faq.faqId)}>
                         {faq.content}
                       </div>
@@ -127,7 +125,7 @@ const FAQ = () => {
                         <>
                           {/* 선택된 질문 표시 */}
                           <div className="flex justify-end px-5 py-1">
-                            <div className="mr-2 p-2 rounded-xl content-center border-2 border-[#3c2a13] text-[#3c2a13]">
+                            <div className="mr-2 p-2 rounded-xl content-center border-2 border-[#f1a34a] ">
                               {selectFAQ}
                             </div>
                           </div>
@@ -143,8 +141,8 @@ const FAQ = () => {
 
                           <div
                             onClick={handleBack}
-                            className="text-white bg-[#3c2a13] mx-20 mt-5 p-2 text-center rounded-lg font-bold text-xl cursor-pointer absolute bottom-4 right-[60px]
-                          hover:scale-105 hover:transition-transform z-50">
+                            className="text-white bg-[#f1a34a] mx-20 mt-5 p-2 text-center rounded-lg font-bold text-xl cursor-pointer absolute bottom-4 right-[95px]
+                            hover:scale-105 hover:transition-transform z-50">
                             처음으로
                           </div>
                         </>
@@ -155,7 +153,7 @@ const FAQ = () => {
                         ...filteredContent.map((item) => (
                           <div className="flex justify-end px-5 py-1" key={item.faqId}>
                             <div
-                              className="mr-2 p-2 rounded-xl content-center border-2 border-[#3c2a13] text-[#3c2a13] cursor-pointer hover:bg-[#3c2a13] hover:text-white"
+                              className="mr-2 p-2 rounded-xl content-center border-2 border-[#f1a34a]  cursor-pointer hover:bg-[#f1a34a] hover:text-white"
                               onClick={() => handleSelectFAQ(item.content.toString(), item.faqId)}>
                               {item.content}
                             </div>
@@ -163,7 +161,7 @@ const FAQ = () => {
                         )),
                         <div
                           onClick={handleBack}
-                          className="text-white bg-[#3c2a13] mx-20 mt-5 p-2 text-center rounded-lg font-bold text-xl cursor-pointer absolute bottom-4 right-[60px]
+                          className="text-white bg-[#f1a34a] mx-20 mt-5 p-2 text-center rounded-lg font-bold text-xl cursor-pointer absolute bottom-4 right-[95px]
                           hover:scale-105 hover:transition-transform z-50">
                           처음으로
                         </div>

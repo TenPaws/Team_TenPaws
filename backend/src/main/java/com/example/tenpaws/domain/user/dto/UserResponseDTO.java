@@ -24,6 +24,7 @@ public class UserResponseDTO {
     private String preferredPersonality;
     private Integer preferredExerciseLevel;
     private UserRole userRole;
+    private User.UserStatus userStatus;
 
     public static UserResponseDTO fromEntity(User user) {
         return UserResponseDTO.builder()
@@ -38,6 +39,7 @@ public class UserResponseDTO {
                 .preferredPersonality(user.getPreferredPersonality())
                 .preferredExerciseLevel(user.getPreferredExerciseLevel())
                 .userRole(user.getUserRole())
+                .userStatus(user.getStatus())
                 .build();
     }
 }

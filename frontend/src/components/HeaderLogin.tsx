@@ -105,10 +105,10 @@ const Header = () => {
       <header className="relative z-50 flex items-center justify-between px-10 py-3 bg-white shadow-md sm:py-3 md:py-3 lg:py-3 xl:py-3">
         {/* TENPAWS - 프로젝트명 */}
         <div
-          className="text-4xl font-bold md:text-4xl lg:text-4xl xl:text-4xl 2xl:text-4xl"
+          className="text-4xl font-bold font-kcc md:text-4xl lg:text-4xl xl:text-4xl 2xl:text-4xl"
           style={{ color: "#7F5546" }}
         >
-          <Link to="/">TenPaws</Link>
+          <Link to="/">Ten<span className="text-mainColor">Paws</span></Link>
         </div>
 
         {/* 동물 찾기, AI매칭, 주변 반려시설, 공지사항, 마이페이지 */}

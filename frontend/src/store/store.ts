@@ -24,6 +24,11 @@ interface StoreState {
   // WebSocket 연결 함수
   connectWebSocket: () => void;
   disconnectWebSocket: () => void;
+
+  isFAQOpen: boolean;
+  isChatOpen: boolean;
+  setFAQOpen: (isOpen: boolean) => void;
+  setChatOpen: (isOpen: boolean) => void;
 }
 
 const useStore = create<StoreState>((set, get) => ({
@@ -103,7 +108,12 @@ const useStore = create<StoreState>((set, get) => ({
       stompClient.deactivate();
       set({ stompClient: null, isConnected: false });
     }
-  }
+  },
+
+  isFAQOpen: false,
+  isChatOpen: false,
+  setFAQOpen: (isOpen) => set({ isFAQOpen: isOpen, isChatOpen: isOpen ? false : false }),
+  setChatOpen: (isOpen) => set({ isChatOpen: isOpen, isFAQOpen: isOpen ? false : false }),
 }));
 
 export default useStore;
