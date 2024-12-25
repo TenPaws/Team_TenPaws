@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,11 +24,14 @@ public class ApplyController {
 
     // 회원의 입양 신청
     @Operation(summary = "입양 신청", description = "입양 신청 API")
-    @PreAuthorize("hasRole('ROLE_USER') and @userServiceImpl.isUserOwn(#userId)")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping
-    public ResponseEntity<ApplyDto> applyForPet(@RequestParam Long petId, @RequestParam Long userId) {
-            ApplyDto apply = applyService.applyForPet(petId, userId);
-            return ResponseEntity.ok(apply);
+    public ResponseEntity<ApplyDto> applyForPet(
+            @RequestParam Long petId,
+            Authentication authentication) {
+        String email = authentication.getName();
+        ApplyDto apply = applyService.applyForPet(petId, email);
+        return ResponseEntity.ok(apply);
     }
 
     // 입양 신청 취소
