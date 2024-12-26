@@ -5,6 +5,8 @@ import com.example.tenpaws.domain.chat.chatroom.entity.ChatRoom;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,10 +23,13 @@ public class ChatMessageRequest {
     @NonNull
     private Long chatRoomId;
 
+    private LocalDateTime chatDate = LocalDateTime.now();
+
     @Builder
-    public ChatMessageRequest(String message, String senderEmail, @NonNull Long chatRoomId) {
+    public ChatMessageRequest(String message, String senderEmail, String receiverEmail, @NonNull Long chatRoomId) {
         this.message = message;
         this.senderEmail = senderEmail;
+        this.receiverEmail = receiverEmail;
         this.chatRoomId = chatRoomId;
     }
 

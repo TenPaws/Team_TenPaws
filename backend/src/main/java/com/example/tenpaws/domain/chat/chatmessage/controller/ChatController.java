@@ -38,12 +38,25 @@ public class ChatController {
         String senderName = customUserDetailsService.getInfosByEmail(sender).get("username").toString();
 
         chatMessageRequest.setChatRoomId(chatRoomId);
-        ChatMessageResponse chatMessageResponse = chatMessageService.createChatMessage(chatMessageRequest);
 
-        chatMessageResponse.setSenderName(senderName);
+        // MySQL
+//        ChatMessageResponse chatMessageResponse = chatMessageService.createChatMessage(chatMessageRequest);
+//        chatMessageResponse.setSenderName(senderName);
+//        messagingTemplate.convertAndSend(
+//                destination,
+//                chatMessageResponse
+//        );
+
+        // Redis
+        chatMessageService.saveMessage(chatMessageRequest);
         messagingTemplate.convertAndSend(
                 destination,
-                chatMessageResponse
+                ChatMessageResponse.builder()
+                        .message(chatMessageRequest.getMessage())
+                        .chatDate(chatMessageRequest.getChatDate())
+                        .senderEmail(chatMessageRequest.getSenderEmail())
+                        .senderName(senderName)
+                        .build()
         );
 
         if (!isUserSubscribed(receiver, destination)) {

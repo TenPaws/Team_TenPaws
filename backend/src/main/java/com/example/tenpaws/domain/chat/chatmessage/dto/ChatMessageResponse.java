@@ -26,4 +26,12 @@ public class ChatMessageResponse {
         this.chatDate = chatMessage.getChatDate();
         this.senderEmail = chatMessage.getSender();
     }
+
+    @Builder
+    public ChatMessageResponse(String message, @NonNull LocalDateTime chatDate, String senderEmail, String senderName) {
+        this.message = message;
+        this.chatDate = chatDate;
+        this.senderEmail = senderEmail;
+        this.senderName = senderName;
+    }
 }

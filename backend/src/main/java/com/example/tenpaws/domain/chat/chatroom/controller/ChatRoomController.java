@@ -16,6 +16,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import redis.clients.jedis.Jedis;
 
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,7 @@ public class ChatRoomController {
     private final UnReadChatMessagesService unReadChatMessagesService;
     private final CustomUserDetailsService customUserDetailsService;
     private final SimpMessagingTemplate messagingTemplate;
+    private final Jedis jedis = new Jedis("localhost", 6379);
 
     @Operation(summary = "채팅방 목록 조회", description = "본인이 참여중인 채팅방 목록 조회 API")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_SHELTER', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN')")
@@ -69,6 +71,7 @@ public class ChatRoomController {
         ChatRoomResponse chatRoom = chatRoomService.getChatRoom(chatRoomId);
         String receiver = authentication.getName().equals(chatRoom.getUserEmail()) ? chatRoom.getOppositeEmail() : chatRoom.getUserEmail();
         chatRoomService.delete(chatRoomId);
+        jedis.unlink("room:" + chatRoom.getChatRoomId());
         messagingTemplate.convertAndSendToUser(
                 receiver,
                 "/queue/chatroom-close",
