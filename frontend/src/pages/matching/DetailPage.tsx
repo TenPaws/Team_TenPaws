@@ -19,6 +19,7 @@ interface PetAdd {
   extra?: string;
   personality: string;
   exerciseLevel: string;
+  description?: string;
   shelterId: number;
   shelterName: string;
   address: string;
@@ -154,7 +155,7 @@ const DetailPage = () => {
     const { id, value } = e.target;
     setAddPet(prevState => ({
       ...prevState,
-      [id]: id === 'exerciseLevel' ? Number(value) : value
+      [id]: id === 'exerciseLevel' ? String(value) : value
     }));
   };
 
