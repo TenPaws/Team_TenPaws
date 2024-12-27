@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +60,7 @@ public class PetController {
     public ResponseEntity<PetResponseDTO> createPet(
             @PathVariable Long shelterId,
             @RequestPart("petData") PetRequestDTO petRequestDTO,
-            @RequestPart(value = "images", required = false) List<MultipartFile> images) {
+            @RequestPart(value = "images", required = false) List<MultipartFile> images) throws IOException {
         petRequestDTO.setImages(images);
         PetResponseDTO createdPet = petService.createPet(shelterId, petRequestDTO);
         return ResponseEntity.ok(createdPet);
