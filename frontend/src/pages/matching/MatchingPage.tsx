@@ -6,6 +6,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 interface ProcessedPet {
   petId: number;
+  petName: string;
   species: string;
   age: string;
   personality: string;
@@ -116,7 +117,7 @@ const MatchingPage = () => {
         <div className='flex flex-col mt-20 mx-36 max-[630px]:mx-28 max-[530px]:mx-20 max-[466px]:mx-10'>
           <div className='mb-3'>
               <Link to="/detailadd">
-                {shelter ? <button className='flex items-center justify-center text-2xl text-mainColor hover:text-orange-600'>동물 등록 <GoArrowRight /></button> : null}
+                {shelter ? <button className='flex items-center justify-center text-2xl font-bold text-mainColor hover:text-orange-600'>동물 등록 <GoArrowRight /></button> : null}
               </Link>
             </div>
           <h1 className='max-[490px]:text-2xl max-[430px]:text-xl text-4xl font-bold text-mainColor'>매칭 동물 결정</h1>
@@ -159,23 +160,29 @@ const MatchingPage = () => {
           <div className='flex flex-wrap justify-center gap-10'>
             {filteredPets.map((pet) => (
               <Link to={detailLink(pet.petId)}>
-                <div key={pet.petId} className='flex border border-solid rounded-lg'>
-                  <img src={`http://3.38.196.10:8080${pet.imageUrls[0]}`} alt="동물 사진" className='max-w-44 rounded-l-md'/>
-                  <div className='m-3'>
-                    <div className='flex justify-center'>
-                      <p className='mt-2 text-xl font-bold'>{pet.species}</p>
-                    </div>
-                    <div className='flex justify-between gap-8 px-5'>
-                      <p className='text-neutral-500'>연령</p><p className='text-black'>{pet.age}</p>
-                    </div>
-                    <div className='flex justify-between px-5'>
-                      <p className='text-neutral-500'>크기</p><p className='text-black'>{pet.size}</p>
-                    </div>
-                    <div className='flex justify-between px-5'>
-                      <p className='text-neutral-500'>성격</p><p className='text-black'>{pet.personality}</p>
-                    </div>
-                    <div className='flex justify-between px-5'>
-                      <p className='text-neutral-500'>활동량</p><p className='text-black'>{pet.exerciseLevel}</p>
+                {/* 큰 카드 */}
+                <div key={pet.petId} className="relative w-full mt-16">
+                  {/* 카드 */}
+                  <div className="bg-white rounded-2xl p-8 shadow-[0_0_15px_rgba(0,0,0,0.2)]">
+                    <div className="flex items-center justify-center gap-8 ">
+                      {/* 사진*/}
+                      <div className="flex flex-col items-center justify-center font-bold">
+                        <img
+                          src={`http://3.38.196.10:8080${pet.imageUrls[0]}`}
+                          alt="동물 사진"
+                          className="object-cover w-full h-48 rounded-lg"
+                        />
+                        <p>{pet.petName}</p>
+                      </div>
+                      {/* 정보 */}
+                      <div className="flex-1 pl-8 mt-2 border-l border-gray-200">
+                        <div className="space-y-4 text-lg">
+                          <p className='px-3 border rounded-xl border-mainColor'>#나이: {pet.age}</p>
+                          <p className='px-3 border rounded-xl border-mainColor'>#크기: {pet.size}</p>
+                          <p className='px-3 border rounded-xl border-mainColor'>#성격: {pet.personality}</p>
+                          <p className='px-3 border rounded-xl border-mainColor'>#활동량: {pet.exerciseLevel}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -189,3 +196,5 @@ const MatchingPage = () => {
 };
 
 export default MatchingPage;
+
+

@@ -13,6 +13,8 @@ import com.example.tenpaws.domain.user.repositoty.UserRepository;
 import com.example.tenpaws.global.exception.BaseException;
 import com.example.tenpaws.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.PessimisticLockingFailureException;
+import org.springframework.dao.QueryTimeoutException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,69 +32,79 @@ public class ApplyService {
     private final NotificationFactory notificationFactory;
     private final NotificationService notificationService;
 
-    public ApplyDto applyForPet(Long petId, Long userId) {
-        Pet pet = petRepository.findById(petId)
-                .orElseThrow(() -> new BaseException(ErrorCode.PET_NOT_FOUND));
-        if (pet.getStatus() == Pet.PetStatus.APPLIED) {
-            throw new BaseException(ErrorCode.PET_ALREADY_APPLIED);
+    public ApplyDto applyForPet(Long petId, String email) {
+
+        try {
+
+            User user = userRepository.findByEmail(email)
+                    .orElseThrow(() -> new BaseException(ErrorCode.MEMBER_NOT_FOUND));
+
+            Pet pet = petRepository.findByIdWithPessimisticLock(petId)
+                    .orElseThrow(() -> new BaseException(ErrorCode.PET_NOT_FOUND));
+            if (pet.getStatus() == Pet.PetStatus.APPLIED) {
+                throw new BaseException(ErrorCode.PET_ALREADY_APPLIED);
+            }
+
+            ensureUserCanApply(user.getId(), petId);
+
+            // 이전에 취소된 신청이 있는지 확인
+            // Optional에서 값을 추출
+            Optional<Apply> existingApplicationOptional = applyRepository.findByPetAndUserAndApplyStatus(pet, user, Apply.ApplyStatus.CANCELED);
+
+            Apply savedApply;
+            if (existingApplicationOptional.isPresent()) {
+                Apply existingApplication = existingApplicationOptional.get(); // Optional에서 값 가져오기
+                // 취소된 신청을 복구
+                existingApplication.setApplyStatus(Apply.ApplyStatus.PENDING);
+                savedApply = applyRepository.save(existingApplication);
+
+                // 동물 상태를 다시 APPLIED로 변경
+                pet.setStatus(Pet.PetStatus.APPLIED);
+                petRepository.save(pet);
+
+                // 유저 상태 변경
+                user.setStatus(User.UserStatus.APPLIED);
+                userRepository.save(user);
+            } else {
+                Apply apply = Apply.builder()
+                        .pet(pet)
+                        .user(user)
+                        .applyDate(new java.util.Date())
+                        .applyStatus(Apply.ApplyStatus.PENDING)
+                        .build();
+
+                // 동물의 상태를 'APPLIED'로 변경
+                pet.setStatus(Pet.PetStatus.APPLIED);
+                petRepository.save(pet); // 상태 업데이트
+
+                // 유저 상태 변경
+                user.setStatus(User.UserStatus.APPLIED);
+                userRepository.save(user);
+
+                savedApply = applyRepository.save(apply);
+            }
+
+            // 입양 신청자에게 알림 전송
+            NotificationRequest userNotification = notificationFactory
+                    .createAdoptionSubmittedNotification(user.getEmail());
+            notificationService.create(userNotification);
+
+            // 보호소에 알림 전송
+            NotificationRequest shelterNotification = notificationFactory
+                    .createAdoptionReceivedNotification(
+                            pet.getShelter().getEmail(),
+                            user.getUsername(),
+                            pet.getPetName()
+                    );
+            notificationService.create(shelterNotification);
+
+            return ApplyDto.fromEntity(savedApply);
+
+        } catch (PessimisticLockingFailureException e) {
+            throw new BaseException(ErrorCode.LOCK_ACQUISITION_FAILED);
+        } catch (QueryTimeoutException e) {
+            throw new BaseException(ErrorCode.OPERATION_TIMEOUT);
         }
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new BaseException(ErrorCode.MEMBER_NOT_FOUND));
-
-        ensureUserCanApply(userId, petId);
-
-        // 이전에 취소된 신청이 있는지 확인
-        // Optional에서 값을 추출
-        Optional<Apply> existingApplicationOptional = applyRepository.findByPetAndUserAndApplyStatus(pet, user, Apply.ApplyStatus.CANCELED);
-
-        Apply savedApply;
-        if (existingApplicationOptional.isPresent()) {
-            Apply existingApplication = existingApplicationOptional.get(); // Optional에서 값 가져오기
-            // 취소된 신청을 복구
-            existingApplication.setApplyStatus(Apply.ApplyStatus.PENDING);
-            savedApply = applyRepository.save(existingApplication);
-
-            // 동물 상태를 다시 APPLIED로 변경
-            pet.setStatus(Pet.PetStatus.APPLIED);
-            petRepository.save(pet);
-
-            // 유저 상태 변경
-            user.setStatus(User.UserStatus.APPLIED);
-            userRepository.save(user);
-        } else {
-            Apply apply = Apply.builder()
-                    .pet(pet)
-                    .user(user)
-                    .applyDate(new java.util.Date())
-                    .applyStatus(Apply.ApplyStatus.PENDING)
-                    .build();
-
-            // 동물의 상태를 'APPLIED'로 변경
-            pet.setStatus(Pet.PetStatus.APPLIED);
-            petRepository.save(pet); // 상태 업데이트
-
-            // 유저 상태 변경
-            user.setStatus(User.UserStatus.APPLIED);
-            userRepository.save(user);
-
-            savedApply = applyRepository.save(apply);
-        }
-
-        // 입양 신청자에게 알림 전송
-        NotificationRequest userNotification = notificationFactory
-                .createAdoptionSubmittedNotification(user.getEmail());
-        notificationService.create(userNotification);
-
-        // 보호소에 알림 전송
-        NotificationRequest shelterNotification = notificationFactory
-                .createAdoptionReceivedNotification(
-                        pet.getShelter().getEmail(),
-                        user.getUsername(),
-                        pet.getPetName()
-                );
-        notificationService.create(shelterNotification);
-
-        return ApplyDto.fromEntity(savedApply);
     }
 
     // 신청 취소

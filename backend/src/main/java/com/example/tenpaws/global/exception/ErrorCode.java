@@ -75,7 +75,9 @@ public enum ErrorCode {
 
     // Apply
     APPLICATION_NOT_FOUND(HttpStatus.NOT_FOUND, "Application not found"),
-    USER_NOT_AUTHORIZED(HttpStatus.FORBIDDEN, "You are not owner"),;
+    USER_NOT_AUTHORIZED(HttpStatus.FORBIDDEN, "You are not owner"),
+    LOCK_ACQUISITION_FAILED(HttpStatus.CONFLICT, "Could not acquire lock. Please try again later"),
+    OPERATION_TIMEOUT(HttpStatus.REQUEST_TIMEOUT, "Operation timed out. Please try again later");
 
     private final HttpStatus httpStatus;
     private final String message;
