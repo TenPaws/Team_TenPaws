@@ -75,6 +75,7 @@ public class AIDescriptionService {
         );
     }
 
+    @Getter
     public static class ChatRequest {
         private String model = "gpt-4o-mini"; // 모델 선택
         private Message[] messages;
