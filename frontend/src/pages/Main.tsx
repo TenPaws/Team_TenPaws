@@ -240,7 +240,7 @@ const Main: React.FC = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <Chat />
-      {/* 메인배너 */}
+      {/* 메인배너 수정한 곳*/}
       <section className="relative">
         <div className="relative">
           <img src={Main2} alt="main2" className="relative z-0 h-[50vh] w-screen object-cover" />
