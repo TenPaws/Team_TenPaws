@@ -55,8 +55,8 @@ public class Pet {
     @Column(name = "extra")
     private String extra;
 
-    @Column(name = "introduction")
-    private String introduction;
+    @Column(name = "description", length = 500)
+    private String description;
 
     @Column(name = "personality", nullable = false)
     private String personality;
@@ -93,7 +93,7 @@ public class Pet {
     @Builder
     public Pet(Long id, String petName, Species species,  String size, String age, String gender, String neutering, String reason,
                String preAdoption, String vaccinated, String extra, String personality, String exerciseLevel, Shelter shelter,
-               List<String> imageUrls, PetStatus status, String introduction) {
+               List<String> imageUrls, PetStatus status, String description) {
         this.id = id;
         this.petName = petName;
         this.species = species;
@@ -105,7 +105,7 @@ public class Pet {
         this.preAdoption = preAdoption;
         this.vaccinated = vaccinated;
         this.extra = extra;
-        this.introduction = introduction;
+        this.description = description;
         this.personality = personality;
         this.exerciseLevel = exerciseLevel;
         this.shelter = shelter;
@@ -125,7 +125,6 @@ public class Pet {
         this.preAdoption = requestDTO.getPreAdoption();
         this.vaccinated = requestDTO.getVaccinated();
         this.extra = requestDTO.getExtra();
-        this.introduction = requestDTO.getIntroduction();
         this.personality = requestDTO.getPersonality();
         this.exerciseLevel = requestDTO.getExerciseLevel();
     }

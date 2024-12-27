@@ -22,7 +22,7 @@ public class PetResponseDTO {
     private final String preAdoption;
     private final String vaccinated;
     private final String extra;
-    private final String introduction;
+    private final String description;
     private final String personality;
     private final String exerciseLevel;
     private final Long shelterId;
@@ -45,7 +45,7 @@ public class PetResponseDTO {
                 .preAdoption(pet.getPreAdoption())
                 .vaccinated(pet.getVaccinated())
                 .extra(pet.getExtra())
-                .introduction(pet.getIntroduction())
+                .description(pet.getDescription())
                 .personality(pet.getPersonality())
                 .exerciseLevel(pet.getExerciseLevel())
                 .shelterId(pet.getShelter().getId())
