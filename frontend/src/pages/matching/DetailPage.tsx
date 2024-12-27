@@ -19,7 +19,6 @@ interface PetAdd {
   extra?: string;
   personality: string;
   exerciseLevel: string;
-  description?: string;
   shelterId: number;
   shelterName: string;
   address: string;
@@ -96,6 +95,7 @@ const DetailPage = () => {
     }
   }, [token])
 
+
   //보호소 정보 불러오기
   useEffect(() => {
     if(useId.Id !== 0){
@@ -163,17 +163,24 @@ const DetailPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const updatedPetData = {
+      ...addPet,
+      shelterId: useId.Id,
+      shelterName: shelterInfo.shelterName,
+      address: shelterInfo.address,
+    };
+
     const petData = new FormData();
 
+
     // JSON 데이터를 Blob으로 변환하여 추가
-    const jsonBlob = new Blob([JSON.stringify({ ...addPet })], {
+    const jsonBlob = new Blob([JSON.stringify({ updatedPetData })], {
       type: "application/json",
     });
     petData.append("petData", jsonBlob);
 
     // 파일 추가
     postImg.forEach((file) => petData.append("images", file));
-
     try {
       const response = await axios.post(
         `http://3.38.196.10:8080/api/v1/pets/${useId.Id}`,

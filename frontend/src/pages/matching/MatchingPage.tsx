@@ -157,15 +157,15 @@ const MatchingPage = () => {
             </Link>
           </div>
         </section>
-        <section className='flex items-center justify-center m-20'>
-          <div className='flex flex-wrap justify-center gap-10'>
+        <section className='flex items-center justify-center m-10'>
+          <div className='flex flex-wrap justify-center gap-1'>
             {filteredPets.map((pet) => (
               <Link to={detailLink(pet.petId)}>
                 {/* 큰 카드 */}
-                <div key={pet.petId} className="relative w-full mt-16">
+                <div key={pet.petId} className="relative w-full mt-10">
                   {/* 카드 */}
                   <div className="bg-white rounded-2xl p-8 shadow-[0_0_15px_rgba(0,0,0,0.2)]">
-                    <div className="flex items-center justify-center gap-8 ">
+                    <div className="flex max-[730px]:flex-col items-center justify-center gap-8 ">
                       {/* 사진*/}
                       <div className="flex flex-col items-center justify-center font-bold">
                         <img
@@ -173,16 +173,18 @@ const MatchingPage = () => {
                           alt="동물 사진"
                           className="object-cover w-full h-48 rounded-lg"
                         />
-                        <p>{pet.petName}</p>
+                        <p className='mt-3 text-2xl'>{pet.petName}</p>
                       </div>
                       {/* 정보 */}
-                      <div className="flex-1 pl-8 mt-2 border-l border-gray-200">
-                        <div className="space-y-4 text-lg">
-                          <p className='px-3 border rounded-xl border-mainColor'>#나이: {pet.age}</p>
-                          <p className='px-3 border rounded-xl border-mainColor'>#크기: {pet.size}</p>
-                          <p className='px-3 border rounded-xl border-mainColor'>#성격: {pet.personality}</p>
-                          <p className='px-3 border rounded-xl border-mainColor'>#활동량: {pet.exerciseLevel}</p>
-                          <p>자기소개 : {pet.description}</p>
+                      <div className="flex-1 px-8 max-[450px]:px-2 max[450px]:px-2 mt-2 border-l max-[730px]:border-none border-gray-200">
+                        <div className="flex flex-wrap mb-5 max[450px]:mb-1 text-lg">
+                          <span className='text-base mx-2 px-3 py-2 mb-2 border rounded-xl max-[410px]:ml-1 border-mainColor max-[860px]:text-sm max-[670px]:text-xs'>#나이: {pet.age}</span>
+                          <span className='text-base mx-2 px-3 py-2 mb-2 border rounded-xl max-[410px]:ml-1 border-mainColor max-[860px]:text-sm max-[670px]:text-xs'>#크기: {pet.size}</span>
+                          <span className='text-base mx-2 px-3 py-2 mb-2 border rounded-xl max-[410px]:ml-1 border-mainColor max-[860px]:text-sm max-[670px]:text-xs'>#성격: {pet.personality}</span>
+                          <span className='text-base mx-2 px-3 py-2 mb-2 border rounded-xl max-[410px]:ml-1 border-mainColor max-[860px]:text-sm max-[670px]:text-xs'>#활동량: {pet.exerciseLevel}</span>
+                        </div>
+                        <div className="mb-2 text-lg">
+                          <p className='max-[670px]:text-xs'>{pet.description}</p>
                         </div>
                       </div>
                     </div>
