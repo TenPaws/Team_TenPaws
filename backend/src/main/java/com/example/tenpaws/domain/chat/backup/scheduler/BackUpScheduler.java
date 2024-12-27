@@ -14,7 +14,7 @@ import java.util.List;
 public class BackUpScheduler {
     private final BackUpService backUpService;
 
-//    @Scheduled(fixedRate = 3600000)
+    @Scheduled(fixedRate = 3600000)
     public void backUp() {
         List<String> roomIds = backUpService.getAllRoomIdsFromRedis();
         for (String roomId : roomIds) {
