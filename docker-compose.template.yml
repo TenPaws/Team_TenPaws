@@ -23,7 +23,7 @@ services:
       SPRING_DATASOURCE_USERNAME: MYSQL_USERNAME_PLACEHOLDER
       SPRING_DATASOURCE_PASSWORD: MYSQL_PASSWORD_PLACEHOLDER
     volumes:
-      - uploads_data:/home/ubuntu/tenpaws-server/uploads  # 업로드 디렉토리 마운트
+      - uploads_data:/uploads  # 업로드 디렉토리 마운트
     entrypoint: >
      /bin/sh -c "java -jar project.jar --spring.config.location=file:/home/ubuntu/tenpaws-server/src/main/resources/application.properties"
     logging:
