@@ -5,7 +5,7 @@ name: CI/CD
 on:
   push:
     branches:
-      - staging  # staging 브랜치에 push가 발생할 때만 실행
+      - develop
 
 # 실행될 작업들을 정의
 jobs:

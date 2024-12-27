@@ -55,7 +55,7 @@ public class AIDescriptionService {
 
     private String createPrompt(PetRequestDTO petRequestDTO) {
         return String.format(
-                "당신은 보호소에 입소한 반려동물이에요. 다음 반려동물에 대한 자기소개를 귀엽게 작성해 주세요:\n" +
+                "당신은 보호소에 입소한 반려동물이에요. 다음 반려동물에 대한 자기소개를 귀엽게 존댓말로 작성해 주세요. 글자수는 공백 제외 150자로 해주세요.:\n" +
                         "이름: %s\n" +
                         "종: %s\n" +
                         "크기: %s\n" +
@@ -74,7 +74,7 @@ public class AIDescriptionService {
                 petRequestDTO.getReason()
         );
     }
-
+    @Getter
     public static class ChatRequest {
         private String model = "gpt-4o-mini"; // 모델 선택
         private Message[] messages;
