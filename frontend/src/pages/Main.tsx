@@ -253,7 +253,8 @@ const Main: React.FC = () => {
                 <div className="pb-1 sm:pb-2 md:pb-3 lg:pb-5 xl:pb-7">서로를 만나는 순간</div>
               </div>
               <div className="pb-2 text-sm sm:text-xl md:text-2xl lg:text-3xl sm:pb-4 md:pb-6 lg:pb-8 xl:pb-16">
-              <span className="text-[#7F5546] text-[35px] font-bold">Ten</span><span className="text-[#f1a34a] text-[35px] font-bold">Paws</span>가 맺어주는 하나뿐인 인연
+                <span className="text-[#7F5546] text-[35px] font-bold">Ten</span>
+                <span className="text-[#f1a34a] text-[35px] font-bold">Paws</span>가 맺어주는 하나뿐인 인연
               </div>
               <div
                 className=" text-white bg-[#f1a34a] inline py-2 sm:py-3 px-8 sm:px-16 text-xl sm:text-2xl md:text-3xl rounded-full shadow-[0_0_15px_rgba(0,0,0,0.3)] cursor-pointer hover:bg-[#3c2a13] hover:duration-300"
