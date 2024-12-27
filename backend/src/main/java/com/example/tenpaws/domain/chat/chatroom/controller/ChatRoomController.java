@@ -71,7 +71,7 @@ public class ChatRoomController {
         ChatRoomResponse chatRoom = chatRoomService.getChatRoom(chatRoomId);
         String receiver = authentication.getName().equals(chatRoom.getUserEmail()) ? chatRoom.getOppositeEmail() : chatRoom.getUserEmail();
         chatRoomService.delete(chatRoomId);
-        jedis.unlink("room:" + chatRoom.getChatRoomId());
+        jedis.del("room:" + chatRoom.getChatRoomId());
         messagingTemplate.convertAndSendToUser(
                 receiver,
                 "/queue/chatroom-close",
