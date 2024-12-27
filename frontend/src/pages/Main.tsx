@@ -161,102 +161,74 @@ const Main: React.FC = () => {
 
           <div
             ref={adoptionRef}
-            className="flex gap-8 h-[850px] overflow-hidden sticky top-0"
+            className="flex gap-8 h-[550px] overflow-hidden sticky top-0"
             style={{ scrollBehavior: "smooth" }}>
-            {/* 진행 단계 */}
-            <div className="bg-[#f1a34a] rounded-2xl p-2 shadow-lg w-[220px] h-full">
-              <div className="flex flex-col justify-center h-full space-y-10">
-                {sections.map((icon, idx) => (
-                  <React.Fragment key={icon}>
-                    <div
-                      className={`flex flex-col items-center cursor-pointer transition-all duration-300 ${
-                        currentSection === idx ? "scale-105" : "hover:scale-105"
-                      }`}
-                      onClick={() => {
-                        setCurrentSection(idx);
-                        setActiveIcon(icon);
-                      }}>
-                      <div
-                        className={`w-12 h-12 rounded-full flex items-center justify-center mb-3
-                        transition-all duration-300 shadow-md
-                        ${
-                          currentSection === idx
-                            ? "bg-[#f1a34a] ring-2 ring-white"
-                            : "bg-white hover:bg-[#f1a34a] hover:ring-2 hover:ring-white"
-                        }`}>
-                        <img
-                          src={`/${icon}.png`}
-                          alt={descriptions[icon].title}
-                          className={`w-6 h-6 transition-all duration-300 ${
-                            currentSection === idx ? "brightness-0 invert" : "hover:brightness-0 hover:invert"
-                          }`}
-                        />
-                      </div>
-                      <span
-                        className={`text-base font-bold text-center transition-all duration-300 ${
-                          currentSection === idx ? "opacity-100" : "opacity-70 hover:opacity-100"
-                        }`}>
-                        {descriptions[icon].title}
-                      </span>
-                    </div>
-                    {idx < sections.length - 1 && (
-                      <div className="flex justify-center">
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="text-white opacity-70">
-                          <path
-                            d="M12 4L12 16M12 16L7 11M12 16L17 11"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </div>
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-
             {/* 설명 */}
-            <div className="flex-1 h-full p-10 overflow-hidden bg-white border border-gray-100 shadow-lg rounded-2xl">
+            <div className="relative w-full h-[550px] overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSection}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="flex flex-col h-full max-w-3xl">
-                  <h3 className="text-2xl font-bold mb-6 text-[#3c2a13]">
-                    {descriptions[sections[currentSection]].title}
-                  </h3>
-                  {descriptions[sections[currentSection]].content.map((line, index) => (
-                    <p key={index} className="mb-4 leading-relaxed text-gray-600">
-                      {line}
-                    </p>
-                  ))}
-                  <div className="flex items-center justify-center flex-1">
-                    <motion.img
-                      key={`img-${currentSection}`}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.5 }}
-                      src={`/${iconToImageMap[sections[currentSection]]}`}
-                      alt="Matching Animal Example"
-                      className="w-full max-w-2xl rounded-lg shadow-md"
-                    />
+                  className="absolute w-full h-full">
+                  <div className="relative h-full">
+                    <div className="relative flex h-full">
+                      <div className="relative z-20 w-1/2 pb-16 flex flex-col justify-center">
+                        <h3 className="text-4xl font-bold mb-6 text-[#3c2a13]">
+                          {descriptions[sections[currentSection]].title}
+                        </h3>
+                        {descriptions[sections[currentSection]].content.map((line, index) => (
+                          <motion.p
+                            key={index}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 * index }}
+                            className="mb-4 text-xl leading-relaxed text-gray-600">
+                            {line}
+                          </motion.p>
+                        ))}
+                      </div>
+
+                      {/* 이미지 */}
+                      <div className="relative w-1/2 ">
+                        <motion.img
+                          key={`img-${currentSection}`}
+                          initial={{ opacity: 0, scale: 1.1 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 1.1 }}
+                          transition={{ duration: 0.5 }}
+                          src={`/${iconToImageMap[sections[currentSection]]}`}
+                          alt="Section Image"
+                          className="absolute top-0 right-0 w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               </AnimatePresence>
             </div>
           </div>
+        </div>
+        {/* 인디케이터 */}
+        <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 z-30 flex gap-2 pb-10">
+          {sections.map((_, index) => (
+            <motion.div
+              key={index}
+              className={`w-2 h-2 rounded-full cursor-pointer ${
+                currentSection === index ? "bg-[#f1a34a]" : "bg-gray-300"
+              }`}
+              whileHover={{ scale: 1.2 }}
+              onClick={() => setCurrentSection(index)}
+              initial={false}
+              animate={{
+                scale: currentSection === index ? 1.2 : 1,
+                backgroundColor: currentSection === index ? "#f1a34a" : "#D1D5DB"
+              }}
+              transition={{ duration: 0.2 }}
+            />
+          ))}
         </div>
       </div>
     );
@@ -277,25 +249,25 @@ const Main: React.FC = () => {
           <div className="relative xl:pl-[250px]">
             <div className="absolute z-20 pt-12 pl-8 sm:pt-16 md:pt-20 lg:pt-24 sm:pl-16 md:pl-24 lg:pl-32">
               <div className="text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
-                <div className="sm:pb-5 md:pb-8 lg:pb-8 xl:pb-15">기다림의 끝에서</div>
-                <div className="pb-1 sm:pb-7 md:pb-9 lg:pb-12 xl:pb-10">서로를 만나는 순간</div>
+                <div className="sm:pb-1 md:pb-2 lg:pb-3 xl:pb-5">기다림의 끝에서</div>
+                <div className="pb-1 sm:pb-2 md:pb-3 lg:pb-5 xl:pb-7">서로를 만나는 순간</div>
               </div>
-              <div className="pb-5 text-sm sm:text-xl md:text-2xl lg:text-3xl sm:pb-12 md:pb-14 lg:pb-17 xl:pb-20">
-                TenPaws가 맺어주는 하나뿐인 인연
+              <div className="pb-2 text-sm sm:text-xl md:text-2xl lg:text-3xl sm:pb-4 md:pb-6 lg:pb-8 xl:pb-16">
+                <span className="text-[#7F5546] text-[35px] font-bold">Ten</span>
+                <span className="text-[#f1a34a] text-[35px] font-bold">Paws</span>가 맺어주는 하나뿐인 인연
               </div>
               <div
-                className=" text-white bg-[#f1a34a] inline py-2 sm:py-3 px-8 sm:px-16 text-xl sm:text-2xl md:text-3xl rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] cursor-pointer hover:bg-[#3c2a13] hover:duration-300"
+                className=" text-white bg-[#f1a34a] inline py-2 sm:py-3 px-8 sm:px-16 text-xl sm:text-2xl md:text-3xl rounded-full shadow-[0_0_15px_rgba(0,0,0,0.3)] cursor-pointer hover:bg-[#3c2a13] hover:duration-300"
                 onClick={() => navigation("/matching")}>
                 시작하기
               </div>
             </div>
-            <img src={Main2} alt="main2" className="relative z-0 h-[50vh] w-full object-cover" />
+            <img src={Main2} alt="main2" className="relative z-0 h-[55vh] w-full object-cover" />
           </div>
         </div>
       </section>
 
-      <div
-        className="relative z-10 h-20 -mt-20 bg-gradient-to-b from-transparent to-white"></div>
+      <div className="relative z-10 h-20 -mt-20 bg-gradient-to-b from-transparent to-white"></div>
 
       {/* About TenPaws */}
       <section className="relative justify-center px-4 -mt-1 text-center bg-white py-28">
