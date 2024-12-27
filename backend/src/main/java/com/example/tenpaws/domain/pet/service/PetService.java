@@ -4,10 +4,12 @@ import com.example.tenpaws.domain.pet.dto.PetRequestDTO;
 import com.example.tenpaws.domain.pet.dto.PetResponseDTO;
 import com.example.tenpaws.domain.pet.entity.Pet;
 import com.example.tenpaws.domain.pet.repository.PetRepository;
+import com.example.tenpaws.domain.recommendation.service.ApiService;
 import com.example.tenpaws.domain.shelter.entity.Shelter;
 import com.example.tenpaws.domain.shelter.repository.ShelterRepository;
 import com.example.tenpaws.global.exception.BaseException;
 import com.example.tenpaws.global.exception.ErrorCode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,6 +31,8 @@ import java.util.stream.Collectors;
 public class PetService {
 
     private final ShelterRepository shelterRepository;
+    private final AIDescriptionService aiDescriptionService;
+    private final ObjectMapper objectMapper;
     private final PetRepository petRepository;
     private final String uploadDir = System.getProperty("user.dir") + "/uploads/images";
 
@@ -60,7 +64,7 @@ public class PetService {
         return PetResponseDTO.fromEntity(pet);
     }
 
-    public PetResponseDTO createPet(Long shelterId, PetRequestDTO requestDTO) {
+    public PetResponseDTO createPet(Long shelterId, PetRequestDTO requestDTO) throws IOException {
         Shelter shelter = getShelter(shelterId);
 
         // 이미지 파일 저장
@@ -68,6 +72,11 @@ public class PetService {
 
         // Pet 엔티티 생성
         Pet pet = requestDTO.toEntity(shelter, imageUrls);
+
+        // AI응답으로 자기소개 생성
+        String description = aiDescriptionService.generatePetIntroduction(requestDTO);
+        pet.setDescription(description);
+
         pet.setCreatedDate(LocalDateTime.now()); // createdDate 설정 추가
         shelter.addPet(pet);
         Pet savedPet = petRepository.save(pet);

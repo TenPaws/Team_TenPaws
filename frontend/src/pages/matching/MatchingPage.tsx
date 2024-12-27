@@ -13,6 +13,7 @@ interface ProcessedPet {
   exerciseLevel: string;
   size: string;
   status: string;
+  description: string;
   imageUrls: string[];
 }
 
@@ -181,6 +182,7 @@ const MatchingPage = () => {
                           <p className='px-3 border rounded-xl border-mainColor'>#크기: {pet.size}</p>
                           <p className='px-3 border rounded-xl border-mainColor'>#성격: {pet.personality}</p>
                           <p className='px-3 border rounded-xl border-mainColor'>#활동량: {pet.exerciseLevel}</p>
+                          <p>자기소개 : {pet.description}</p>
                         </div>
                       </div>
                     </div>

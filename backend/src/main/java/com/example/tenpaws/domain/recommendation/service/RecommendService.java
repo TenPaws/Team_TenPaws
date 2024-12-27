@@ -48,6 +48,7 @@ public class RecommendService {
 
             // Step 3: 보호소에서 등록된 Pet 중 제외된 ID를 필터링
             List<Pet> filteredPets = petRepository.findAll().stream()
+                    .filter(pet -> !"APPLIED".equals(pet.getStatus())) // Status가 APPLIED가 아닌 경우
                     .filter(pet -> !excludedPetIds.contains(pet.getId()))
                     .collect(Collectors.toList());
             // No pets avaliable이 발생하면 추천된 반려동물 id 목록 초기화
@@ -75,15 +76,12 @@ public class RecommendService {
         "- Size: %s\n" +
         "- Personality: %s\n" +
         "- Exercise Level: %s\n\n" +
-        "현재 보호소에 있는 아이들은 다음과 같아요:\n%s\n\n" +
-        "위 정보를 바탕으로 한 마리의 아이를 추천해주세요.\n" +
-        "추천하는 아이의 이야기를 다음과 같은 형식으로 들려주세요:\n" +
+        "추천 가능한 반려동물 목록은 다음과 같습니다:\n%s\n\n" +
+        "이중에서 한 마리를 추천해주세요. 추천하는 아이의 이야기를 다음과 같은 형식으로 들려주세요:\n" +
         "1. 자기소개 형식으로 작성해주세요\n" +
         "2. 보호소에 오게 된 사연을 포함하여 아이의 이야기를 들려주세요\n" + // 스토리텔링 요청 추가
         "3. 입양 희망자와 잘 맞을 것 같은 이유를 구체적으로 설명해주세요\n" +
-        "4. Status가 APPLIED인 아이는 추천하지 말아주세요\n" +
-        "5. 마지막에 반드시 (Id: ?) 형식으로 추천하는 아이의 ID를 포함해주세요\n" +
-        "6. 부정적인 표현이나 '완벽하게 맞지 않지만' 같은 문구는 사용하지 말아주세요",
+        "4. 마지막에 반드시 (Id: ?) 형식으로 추천하는 아이의 ID를 포함해주세요\n",
         size, personality, exerciseLevel, petDescriptions);
 
             // Step 5: OpenAI 호출
