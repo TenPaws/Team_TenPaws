@@ -14,7 +14,7 @@ const ShelterAddress: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [token, setToken] = useState<string | null>(null);
   const location = useLocation();
-  const { shelterName, address } = location.state as { shelterName: string; address: string };
+  const { shelterName, address } = location.state as { shelterName: string; address: string; detailAdress: string;};
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -26,6 +26,7 @@ interface PetInfo {
   id: number;
   pet: {
     petId: number;
+    petName: string;
     species: string;
     size: string;
     age: string;
@@ -354,33 +355,47 @@ const MyPageUser: React.FC = () => {
                   .map((pet) => (
                     <section
                       key={pet.id} // 키를 각 pet의 id로 설정
-                      className="relative flex flex-col items-center w-full max-w-lg my-10 overflow-hidden border border-solid rounded-lg border-mainColor"
+                      className="relative flex flex-col items-center w-full max-w-lg my-10 overflow-hidden border rounded-lg"
                     >
                       <div>
-                        <img
-                          src={`http://3.38.196.10:8080${pet.pet.imageUrls[0]}` || undefined}
-                          alt={`${pet.pet.species || "알 수 없는 동물"} 사진`}
-                        />
+                        {/* 카드 */}
+                        <div className="bg-white rounded-2xl p-8 shadow-[0_0_15px_rgba(0,0,0,0.2)]">
+                          <div className="flex items-center justify-center gap-8 ">
+                            {/* 사진*/}
+                            <div className="flex flex-col items-center justify-center font-bold">
+                              <img
+                                src={`http://3.38.196.10:8080${pet.pet.imageUrls[0]}`}
+                                alt="동물 사진"
+                                className="object-cover w-full h-48 rounded-lg"
+                              />
+                              <p>{pet.pet.petName}</p>
+                            </div>
+                            {/* 정보 */}
+                            <div className="flex-1 pl-8 mt-2 border-l border-gray-200">
+                              <div className="space-y-4 text-lg">
+                                <p className='px-3 border rounded-xl border-mainColor'>#나이: {pet.pet.age}</p>
+                                <p className='px-3 border rounded-xl border-mainColor'>#크기: {pet.pet.size}</p>
+                                <p className='px-3 border rounded-xl border-mainColor'>#성격: {pet.pet.personality}</p>
+                                <p className='px-3 border rounded-xl border-mainColor'>#활동량: {pet.pet.exerciseLevel}</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex flex-col items-center my-3">
+                            {pet.applyStatus == "PENDING" ? 
+                              <button
+                                className="text-cancelColor"
+                                onClick={() => {
+                                  setSelectedPetId(pet.id); 
+                                  setApplyModalOpen(true); }} 
+                              >
+                                입양 신청 취소
+                              </button> :
+                              <p className='mb-2 text-xl font-bold'>입양 승인 완료</p>
+                            }
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex flex-col items-center gap-3 my-5">
-                        <p>
-                          {pet.pet.species} / {pet.pet.size} / {pet.pet.age} /
-                          {pet.pet.personality} / {pet.pet.exerciseLevel}
-                        </p>
-                      </div>
-                      <div className="flex flex-col items-center gap-3 my-5">
-                        {pet.applyStatus == "PENDING" ? 
-                          <button
-                            className="text-cancelColor"
-                            onClick={() => {
-                              setSelectedPetId(pet.id); 
-                              setApplyModalOpen(true); }} 
-                          >
-                            입양 신청 취소
-                          </button> :
-                          <p className='mb-2 text-xl font-bold'>입양 승인 완료</p>
-                        }
-                      </div>
+
                       {/* 입양 취소 모달 */}
                       <MyPageModal isOpen={isApplyModalOpen} onClose={() => setApplyModalOpen(false)}>
                         <h3 className="mb-4 text-lg font-bold">입양 취소 하시겠습니까?</h3>
