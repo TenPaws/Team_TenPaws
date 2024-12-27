@@ -49,8 +49,8 @@ interface ProcessedPet {
   size: string;
   status: string;
   imageUrls: string[];
-  description : string
-  introduction : string
+  description: string;
+  introduction: string;
 }
 
 const Main: React.FC = () => {
@@ -240,15 +240,16 @@ const Main: React.FC = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <Chat />
-      
-      {/* <section className="relative">
-        <div className="relative flex justify-center">
-          <div className="relative w-[1150px]">
-            <div className="absolute top-0 left-0 z-10 w-full h-full">
-              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white via-white/5 to-transparent"></div>
-            </div>
+      <section className="relative">
+        <div className="relative">
+          <img src={Main2} alt="main2" className="relative z-0 h-[50vh] w-screen object-cover" />
+          <div className="absolute top-0 left-0 z-10 w-full h-full">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-l from-white/5 via-white/10 to-transparent"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/5 via-white/10 to-transparent"></div>
+          </div>
 
-            <div className="relative">
+          <div className="absolute top-0 left-0 w-full h-full flex justify-center">
+            <div className="relative w-[1150px]">
               <div className="absolute z-20 pt-12 pl-8">
                 <div className="text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
                   <div className="sm:pb-1 md:pb-2 lg:pb-3 xl:pb-5">기다림의 끝에서</div>
@@ -263,44 +264,10 @@ const Main: React.FC = () => {
                   시작하기
                 </div>
               </div>
-              <img src={Main2} alt="main2" className="relative z-0 h-[50vh] w-screen object-cover" />
-              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-l from-white/80 via-white/20 to-transparent"></div>
             </div>
           </div>
         </div>
-      </section> */}
-
-
-<section className="relative">
-  <div className="relative">
-    <img src={Main2} alt="main2" className="relative z-0 h-[50vh] w-screen object-cover" />
-    <div className="absolute top-0 left-0 z-10 w-full h-full">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-l from-white/5 via-white/10 to-transparent"></div>
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/5 via-white/10 to-transparent"></div>
-        </div>
-    
-    <div className="absolute top-0 left-0 w-full h-full flex justify-center">
-      <div className="relative w-[1150px]">
-        
-
-        <div className="absolute z-20 pt-12 pl-8">
-          <div className="text-xl font-bold sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
-            <div className="sm:pb-1 md:pb-2 lg:pb-3 xl:pb-5">기다림의 끝에서</div>
-            <div className="pb-1 sm:pb-2 md:pb-3 lg:pb-5 xl:pb-7">서로를 만나는 순간</div>
-          </div>
-          <div className="pb-2 text-sm sm:text-xl md:text-2xl lg:text-3xl sm:pb-4 md:pb-6 lg:pb-8 xl:pb-10">
-          TenPaws가 맺어주는 하나뿐인 인연
-          </div>
-          <div
-            className="text-white bg-[#f1a34a] inline py-2 sm:py-3 px-8 sm:px-16 text-xl sm:text-2xl md:text-3xl rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] cursor-pointer hover:bg-[#3c2a13] hover:duration-300"
-            onClick={() => navigation("/matching")}>
-            시작하기
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       <div className="relative z-10 h-20 -mt-20 bg-gradient-to-b from-transparent to-white"></div>
 
