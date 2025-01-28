@@ -356,7 +356,7 @@ const Main: React.FC = () => {
                   {/* 사진*/}
                   <div className="flex-1">
                     <img
-                      src={`http://15.164.103.160:8080${filteredPets[currentPetIndex]?.imageUrls[0]}`}
+                      src={`http://3.38.196.10${filteredPets[currentPetIndex]?.imageUrls[0]}`}
                       alt="동물 사진"
                       className="object-cover w-full rounded-lg h-96"
                     />
@@ -370,10 +370,7 @@ const Main: React.FC = () => {
                       <p>크기: {filteredPets[currentPetIndex]?.size}</p>
                       <p>활동량: {filteredPets[currentPetIndex]?.personality}</p>
                       <p>
-                        오게된 이유: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam doloribus
-                        molestiae atque ex quam dicta laborum, veniam esse? Soluta molestiae at corrupti aliquid
-                        aspernatur omnis illum dicta nemo deleniti libero?
-                        {filteredPets[currentPetIndex]?.description}
+                        자기소개: {filteredPets[currentPetIndex]?.description}
                       </p>
                     </div>
                     <div className="flex justify-center mt-5">
