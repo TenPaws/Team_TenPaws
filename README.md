@@ -217,3 +217,4 @@ TENPAWS는 카카오 맵 API를 활용하여 사용자의 현재 위치에서 �
 <br>
 
 ## ▶️ 시연 영상
+https://youtu.be/U2zvPHvb1CQ
